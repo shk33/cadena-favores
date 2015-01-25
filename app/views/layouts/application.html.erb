@@ -18,7 +18,7 @@
         <div class="container">
           <!-- start:navbar-header -->
           <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><i class="fa fa-cubes" data-original-title="" title=""></i> <strong>Cadena de </strong>Favores<strong>.</strong></a>
+            <a class="navbar-brand" href="index.html"><i class="fa fa-users" data-original-title="" title=""></i> <strong>Cadena de </strong>Favores<strong>.</strong></a>
           </div>
           <!-- end:navbar-header -->
           <ul class="nav navbar-nav navbar-left top-menu">
@@ -117,7 +117,9 @@
                 </li>
                 <li>
                   <a href="#">
-                    <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                    <span class="photo">
+                      <%= image_tag("avatar-mini.jpg") %>
+                    </span>
                     <span class="subject">
                                             <span class="from">Jonathan Smith</span>
                     <span class="time">Just now</span>
@@ -129,7 +131,9 @@
                 </li>
                 <li>
                   <a href="#">
-                    <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                    <span class="photo">
+                      <%= image_tag("avatar-mini2.jpg") %>
+                    </span>
                     <span class="subject">
                                             <span class="from">Jhon Doe</span>
                     <span class="time">10 mins</span>
@@ -141,7 +145,8 @@
                 </li>
                 <li>
                   <a href="#">
-                    <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                    <span class="photo">
+                    </span>
                     <span class="subject">
                                             <span class="from">Jason Stathum</span>
                     <span class="time">3 hrs</span>
@@ -153,7 +158,9 @@
                 </li>
                 <li>
                   <a href="#">
-                    <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                    <span class="photo">
+                      <%= image_tag("avatar-mini4.jpg") %>
+                    </span>
                     <span class="subject">
                                             <span class="from">Jondi Rose</span>
                     <span class="time">Just now</span>
@@ -224,7 +231,7 @@
             <!-- user login dropdown start-->
             <li class="dropdown">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="img/avatar1_small.jpg">
+                <%= image_tag("avatar1_small.jpg") %>
                 <span class="username">Jhon Doe</span>
                 <b class="caret"></b>
               </a>
