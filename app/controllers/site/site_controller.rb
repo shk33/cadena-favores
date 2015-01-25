@@ -1,5 +1,5 @@
 class Site::SiteController < ApplicationController
-  #layout "site/site"
+  layout "site/site"
 
   def index
   end
