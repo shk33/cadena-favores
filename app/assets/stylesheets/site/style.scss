@@ -143,7 +143,7 @@ label{
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../img/pattern.png);
+    background-image: image-url("pattern.png");
     background-repeat: repeat;
     background-color: rgba(44,62,80,0.2);
     z-index: 2;
@@ -415,7 +415,7 @@ h2.slide-btm-text{
 }
 /**testimonials**/
 .testimonials{
-    background:url(../img/showcase-3.jpg);
+    background:image-url("showcase-3.jpg");
     padding: 80px 0;
 }
 .bg-heading .center-heading h2{
@@ -484,7 +484,7 @@ h2.slide-btm-text{
 }
 /***our services****/
 #services{
-    background: url('../img/showcase-2.jpg');
+    background: image-url("showcase-2.jpg");
 }
 .service-icon i{
     width:70px;
@@ -546,6 +546,11 @@ h2.slide-btm-text{
     background-color: #ff864f;
     color:#fff;
     border-color:#ff864f;
+}
+
+.portfolio-item{
+    display: inline-block !important;
+    opacity: 1 !important;
 }
 .work-desc{
     padding: 15px 0;
@@ -613,7 +618,7 @@ h2.slide-btm-text{
     position: absolute;
     top: 0;
     left: 0;
-    background: url(../img/plus.png) no-repeat center center rgba(0, 0, 0, 0.6);
+    background: image-url("plus.png") no-repeat center center rgba(0, 0, 0, 0.6);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
     opacity: 0;
@@ -1040,7 +1045,7 @@ h3.heading-progress {
 
 /*******fun-facts****/
 .fun-facts{
-    background: url('../img/showcase-5.jpg');
+    background: image-url("showcase-5.jpg");
     padding: 80px 0;
 }
 .fact-inner h1{
