@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   
+  #Main site Routes like Landing page, login, etc.
   namespace :site, :path => "" do
     root 'site#index'
+  end
+
+  #Main app Routes
+  scope '/app' do
+    get '/' => 'home#index'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
