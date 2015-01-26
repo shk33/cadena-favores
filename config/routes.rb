@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
   
-  resources :users
 
   #Main site Routes like Landing page, login, etc.
   namespace :site, :path => "" do
     root 'site#index'
   end
 
+  #Sessions
+  get    'login'  => 'sessions#new'
+  post   'login'  => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   #Main app Routes
   scope '/app' do
     get '/' => 'home#index'
+    resources :users
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
