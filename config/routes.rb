@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :users
+
   #Main site Routes like Landing page, login, etc.
   namespace :site, :path => "" do
     root 'site#index'
