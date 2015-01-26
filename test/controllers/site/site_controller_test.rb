@@ -5,6 +5,7 @@ class Site::SiteControllerTest < ActionController::TestCase
   test "should get landing page" do
     get :index
     assert_response :success
+    assert_template 'index'
     assert_select "title", 'Cadena de Favores'
   end
 
