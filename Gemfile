@@ -34,6 +34,12 @@ gem 'font-awesome-sass', '~> 4.2.0'
 # Enviroment Variables
 gem "figaro"
 
+group :test do
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
+  gem 'guard-minitest'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
