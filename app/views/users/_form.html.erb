@@ -1,33 +1,19 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user, url: signup_path do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
-  <div class="field">
-    <%= f.label :remember_digest %><br>
-    <%= f.text_field :remember_digest %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+
+    <%= f.label :password %>
+    <%= f.text_field :password, class: 'form-control', placeholder: 'Password' %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
+    <br>
+    <p class="text-center">
+      <%= f.submit "Registrar", class: 'btn btn-lg btn-theme' %>
+    </p>
 <% end %>
