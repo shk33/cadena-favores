@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout 'site/site', only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, except: [:new, :create]
+  before_action :have_account, only: [:new, :create]
   # GET /users
   # GET /users.json
   def index
@@ -52,13 +53,13 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

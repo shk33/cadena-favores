@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   layout "site/site"
-
+  before_action :have_account, only: [:new, :create]
   def new
   end
 

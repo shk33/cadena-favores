@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #Main app Routes
   scope '/app' do
     root 'home#index'
-    resources :users, except: [:new,:create]
+    resources :users, except: [:new,:create,:destroy]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
