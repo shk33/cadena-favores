@@ -11,19 +11,6 @@ class UsersControllerTest < ActionController::TestCase
     # assert_not_nil assigns(:users)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create user" do
-    # assert_difference('User.count') do
-    #   post :create, user: { email: @user.email, name: @user.name, password_digest: @user.password_digest, remember_digest: @user.remember_digest }
-    # end
-
-    # assert_redirected_to user_path(assigns(:user))
-  end
-
   test "should show user" do
     # get :show, id: @user
     # assert_response :success
@@ -39,11 +26,4 @@ class UsersControllerTest < ActionController::TestCase
     # assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should destroy user" do
-    # assert_difference('User.count', -1) do
-    #   delete :destroy, id: @user
-    # end
-
-    # assert_redirected_to users_path
-  end
 end
