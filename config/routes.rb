@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   #Main app Routes
   scope '/app' do
-    get '/' => 'home#index'
+    root 'home#index'
     resources :users
   end
   
