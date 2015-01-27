@@ -14,6 +14,5 @@
 //= require site/tweetie.min
 //= require site/jquery.magnific-popup.min
 //= require site/jquery.backstretch.min
-//= require site/contact_me
 //= require site/jqBootstrapValidation
 //= require site/custom

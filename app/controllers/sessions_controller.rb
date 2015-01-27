@@ -9,16 +9,9 @@ class SessionsController < ApplicationController
     
     if @user && @user.authenticate(params[:session][:password])
       #redirct the user to show profile 
-      if @user.activated?
-        login @user
-        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        redirect_back_or @user
-      else
-        message  = "Account not activated. "
-        message += "Check your email for the activation link."
-        flash[:warning] = message
-        redirect_to root_url
-      end
+      login @user
+      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+      redirect_back_or root_url
     else
       #Create an error mesage
       flash.now[:danger] = "Invalid email/password combination"
@@ -28,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout if logged_in?
-    redirect_to root_url
+    redirect_to site_root_url
   end
 
 end
