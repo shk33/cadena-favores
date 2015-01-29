@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get  'signup'  => 'users#new'
   post 'signup'  => 'users#create'
 
-  #Main app Routes
+  # NO TOCAR LO DE ARRIBA
+  #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
     root 'home#index'
     resources :users, except: [:new,:create,:destroy]
