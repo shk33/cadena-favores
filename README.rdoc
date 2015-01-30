@@ -4,7 +4,7 @@
 
 * Ejecutar el commando
 
-+ git clone https://github.com/shk33/cadena-favores.git
++git clone https://github.com/shk33/cadena-favores.git+
 
 
 
