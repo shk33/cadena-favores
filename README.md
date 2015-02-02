@@ -1,6 +1,7 @@
-== README
+Cadena de Favores
+====================
 
-= Instalación
+# Instalación
 
 * Ejecutar el comando
 <tt>$ git clone https://github.com/shk33/cadena-favores.git</tt>
@@ -17,7 +18,7 @@ DATABASE_USERNAME: "postgres"
 DATABASE_PASSWORD: "password"
 DATABASE_HOST: "127.0.0.1" </tt>
 
-Modifcar los valores DATABASE_USERNAME y DATABASE_PASSWORD con la configuración de su computadora de Postgress.
+* Modifcar los valores DATABASE_USERNAME y DATABASE_PASSWORD con la configuración de su computadora de Postgress.
 
 * Renombrar el archivo <tt>config/application.example.yml</tt> a <tt>config/application.yml</tt>
 
