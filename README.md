@@ -20,7 +20,8 @@ DATABASE_HOST: "127.0.0.1" </tt>
 
 * Modifcar los valores DATABASE_USERNAME y DATABASE_PASSWORD con la configuración de su computadora de Postgress.
 
-* Renombrar el archivo <tt>config/application.example.yml</tt> a <tt>config/application.yml</tt>
+* Duplicar el archivo <tt>config/application.example.yml</tt> y al archivo duplicado renombrarlo <tt>config/application.yml</tt>
+
 
 * Ejecutar el comando
 <tt>rake db:setup</tt> y luego 
