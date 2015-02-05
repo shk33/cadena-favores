@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205195110) do
+ActiveRecord::Schema.define(version: 20150205210108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "balances", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "frozen_points"
+    t.integer  "usable_points"
+    t.integer  "total_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "balances", ["user_id"], name: "index_balances_on_user_id", using: :btree
 
   create_table "offers", force: true do |t|
     t.integer  "user_id"

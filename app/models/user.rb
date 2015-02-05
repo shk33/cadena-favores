@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   #Assosications
   has_one   :profile
+  has_one   :balance
   has_many  :service_requests #The services the user needs
   has_many  :offers
   #Callbacks
