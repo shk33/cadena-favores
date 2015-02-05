@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  #Assosications
+  has_one :profile
   #Callbacks
   before_save   :downcase_email
 
