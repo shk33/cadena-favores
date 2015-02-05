@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   #Assosications
-  has_one :profile
+  has_one  :profile
   #Callbacks
   before_save   :downcase_email
 
@@ -17,6 +17,16 @@ class User < ActiveRecord::Base
 
   #Attr Accessors
   attr_accessor :remember_token, :activation_token, :reset_token
+
+  #Returns the not completed services that user hired
+  def hired_services
+    ServiceArrangement.where("client_id = ? AND completed = ?", self.id, false)
+  end
+
+  #Returns the not completed services that user needs to do
+  def owed_services
+    ServiceArrangement.where("server_id = ? AND completed = ?", self.id, false)
+  end
 
   # Returns the hash digest of the given string.
   def User.digest string
