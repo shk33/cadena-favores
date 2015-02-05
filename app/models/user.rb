@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   #Assosications
-  has_one  :profile
+  has_one   :profile
+  has_many  :required_services
   #Callbacks
   before_save   :downcase_email
 
