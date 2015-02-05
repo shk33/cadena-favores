@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205042838) do
+ActiveRecord::Schema.define(version: 20150205045012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150205042838) do
     t.date     "end_date"
     t.integer  "client_id"
     t.integer  "server_id"
-    t.boolean  "completed"
+    t.boolean  "completed",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +52,11 @@ ActiveRecord::Schema.define(version: 20150205042838) do
     t.integer  "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "serviceable_id"
+    t.string   "serviceable_type"
   end
+
+  add_index "services", ["serviceable_id", "serviceable_type"], name: "index_services_on_serviceable_id_and_serviceable_type", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
