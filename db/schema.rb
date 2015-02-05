@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205060447) do
+ActiveRecord::Schema.define(version: 20150205064945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "offers", force: true do |t|
     t.integer  "user_id"
-    t.integer  "required_service_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "service_request_id"
   end
 
-  add_index "offers", ["required_service_id"], name: "index_offers_on_required_service_id", using: :btree
+  add_index "offers", ["service_request_id"], name: "index_offers_on_service_request_id", using: :btree
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
   create_table "pictures", force: true do |t|
@@ -46,14 +46,6 @@ ActiveRecord::Schema.define(version: 20150205060447) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
-  create_table "required_services", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "required_services", ["user_id"], name: "index_required_services_on_user_id", using: :btree
-
   create_table "service_arrangements", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
@@ -67,6 +59,14 @@ ActiveRecord::Schema.define(version: 20150205060447) do
   add_index "service_arrangements", ["client_id", "server_id"], name: "index_service_arrangements_on_client_id_and_server_id", unique: true, using: :btree
   add_index "service_arrangements", ["client_id"], name: "index_service_arrangements_on_client_id", using: :btree
   add_index "service_arrangements", ["server_id"], name: "index_service_arrangements_on_server_id", using: :btree
+
+  create_table "service_requests", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "service_requests", ["user_id"], name: "index_service_requests_on_user_id", using: :btree
 
   create_table "services", force: true do |t|
     t.string   "title"

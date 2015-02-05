@@ -1,4 +1,4 @@
 class Offer < ActiveRecord::Base
   belongs_to :user
-  belongs_to :required_service
+  belongs_to :service_request
 end
