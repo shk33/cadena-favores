@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_one   :balance
   has_many  :service_requests #The services the user needs
   has_many  :offers
+  has_many  :reviews
   #Callbacks
   before_save   :downcase_email
 
