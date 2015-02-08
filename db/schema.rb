@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205234040) do
+ActiveRecord::Schema.define(version: 20150208232902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(version: 20150205234040) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "profiles_tags", id: false, force: true do |t|
+    t.integer "tag_id"
+    t.integer "profile_id"
+  end
+
+  add_index "profiles_tags", ["profile_id"], name: "index_profiles_tags_on_profile_id", using: :btree
+  add_index "profiles_tags", ["tag_id"], name: "index_profiles_tags_on_tag_id", using: :btree
+
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -141,6 +149,14 @@ ActiveRecord::Schema.define(version: 20150205234040) do
 
   add_index "service_requests", ["user_id"], name: "index_service_requests_on_user_id", using: :btree
 
+  create_table "service_requests_tags", force: true do |t|
+    t.integer "tag_id"
+    t.integer "service_request_id"
+  end
+
+  add_index "service_requests_tags", ["service_request_id"], name: "index_service_requests_tags_on_service_request_id", using: :btree
+  add_index "service_requests_tags", ["tag_id"], name: "index_service_requests_tags_on_tag_id", using: :btree
+
   create_table "services", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -156,13 +172,9 @@ ActiveRecord::Schema.define(version: 20150205234040) do
   create_table "tags", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "tags", ["taggable_id", "taggable_type"], name: "index_tags_on_taggable_id_and_taggable_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
