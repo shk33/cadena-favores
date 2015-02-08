@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-  belongs_to :taggable, polymorphic: true
+  has_and_belongs_to_many :profiles
+  has_and_belongs_to_many :service_requests
 end
