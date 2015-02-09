@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   #Assosications
-  has_one   :profile
-  has_one   :balance
+  has_one   :profile, autosave: true
+  has_one   :balance, autosave: true
   has_many  :service_requests #The services the user needs
   has_many  :offers
   has_many  :reviews
@@ -17,7 +17,12 @@ class User < ActiveRecord::Base
   has_many  :following, through: :active_relationships, source: :followed
   has_many  :followers, through: :passive_relationships, source: :follower
   #Callbacks
-  before_save   :downcase_email
+  before_save       :downcase_email
+  before_validation :add_balance, on: :create
+  before_validation :add_profile, on: :create
+
+  #Nested Atrributes
+  accepts_nested_attributes_for :balance, :profile
 
   # Regexs for validatiosn
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -78,5 +83,13 @@ class User < ActiveRecord::Base
   private
     def downcase_email
       self.email = email.downcase
+    end
+
+    def add_profile
+      self.profile = Profile.create
+    end
+
+    def add_balance
+      self.balance = Balance.create
     end
 end

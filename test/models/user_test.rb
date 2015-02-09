@@ -4,8 +4,8 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new name: "Example user", email: "user@example.com" ,
             password: "foobar", password_confirmation: "foobar"
-    @user.profile = Profile.new user_id: 1
-    @user.balance = Balance.new user_id: 1
+    @user.profile = Profile.new 
+    @user.balance = Balance.new 
   end
 
   test "should be valid" do
@@ -62,22 +62,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "should not have a nil profile" do
-    @user.profile = nil
-    assert_not @user.valid?
-  end
 
-  test "should have a profile" do
-    assert @user.valid?
+  test "should have a nil profile" do
+    assert_not @user.profile.nil?
   end
 
   test "should not have a nil balance" do
-    @user.balance = nil
-    assert_not @user.valid?
-  end
-
-  test "should have a balance" do
-    assert @user.valid?
+    assert_not @user.balance.nil?
   end
 
   test "authenticated? should return false for a user with nil digest" do
