@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #Current user Settings
-    match '/settings', to: 'users#settings', via: "get", as: :setting
+    match '/settings', to: 'users#settings', via: "get", as: :settings
 
     #Users 
     resources :users, except: [:new,:create]

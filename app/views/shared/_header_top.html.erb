@@ -4,7 +4,10 @@
     <div class="container">
       <!-- start:navbar-header -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><i class="fa fa-users" data-original-title="" title=""></i> <strong>Cadena de </strong>Favores<strong>.</strong></a>
+        <%= link_to root_url, class: "navbar-brand" do %>
+          <i class="fa fa-users"></i>
+          <strong>Cadena de </strong>Favores<strong>.</strong>
+        <% end %>
       </div>
       <!-- end:navbar-header -->
       <ul class="nav navbar-nav navbar-left top-menu">
@@ -225,7 +228,10 @@
             <div class="log-arrow-up"></div>
             <li><a href="#"><i class=" fa fa-suitcase" data-original-title="" title=""></i>Profile</a>
             </li>
-            <li><a href="#"><i class="fa fa-cog" data-original-title="" title=""></i> Settings</a>
+            <li>
+              <%= link_to settings_path do %>
+                <i class="fa fa-cog" data-original-title="" title=""></i> Configuración
+              <% end %>
             </li>
             <li><a href="#"><i class="fa fa-bell-o" data-original-title="" title=""></i> Notification</a>
             </li>
