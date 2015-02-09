@@ -6,7 +6,6 @@ one:
   client_id: 1
   server_id: 1
   completed: false
-  serviceable_id: 
 
 two:
   start_date: 2015-02-04
@@ -14,4 +13,3 @@ two:
   client_id: 1
   server_id: 1
   completed: false
-  serviceable_id: 
