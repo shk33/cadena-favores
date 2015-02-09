@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209000824) do
+ActiveRecord::Schema.define(version: 20150209014924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "balances", force: true do |t|
     t.integer  "user_id"
-    t.integer  "frozen_points"
-    t.integer  "usable_points"
-    t.integer  "total_points"
+    t.integer  "frozen_points", default: 0
+    t.integer  "usable_points", default: 0
+    t.integer  "total_points",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
