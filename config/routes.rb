@@ -18,7 +18,12 @@ Rails.application.routes.draw do
   #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
     root 'home#index'
-    resources :users, except: [:new,:create,:destroy]
+
+    #Current user Settings
+    match '/settings', to: 'users#settings', via: "get", as: :settings
+
+    #Users 
+    resources :users, except: [:new,:create]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
