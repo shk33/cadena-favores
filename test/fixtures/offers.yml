@@ -2,8 +2,6 @@
 
 one:
   user_id: 
-  required_services_id: 
 
 two:
   user_id: 
-  required_services_id: 
