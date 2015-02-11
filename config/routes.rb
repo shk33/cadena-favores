@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'service_arrangements/index'
+
+  get 'service_arrangements/create'
+
+  get 'service_arrangements/new'
+
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
@@ -24,6 +30,10 @@ Rails.application.routes.draw do
 
     #Users 
     resources :users, except: [:new,:create]
+
+    #Service Arrangements
+    resources :service_arrangements, only: [:create]
+
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
