@@ -169,12 +169,12 @@
         <li id="header_notification_bar" class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <i class="fa fa-bell-o" data-original-title="" title=""></i>
-            <span class="badge bg-warning">7</span>
+            <span class="badge bg-important">5</span>
           </a>
           <ul class="dropdown-menu extended notification">
-            <div class="notify-arrow notify-arrow-yellow"></div>
+            <div class="notify-arrow notify-arrow-green"></div>
             <li>
-              <p class="yellow">You have 7 new notifications</p>
+              <p class="green">You have 5 new notifications</p>
             </li>
             <li>
               <a href="#">
@@ -207,7 +207,7 @@
               </a>
             </li>
             <li>
-              <a href="#">See all notifications</a>
+              <%= link_to "Ver todas las notificaciones", notifications_path %>
             </li>
           </ul>
         </li>

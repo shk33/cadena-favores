@@ -1,7 +1,9 @@
-Oferta aceptada
-
-<% if activity.trackable %>
-  to <%= link_to activity.trackable.client.name, activity.trackable.client %>
-<% else %>
-  
-<% end %>
+<li class="list-group-item">
+  <i class=" fa fa-suitcase fa-2x"></i>
+  Oferta aceptada
+  <% if activity.trackable %>
+    <% service_arrangement = activity.trackable %>
+    de <%= link_to service_arrangement.client.name, activity.trackable.client %> para 
+    <%= link_to service_arrangement.service.title, "#" %>
+  <% end %>  
+</li>

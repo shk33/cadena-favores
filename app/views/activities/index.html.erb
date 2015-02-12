@@ -12,13 +12,11 @@
           Notificaciones
         </header>
       </div>
-      <div class="panel-body">
+      <ul class="list-group">
         <% @activities.each do |activity| %>
-          <div class="activity">
-              <%=render_activity activity %>
-          </div>
-          <% end %>
-      </div>
+          <%=render_activity activity %>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
