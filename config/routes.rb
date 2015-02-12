@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'messages/create'
+
   get 'points_transactions/create'
 
   get 'service_arrangements/index'
