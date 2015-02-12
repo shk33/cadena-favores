@@ -221,7 +221,9 @@
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <%= image_tag("avatar1_small.jpg") %>
-            <span class="username">Jhon Doe</span>
+            <span class="username">
+              <%= current_user.name %>
+            </span>
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -233,12 +235,10 @@
                 <i class="fa fa-cog" data-original-title="" title=""></i> Configuración
               <% end %>
             </li>
-            <li><a href="#"><i class="fa fa-bell-o" data-original-title="" title=""></i> Notification</a>
-            </li>
             <li>
               <%= link_to logout_path, method: "delete" do %>
                 <i class="fa fa-key" data-original-title="" title="">
-                </i> Log Out
+                </i> Cerrar Sesión
               <% end %>
             </li>
           </ul>
