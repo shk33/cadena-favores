@@ -1,2 +1,17 @@
 <h1>Service#requests</h1>
 <p>Find me in app/views/service/requests.html.erb</p>
+<%= form_for @service_request do |f| %>
+Service:
+	<ul>
+		<%= f.fields_for :service do |service_form| %>
+			<li>
+				<%= service_form.label :title %>
+				<%= service_form.text_field :title %>
+				<%= service_form.label :description %>
+				<%= service_form.text_area :description %>
+				<%= service_form.label :cost %>
+				<%= service_form.text_field :cost %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
