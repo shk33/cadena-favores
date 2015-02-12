@@ -18,7 +18,7 @@ class OffersController < ApplicationController
     if @offer.save
       server = @offer.user
       client = @offer.service_request.user
-      @offer.create_activity action: 'new_offer', recipient: client, owner: server
+      @offer.create_activity action: 'new', recipient: client, owner: server
       #redirect_to @recipe, notice: "Comment was created."
     else
       #render :new

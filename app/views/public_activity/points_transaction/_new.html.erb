@@ -1,0 +1,14 @@
+Has recibido del usuario
+
+<% if activity.trackable %>
+  <!-- Variables -->
+  <% transaction = activity.trackable %>
+  <% sender      = transaction.sender %>
+  <% service     = transaction.service_arrangement.service %>
+
+  <!-- Impresión -->
+  <%= link_to sender.name, sender %>
+  la cantidad de <%= transaction.amount %> puntos 
+  por realizar <%= link_to service.title, "#" %>
+
+<% end %>

@@ -1,0 +1,13 @@
+Nuevo mensaje de 
+
+<% if activity.trackable %>
+  <!-- Variables -->
+  <% message  = activity.trackable %>
+  <% author   = message.author %>
+  <% chat     = message.chat %>
+
+  <!-- Impresión -->
+  <%#= author %> <%#= link_to "mensaje", chat %>
+  <%= author %> <%= link_to "mensaje", "#" %>
+
+<% end %>
