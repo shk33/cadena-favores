@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
     root 'home#index'
-    resources :users, except: [:new,:create,:destroy], :service_requests
+    resources :service_requests, :users, except: [:new,:create,:destroy]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
