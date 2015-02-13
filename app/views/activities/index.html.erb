@@ -13,8 +13,12 @@
         </header>
       </div>
       <ul class="list-group">
-        <% @activities.each do |activity| %>
-          <%=render_activity activity %>
+        <% if @activities %>
+          <% @activities.each do |activity| %>
+            <%=render_activity activity %>
+          <% end %>
+        <% else %>
+          <h3>No tienes notificaciones</h3>
         <% end %>
       </ul>
     </div>
