@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'service/requests'
 
   #Landing page route
   namespace :site, :path => "" do
@@ -20,7 +18,8 @@ Rails.application.routes.draw do
   #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
     root 'home#index'
-    resources :service_requests, :users, except: [:new,:create,:destroy]
+    resources :users, except: [:new,:create,:destroy]
+    resources :service_requests
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
