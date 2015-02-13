@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     #Current user Settings
     match '/settings',      to: 'users#settings',   via: "get", as: :settings
     #Notifications
+    resources :activities, only: [:show]
     match '/notifications', to: 'activities#index', via: "get", as: :notifications
 
     #Users 
