@@ -1,0 +1,18 @@
+<%= form_for @service_request do |f| %>
+    Servicio:
+    <div class="form-group">
+        <%= f.fields_for :service do |service_form| %>
+        <%= service_form.label(:title, "Titulo") %>
+        <%= service_form.text_field(:title), class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= service_form.label(:description, "Descripcion") %>
+        <%= service_form.text_area(:description), class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <%= service_form.label(:price, "Precio") %>
+        <%= service_form.text_field(:price), class: "form-control"%>
+    </div>
+    <button type="submit" class="btn btn-info" data-original-title="" title="">Submit</button>
+        <% end %>
+<% end %>
