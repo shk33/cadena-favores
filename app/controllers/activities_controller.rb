@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, :get_notifications
   
   def index
     @activities = PublicActivity::Activity.order("created_at desc")

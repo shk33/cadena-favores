@@ -1,0 +1,21 @@
+<% if notification.trackable.class.to_s == "Message"  %>
+
+  <%= render 'shared/notifications/message/new', activity: notification %>
+
+<% elsif notification.trackable.class.to_s == "Offer" %>
+
+  <%= render 'shared/notifications/offer/new',  activity: notification %>
+
+<% elsif notification.trackable.class.to_s == "PointsTransaction" %>
+
+  <%= render 'shared/notifications/points_transaction/new', activity: notification %>
+
+<% elsif notification.trackable.class.to_s == "Relationship" %>
+
+  <%= render 'shared/notifications/relationship/new', activity: notification %>
+
+<% elsif notification.trackable.class.to_s == "ServiceArrangement" %>
+
+  <%= render 'shared/notifications/service_arrangement/accepted_offer', activity: notification %>
+
+<% end %>

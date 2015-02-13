@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, except: [:new, :create]
   before_action :have_account, only: [:new, :create]
+  before_action :get_notifications, only: [:show, :edit, :settings]
   # GET /users
   # GET /users.json
   def index

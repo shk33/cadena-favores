@@ -80,6 +80,11 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  #Get all notifications of user
+  def notifications
+    Activity.get_user_notifications self
+  end
+
   private
     def downcase_email
       self.email = email.downcase
