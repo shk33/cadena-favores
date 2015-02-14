@@ -20,9 +20,11 @@ end
 
 private
   def service_request_params
-  	params.require(:service_request).permit( :user_id, {service_attributes: 
+  	params.require(:service_request).permit( 
+                      {service_attributes: 
   											[:title, 
   											 :description, 
-  											 :cost, "ServiceRequest"]})
+  											 :cost]
+                      })
   end
 end
