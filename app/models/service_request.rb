@@ -9,5 +9,5 @@ class ServiceRequest < ActiveRecord::Base
   accepts_nested_attributes_for :service
 
   #Model Validations
-  #validates :service, presence: true
+  validates :service, presence: true
 end

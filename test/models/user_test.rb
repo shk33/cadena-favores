@@ -63,7 +63,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
-  test "should have a nil profile" do
+  test "should not have a nil profile" do
     assert_not @user.profile.nil?
   end
 
