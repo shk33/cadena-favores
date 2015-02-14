@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trackable_id: one (Relationship)
+  trackable_type: Relationship
+  owner_id: one (User)
+  owner_type: User
+  key: "relationship.new"
+  parameters: "--- {}"
+  recipient_id: main_user (User)
+  recipient_type: User
+
+two:
+  trackable_id: one (Relationship)
+  trackable_type: Relationship
+  owner_id: main_user (User) 
+  owner_type: User
+  key: "relationship.new"
+  parameters: "--- {}"
+  recipient_id: one (User)
+  recipient_type: User

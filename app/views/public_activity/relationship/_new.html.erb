@@ -1,0 +1,12 @@
+<li class="list-group-item">
+  <i class=" fa fa-heart fa-2x icon"></i>
+  El usuario 
+  <% if activity.trackable %>
+    <!-- Variables -->
+    <% relationship  = activity.trackable %>
+    <% follower      = relationship.follower %>
+
+    <!-- Impresión -->
+    <%= link_to follower.name , follower %> ahora te sigue
+  <% end %>  
+</li>

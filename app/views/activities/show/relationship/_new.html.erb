@@ -1,0 +1,13 @@
+<div class="well">
+  <h3>Nuevo Seguidor <i class=" fa fa-heart icon"></i></h3>
+  <hr>
+  El usuario 
+  <% if activity.trackable %>
+    <!-- Variables -->
+    <% relationship  = activity.trackable %>
+    <% follower      = relationship.follower %>
+
+    <!-- Impresión -->
+    <%= link_to follower.name , follower %> ahora te sigue
+  <% end %>  
+</div>

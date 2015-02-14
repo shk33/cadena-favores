@@ -1,0 +1,16 @@
+<li class="list-group-item">
+  <i class=" fa fa-wechat fa-2x icon"></i>
+  Nuevo mensaje de 
+
+  <% if activity.trackable %>
+    <!-- Variables -->
+    <% message  = activity.trackable %>
+    <% author   = message.author %>
+    <% chat     = message.chat %>
+
+    <!-- Impresión -->
+    <%#= author %> <%#= link_to "mensaje", chat %>
+    <%= author %> <%= link_to "mensaje", "#" %>
+
+  <% end %>
+</li>

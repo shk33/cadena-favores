@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'messages/create'
-
-  get 'points_transactions/create'
-
-  get 'service_arrangements/index'
-
-  get 'service_arrangements/create'
-
-  get 'service_arrangements/new'
-
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
@@ -30,7 +20,10 @@ Rails.application.routes.draw do
     root 'home#index'
 
     #Current user Settings
-    match '/settings', to: 'users#settings', via: "get", as: :settings
+    match '/settings',      to: 'users#settings',   via: "get", as: :settings
+    #Notifications
+    resources :activities, only: [:show]
+    match '/notifications', to: 'activities#index', via: "get", as: :notifications
 
     #Users 
     resources :users, except: [:new,:create]
