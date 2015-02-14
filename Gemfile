@@ -29,9 +29,10 @@ gem 'faker'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 4.2.0'
-
 # Enviroment Variables
 gem "figaro"
+#User activitys Logs
+gem 'public_activity'
 
 group :test do
   gem 'minitest-reporters'

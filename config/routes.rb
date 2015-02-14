@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   
+  get 'messages/create'
+
+  get 'points_transactions/create'
+
+  get 'service_arrangements/index'
+
+  get 'service_arrangements/create'
+
+  get 'service_arrangements/new'
+
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
@@ -24,6 +34,7 @@ Rails.application.routes.draw do
 
     #Users 
     resources :users, except: [:new,:create]
+
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,7 @@
 class ServiceArrangement < ActiveRecord::Base
+  include PublicActivity::Common
+  #tracked except: :update, owner: ->(controller, model) { controller && controller.current_user }
+
   has_one  :service,  as: :serviceable
   has_one  :points_transaction
   has_one  :review
