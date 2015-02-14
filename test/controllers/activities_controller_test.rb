@@ -12,4 +12,11 @@ class ActivitiesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get show" do
+    #Freking public activy doesn let me test this
+    @notification = activities(:one)
+    get :show, id: @notification
+    assert_response :redirect
+  end
+
 end
