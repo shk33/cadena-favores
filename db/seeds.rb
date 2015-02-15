@@ -146,3 +146,18 @@ arrangements.each do |arrangement|
                             amount:   amount,
                             )
 end
+
+############################
+# Reviews
+############################
+arrangements = ServiceArrangement.where completed: true
+
+arrangements.each do |arrangement|
+  user = arrangement.client
+  rating = rand(1..5)
+  description = Faker::Lorem.sentence(10)
+  Review.create!( user: user,
+                  service_arrangement: arrangement,
+                  description: description,
+                  rating: rating )
+end
