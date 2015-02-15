@@ -14,7 +14,6 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     #Verifico que están los labels de la vista
     assert_select   'label', 'Título'
     assert_select   'label', 'Descripción'
-    assert_select   'label', 'Costo en Puntos'
     #Verifico la existencia de los inputs
     assert_select "input", :name  => "service_request[service_attributes][title]"
     assert_select "input", :name  => "service_request[service_attributes][description]"
