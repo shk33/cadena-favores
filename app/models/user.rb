@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  def has_enough_points? points
+    self.balance.enough_points_for_request? points
+  end
+
   private
     def downcase_email
       self.email = email.downcase

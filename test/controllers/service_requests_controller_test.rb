@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ServiceRequestsControllerTest < ActionController::TestCase
   setup do
-    @user = users(:one)
+    @user = users(:main_user)
     log_in_as @user
   end
 
@@ -40,7 +40,7 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select 'div.alert-danger'
   end
 
-  test "should not create service_request with no numeric cost" do
+  test "should not create service_request with negative cost" do
     #Intento crear un nuevo service request invalido y verifico que
     # la cantidad de service request en la bd no cambie
     assert_no_difference 'ServiceRequest.count' do 
@@ -57,21 +57,43 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select 'div.alert-danger'
   end
 
+  test "should not create a valid service_request with a high cost" do
+    #Intento crear un nuevo service request valido pero con
+    # un costo alto
+    assert_no_difference 'ServiceRequest.count' do 
+      post :create, service_request: { service_attributes: {
+        title: "Este texto es valido",
+        description: "Este texto tambien es valido",
+        #Main user only has 400 points
+        cost: "7000"
+        } }
+    end
+    #Verifico que vuelva a renderizar el formulario el cual está en la vista new
+    assert_template :new
+    #Como falló su creación la app despliega una alerta que está dentro
+    # del div alert-danger, verifico su presencia
+    assert_select 'div.alert-danger'
+  end
+
   test "should create a valid service_request" do
-      #Intento crear un nuevo service request valido y verifico que
-      # la cantidad de service request en la bd sea +1
-      assert_difference 'ServiceRequest.count', 1 do 
-        post :create, service_request: { service_attributes: {
-          title: "Este texto es valido",
-          description: "Este texto tambien es valido",
-          cost: "200"
-          } }
-      end
-      #Debido a que la creacion del ServiceRequest fue exitosa
-      #Entonces es el último registro en la bd
-      service_request = ServiceRequest.last
-      #Debe redireccionarme a mostrar el service request que acabo de crear
-      assert_redirected_to service_request
+    #Intento crear un nuevo service request valido y verifico que
+    # la cantidad de service request en la bd sea +1
+    assert_difference 'ServiceRequest.count', 1 do 
+      post :create, service_request: { service_attributes: {
+        title: "Este texto es valido",
+        description: "Este texto tambien es valido",
+        cost: "100"
+        } }
+    end
+    #Debido a que la creacion del ServiceRequest fue exitosa
+    #Entonces es el último registro en la bd
+    service_request = ServiceRequest.last
+    #Verifico que el usuario se le congelen sus puntos
+    assert_equal 300, @user.balance.usable_points
+    assert_equal 100, @user.balance.frozen_points
+    assert_equal 400, @user.balance.total_points
+    #Debe redireccionarme a mostrar el service request que acabo de crear
+    assert_redirected_to service_request
   end
 
 end

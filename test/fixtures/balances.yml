@@ -2,3 +2,12 @@
 
 one:
   user_id: 1 
+  usable_points: 0 
+  frozen_points: 0 
+  total_points:  0 
+
+main_user_balance:
+  user: main_user 
+  usable_points: 400 
+  frozen_points: 0 
+  total_points:  400 
