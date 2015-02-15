@@ -161,3 +161,33 @@ arrangements.each do |arrangement|
                   description: description,
                   rating: rating )
 end
+
+############################
+# Chat Rooms and Chats
+# Only main user has chats for now
+############################
+other_users = User.all
+user = User.first
+
+other_users.each do |other_user|
+  if user != other_user
+    chat = Chat.create!
+    ChatRoom.create! user: user, chat: chat
+    ChatRoom.create! user: other_user, chat: chat
+  end
+end
+
+############################
+# Messages
+############################
+chats = Chat.all
+
+chats.each do |chat|
+  10.times do
+    author = "Admin"
+    text   = Faker::Lorem.sentence(10)
+    Message.create!( chat: chat,
+                      text: text,
+                      author: author)
+  end
+end
