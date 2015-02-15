@@ -116,12 +116,33 @@ requests.each do |request|
   end_date   = 14.day.from_now
   client     = request.user
   server     = request.offers[0].user
-  service_arrangement = ServiceArrangement.create!(
+  sa = ServiceArrangement.create!(
                          service: service,
                          client:  client,
                          server:  server,
                          start_date: start_date,
                          end_date:   end_date)
 
+  #Make half of service arrangements completed
+  if sa.id%2 == 0
+    sa.completed = true
+    sa.save
+  end
+
 end
   
+############################
+# Points Transactions
+############################
+arrangements = ServiceArrangement.where completed: true
+
+arrangements.each do |arrangement|
+  sender   = arrangement.client
+  receiver = arrangement.server
+  amount   = arrangement.service.cost
+  PointsTransaction.create!( service_arrangement: arrangement,
+                            sender:   sender,
+                            receiver: receiver,
+                            amount:   amount,
+                            )
+end
