@@ -24,8 +24,7 @@ DATABASE_HOST: "127.0.0.1" </tt>
 
 
 * Ejecutar el comando
-<tt>rake db:setup</tt> y luego 
-<tt>rake db:migrate</tt>.
+<tt>rake db:setup</tt>
 
 * Ejecutar el comando
 <tt>rails server</tt>.
