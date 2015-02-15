@@ -191,3 +191,24 @@ chats.each do |chat|
                       author: author)
   end
 end
+
+############################
+# Profiles and its Tags
+############################
+user = User.all
+
+users.each do |user|
+  user.profile.description = Faker::Lorem.sentence(15)
+  user.profile.tags = [Tag.find(rand(1..6))]
+  user.profile.save
+end
+
+############################
+# Relationships
+############################
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
