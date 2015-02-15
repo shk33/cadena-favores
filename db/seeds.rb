@@ -57,3 +57,45 @@ Tag.create!( name:        "Domésticas",
 
 Tag.create!( name:        "Educativa",
              description: "Habilidades para la enseñanza")
+
+Tag.create!( name:        "Transporte",
+             description: "Trasladarse a distintos lugares")
+
+Tag.create!( name:        "Decorativa",
+             description: "Habilidades para la decoración de todo tipo")
+
+############################
+# Service Requests
+############################
+users = User.all
+
+users.each do |user|
+  #Every user has 5 ServiceRequests
+  5.times do |n|
+    request = ServiceRequest.new
+    request.user = user
+    request.tags = [Tag.find(rand(1..6))]
+
+    service = Service.new( title:       Faker::Lorem.sentence(1),
+                           description: Faker::Lorem.sentence(5),
+                           cost:        0)
+    request.service = service
+    request.save
+  end
+end
+
+############################
+# Offers
+############################
+requests = ServiceRequest.all
+
+requests.each do |request|
+  #Every ServiceRequests has 5 offers
+  5.times do |n|
+    user = User.find rand(1..50)
+    offer = Offer.new
+    offer.user    = user
+    offer.service_request = request
+    offer.save
+  end
+end
