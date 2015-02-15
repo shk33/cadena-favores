@@ -71,6 +71,7 @@ users = User.all
 
 users.each do |user|
   #Every user has 5 ServiceRequests
+  # 3 Open services requests and 2 closed
   5.times do |n|
     request = ServiceRequest.new
     request.user = user
@@ -80,6 +81,10 @@ users.each do |user|
                            description: Faker::Lorem.sentence(5),
                            cost:        0)
     request.service = service
+    #First and second services requests are closed
+    if n == 1 || n == 2 
+      request.open = false 
+    end
     request.save
   end
 end
@@ -99,3 +104,24 @@ requests.each do |request|
     offer.save
   end
 end
+
+############################
+# Service Arrangements
+############################
+requests = ServiceRequest.where open: false
+
+requests.each do |request|
+  service    = request.service.dup
+  start_date = 7.day.from_now
+  end_date   = 14.day.from_now
+  client     = request.user
+  server     = request.offers[0].user
+  service_arrangement = ServiceArrangement.create!(
+                         service: service,
+                         client:  client,
+                         server:  server,
+                         start_date: start_date,
+                         end_date:   end_date)
+
+end
+  
