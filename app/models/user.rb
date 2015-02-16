@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  def has_enough_points? points
+    self.balance.enough_points_for_request? points
+  end
 
   private
     def downcase_email

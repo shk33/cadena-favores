@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     #Current user Settings
     match '/settings',      to: 'users#settings',   via: "get", as: :settings
+
     #Notifications
     resources :activities, only: [:show]
     match '/notifications', to: 'activities#index', via: "get", as: :notifications
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
     #Users 
     resources :users, except: [:new,:create]
 
+    #Service Requests 
+    resources :service_requests
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
