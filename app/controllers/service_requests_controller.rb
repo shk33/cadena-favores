@@ -4,6 +4,7 @@ before_action :set_usable_points, only: [:new, :create]
 
 def new
 	@service_request = ServiceRequest.new
+  @tags = Tag.all
 end
 
 def create
@@ -16,6 +17,7 @@ def create
       format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido creada'}
     else
       @service_request = @creator.service_request
+      @tags = Tag.all
       format.html { render :new }
     end
   end
@@ -23,12 +25,12 @@ end
 
 private
   def service_request_params
-    params.require(:service_request).permit( 
-                      {service_attributes: 
-                        [:title, 
-                         :description, 
-                         :cost]
-                      })
+    params.require(:service_request).permit({service_attributes: 
+                                                [:title, 
+                                                 :description, 
+                                                 :cost]
+                                            },
+                                            { tag_ids: [] })
   end
 
   def set_usable_points

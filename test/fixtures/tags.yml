@@ -1,9 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
+programación:
+  name: Programación
+  description: Computers
 
-two:
-  name: MyString
-  description: MyText
+diseño:
+  name: Diseño
+  description: Diseñando ando
+
+domésticas:
+  name: Domésticas
+  description: Domésticando ando
+
+educativa:
+  name: Educativa
+  description: Educando ando
+
+transporte:
+  name: Transporte
+  description: Transportando ando
+
+decorativa:
+  name: Decorativa
+  description: Decorando ando

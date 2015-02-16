@@ -15,5 +15,18 @@
       <%=serviceable_form.number_field :cost, class: "form-control"%>
     </div>
   <% end %>
+
+  <div class="form-group">
+    <label>Etiquetas</label>
+    <% @tags.each do |tag| %>
+      <div class="checkbox">
+        <label>
+        <%= check_box_tag "service_request[tag_ids][]", tag.id, @service_request.tags.include?(tag) %>
+        <%= tag.name %>
+        </label>
+      </div>
+    <% end %>
+  </div>
+
   <%= f.submit "Crear", class: 'btn btn-info' %>
 <% end %>

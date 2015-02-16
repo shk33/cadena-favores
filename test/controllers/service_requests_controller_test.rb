@@ -77,12 +77,17 @@ class ServiceRequestsControllerTest < ActionController::TestCase
   test "should create a valid service_request" do
     #Intento crear un nuevo service request valido y verifico que
     # la cantidad de service request en la bd sea +1
+    educativa  = tags(:educativa).id
+    transporte = tags(:transporte).id
+    tags = [educativa, transporte]
+
+
     assert_difference 'ServiceRequest.count', 1 do 
       post :create, service_request: { service_attributes: {
         title: "Este texto es valido",
         description: "Este texto tambien es valido",
         cost: "100"
-        } }
+        }, tag_ids: tags }
     end
     #Debido a que la creacion del ServiceRequest fue exitosa
     #Entonces es el último registro en la bd
@@ -91,6 +96,9 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_equal 300, @user.balance.usable_points
     assert_equal 100, @user.balance.frozen_points
     assert_equal 400, @user.balance.total_points
+    #Verifico que el ServiceRequest tenga los tags que deseo
+    assert service_request.tag_ids.include? educativa
+    assert service_request.tag_ids.include? transporte
     #Debe redireccionarme a mostrar el service request que acabo de crear
     assert_redirected_to service_request
   end
