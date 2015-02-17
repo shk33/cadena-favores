@@ -23,6 +23,11 @@ def create
   end
 end
 
+def show
+  @service_request = ServiceRequest.find params[:id]
+  @service = @service_request.service
+end
+
 private
   def service_request_params
     params.require(:service_request).permit({service_attributes: 

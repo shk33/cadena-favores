@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">
+      Detalles del Servicio   
+    </h2>
+  </div>
+</div>
+<!-- start:store detail -->
+<div class="row" id="store-detail">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="store-detail-title">
+              <h1>
+                <strong><%=@service.title%></strong>
+                <span class="pull-right">
+                  <strong><%= "$#{@service.cost}" %></strong>
+                </span>
+              </h1>
+            </div>
+            <div class="store-detail-content">
+              <p><%=@service.description%></p>
+              <div class = "panel">
+                <div class="panel-body">
+                  <h4>Etiquetas</h4>
+                    <hr>
+                    <% @service_request.tags.each do |tag| %>
+                     <%= "|#{tag.name}" %>
+                    <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-xs-6">
+                  <button class="btn btn-primary" data-original-title="" title="">Agregar al carrito</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end:store detail -->
+
+
+                        
