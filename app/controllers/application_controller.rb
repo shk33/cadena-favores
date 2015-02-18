@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def send_notification user_id, not_type 
+      Pusher['private-'+user_id].trigger( not_type, {:id => PublicActivity::Activity.last})
+    end
+
     def logged_in_user
       unless logged_in?
         store_location

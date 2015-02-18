@@ -35,6 +35,8 @@ gem 'byebug'
 gem "figaro"
 #User activitys Logs
 gem 'public_activity'
+# Pusher for real time notification
+gem 'pusher'
 
 group :test do
   gem 'minitest-reporters'

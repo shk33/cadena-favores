@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require theme
+//= require pusher
+//= require app_pusher

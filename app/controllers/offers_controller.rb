@@ -13,15 +13,15 @@ class OffersController < ApplicationController
   #Lejos de su implementación final.
   #Implementación sólo para comprobar funcionamiento de notifiaciones
   def create
-    @offer = Offer.new(service_arrangement_params)
+    @offer = Offer.new(offer_params)
 
     if @offer.save
       server = @offer.user
       client = @offer.service_request.user
       @offer.create_activity action: 'new', recipient: client, owner: server
-      #redirect_to @recipe, notice: "Comment was created."
+      send_notification client.id, 'new_points_transaction'
     else
-      #render :new
+
     end
     redirect_to root_url
   end
@@ -34,7 +34,7 @@ class OffersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def offers_params
+    def offer_params
       params.require(:service_arrangement).permit(:user_id, 
                                                   :service_request_id)
     end

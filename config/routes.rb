@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     root 'site#index'
   end
 
+  #Pusher Auth
+  post 'pusher/auth'
+  
   #Sessions
   get    'login'  => 'sessions#new'
   post   'login'  => 'sessions#create'

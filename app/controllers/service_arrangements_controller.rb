@@ -1,3 +1,4 @@
+
 class ServiceArrangementsController < ApplicationController
   before_action :set_service_arrangement, only: [:show,  :destroy]
 
@@ -18,6 +19,7 @@ class ServiceArrangementsController < ApplicationController
     if @service_arrangement.save
       server = @service_arrangement.server
       @service_arrangement.create_activity action: 'accepted_offer', recipient: server, owner: current_user
+      send_notification server.id, 'accepted_offer'
       #redirect_to @recipe, notice: "Comment was created."
     else
       #render :new

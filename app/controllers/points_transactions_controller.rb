@@ -19,6 +19,7 @@ class PointsTransactionsController < ApplicationController
       receiver = @points_transaction.receiver
       sender   = @points_transaction.sender
       @points_transaction.create_activity action: 'new', recipient: receiver, owner: sender
+      send_notification receiver , 'new_points_transaction'
       #redirect_to @recipe, notice: "Comment was created."
     else
       #render :new

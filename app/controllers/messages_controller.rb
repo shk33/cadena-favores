@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
       sender = current_user
       receiver = @message.receiver_user sender
       @message.create_activity action: 'new', recipient: receiver, owner: sender
+      send_notification receiver.id , 'new_message' 
       #redirect_to @recipe, notice: "Comment was created."
     else
       #render :new

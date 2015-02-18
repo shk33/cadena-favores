@@ -19,6 +19,7 @@ class RelationshipsController < ApplicationController
       follower  = current_user
       following = User.find(params[:followed_id])
       @relationship.create_activity action: 'new', recipient: following, owner: follower
+      send_notification following.id, 'new_relationship'
       #redirect_to @recipe, notice: "Comment was created."
     else
       #render :new

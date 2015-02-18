@@ -11,6 +11,36 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+  <script>
+    $(document).on('ready', start_pusher);
+    $(document).on('page:load', start_pusher);
+
+    function start_pusher() {
+      var pusher = new Pusher('dd3848fe84b8b7ddb72a');
+      var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
+      console.log("Super Fantasy Team");
+
+      channel.bind('new_offer', function(data) {
+        msg = "Tienes una nueva oferta";
+      });
+
+      channel.bind('new_message', function(data) {
+        msg = "Tienes un nuevo mensaje";
+      });
+
+      channel.bind('new_points_transaction', function(data) {
+        msg = "Tienes una nueva transacción";
+      });
+
+      channel.bind('new_relationship', function(data) {
+        msg = "Tienes un nuevo seguidor";
+      });
+
+      channel.bind('accepted_offer', function(data) {
+        msg = "Tu oferta ha sido aceptada";
+      });
+    }
+  </script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
