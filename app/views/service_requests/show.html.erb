@@ -1,49 +1,90 @@
 <div class="row">
   <div class="col-lg-12">
     <h2 class="page-header">
-      Detalles del Servicio   
+      Detalles de la solicitud de servicio   
     </h2>
   </div>
 </div>
-<!-- start:store detail -->
-<div class="row" id="store-detail">
-  <div class="col-lg-12">
-    <div class="panel">
+
+<div class="row" id="real-estates-detail">
+
+  <div class="col-lg-4 col-md-4 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <header class="panel-title">
+          <div class="text-center">
+            <strong>Solicitante</strong>
+          </div>
+        </header>
+      </div>
       <div class="panel-body">
-        <div class="row">
-          <div class="col-md-7">
-            <div class="store-detail-title">
-              <h1>
-                <strong><%=@service.title%></strong>
-                <span class="pull-right">
-                  <strong><%= "$#{@service.cost}" %></strong>
-                </span>
-              </h1>
+        <div class="text-center" id="author">
+          <%= link_to @service_request.user do %>
+            <h3><%= @service_request.user.name %></h3>
+          <% end %>
+          <p><%= @service_request.user.profile.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8 col-md-8 col-xs-12">
+    <div class="row" id="property-list" >
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <h4 class="title-real-estates">
+                <strong><a href="#"><%= @service.title %></a></strong>
+                <span class="pull-right"><%= @service.cost %> puntos</span>
+              </h4>
+              <hr>
+              <p>
+                <%= @service.description %>
+              </p>
+              <hr>
+              <p>
+                <% @service_request.tags.each do |tag| %>
+                  <span class="label label-danger"><%= tag.name %></span>
+                <% end %>
+              </p>
             </div>
-            <div class="store-detail-content">
-              <p><%=@service.description%></p>
-              <div class = "panel">
-                <div class="panel-body">
-                  <h4>Etiquetas</h4>
-                    <hr>
-                    <% @service_request.tags.each do |tag| %>
-                     <%= "|#{tag.name}" %>
-                    <% end %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-10 col-xs-6">
-                  <button class="btn btn-primary" data-original-title="" title="">Agregar al carrito</button>
-                </div>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-10">
+            </div>
+            <div class="col-lg-2">
+             <button class="btn btn-primary pull-left">Ofertar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
-<!-- end:store detail -->
 
-
-                        
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <section class="panel">
+      <header class="panel-heading">
+        <h3>Ofertas</h3>
+      </header>
+      <table class="table table-hover personal-task">
+        <tbody>
+        <% @service_request.offers.each do |offer| %>
+          <tr>
+            <td>
+              <i class=" fa fa-money"></i>
+            </td>
+            <td>
+              <%= link_to offer.user.name, offer.user %>
+            </td>
+            <td>Ofertada  hace <%= time_ago_in_words(offer.created_at) %>.</td>
+          </tr>
+        <% end  %>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
