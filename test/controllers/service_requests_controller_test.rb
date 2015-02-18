@@ -103,4 +103,14 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_redirected_to service_request
   end
 
+  test "should show a valid service_request" do
+    service_request = service_requests(:one)
+    service = service_request.service
+    get :show, id: service_request
+    assert_template :show
+    assert_response :success
+    assert_select 'strong', service.title
+    assert_select 'span', "$#{service.cost}"
+    assert_select 'p', service.description
+  end
 end

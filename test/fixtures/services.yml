@@ -4,6 +4,7 @@ one:
   title: MyString
   description: MyText
   cost: 1
+  serviceable: one (ServiceRequest)
 
 two:
   title: MyString
