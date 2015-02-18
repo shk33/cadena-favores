@@ -110,7 +110,8 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_template :show
     assert_response :success
     assert_select 'strong', service.title
-    assert_select 'span', "$#{service.cost}"
+    assert_select 'span', "#{service.cost} puntos"
     assert_select 'p', service.description
+    assert_select 'h3', 'Ofertas'
   end
 end
