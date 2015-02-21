@@ -51,10 +51,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-10">
-            </div>
+            <div class="col-lg-10"></div>
             <div class="col-lg-2">
-             <button class="btn btn-primary pull-left">Ofertar</button>
+              <%= form_for(@offer) do |f| %>
+                <%= hidden_field_tag :user_id,            current_user.id %>
+                <%= hidden_field_tag :service_request_id, @service_request.id %>
+                <%= f.submit "Ofertar", class: "btn btn-primary" %>
+              <% end %>
             </div>
           </div>
         </div>

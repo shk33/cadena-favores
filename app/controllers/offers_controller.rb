@@ -20,10 +20,8 @@ class OffersController < ApplicationController
       client = @offer.service_request.user
       @offer.create_activity action: 'new', recipient: client, owner: server
       send_notification client.id, 'new_points_transaction'
-    else
-
     end
-    redirect_to root_url
+    redirect_to @offer.service_request
   end
 
 
@@ -35,7 +33,6 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:service_arrangement).permit(:user_id, 
-                                                  :service_request_id)
+      params.require(:offer).permit(:user_id, :service_request_id)
     end
 end

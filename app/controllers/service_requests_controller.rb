@@ -26,6 +26,7 @@ end
 def show
   @service_request = ServiceRequest.find params[:id]
   @service = @service_request.service
+  @offer = Offer.new
 end
 
 private
