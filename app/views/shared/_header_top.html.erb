@@ -15,13 +15,10 @@
         <li id="header_notification_bar" class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <i class="fa fa-bell-o" data-original-title="" title=""></i>
-            <span class="badge bg-important">5</span>
+            <span class="badge bg-important" id="notifications-amount">0</span>
           </a>
-          <ul class="dropdown-menu extended notification">
+          <ul class="dropdown-menu extended notification" id="notifications">
             <div class="notify-arrow notify-arrow-green"></div>
-            <li>
-              <p class="green">You have 5 new notifications</p>
-            </li>
             <% if @notifications %>
               <% @notifications.each do |notification| %>
                 <%= render 'shared/notifications/notification', notification: notification %>

@@ -22,23 +22,40 @@
 
       channel.bind('new_offer', function(data) {
         msg = "Tienes una nueva oferta";
+        asdf(msg,data);
       });
 
       channel.bind('new_message', function(data) {
         msg = "Tienes un nuevo mensaje";
+        asdf(msg,data);
       });
 
       channel.bind('new_points_transaction', function(data) {
         msg = "Tienes una nueva transacción";
+        asdf(msg,data);
       });
 
       channel.bind('new_relationship', function(data) {
         msg = "Tienes un nuevo seguidor";
+        asdf(msg,data);
       });
 
       channel.bind('accepted_offer', function(data) {
         msg = "Tu oferta ha sido aceptada";
+        asdf(msg,data);
       });
+
+      function asdf (msg, data) {
+
+        $("#notifications").prepend('<li><a href="/app/activities/"+data.id><span class="label label-danger"> <i class="fa fa-tag"></i></span> Tienes una nueva oferta </a></li>')
+
+        badge = $("#notifications-amount")
+        amount = parseInt(badge.html());
+        badge.html(amount+1);
+
+        var sound = new Audio("http://localhost:3000/assets/not.mp3");
+        sound.play();
+      }
     }
   </script>
 

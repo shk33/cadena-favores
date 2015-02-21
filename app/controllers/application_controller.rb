@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def send_notification user_id, not_type 
-      Pusher['private-'+user_id.to_s].trigger( not_type, {:id => PublicActivity::Activity.last})
+    def send_notification user_id, notification_type 
+      Pusher['private-'+user_id.to_s].trigger( notification_type, {:id => PublicActivity::Activity.last})
     end
 
     def logged_in_user
