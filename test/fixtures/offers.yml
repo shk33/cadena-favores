@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
+  user: main_user
+  service_request: one 
 
 two:
-  user_id: 
+  user: one
+  service_request: two 

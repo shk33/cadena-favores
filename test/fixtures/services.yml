@@ -1,12 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: Service of mighty Main User
   description: MyText
   cost: 1
   serviceable: one (ServiceRequest)
 
 two:
-  title: MyString
+  title: Service of the other user
   description: MyText
   cost: 1
+  serviceable: two (ServiceRequest)
+
+three:
+  title: Service request closed
+  description: MyText
+  cost: 1
+  serviceable: three (ServiceRequest)

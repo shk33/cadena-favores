@@ -33,8 +33,9 @@ Rails.application.routes.draw do
     resources :users, except: [:new,:create]
 
     #Service Requests
-    resources :service_requests
-    resources :offers, only: [:create]
+    resources :service_requests do
+      resources :offers, only: [:create]
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

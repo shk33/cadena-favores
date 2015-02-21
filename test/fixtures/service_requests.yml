@@ -4,4 +4,8 @@ one:
   user: main_user
 
 two:
-  user_id: 
+  user: one
+
+closed:
+  user: one
+  open: false
