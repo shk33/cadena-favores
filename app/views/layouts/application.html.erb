@@ -11,56 +11,6 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-  <script>
-    $(document).on('ready', start_pusher);
-    $(document).on('page:load', start_pusher);
-
-    function start_pusher() {
-      var pusher = new Pusher('dd3848fe84b8b7ddb72a');
-      var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
-      console.log("Super Fantasy Team");
-
-      channel.bind('new_offer', function(data) {
-        msg = "Tienes una nueva oferta";
-        asdf(msg,data);
-      });
-
-      channel.bind('new_message', function(data) {
-        msg = "Tienes un nuevo mensaje";
-        asdf(msg,data);
-      });
-
-      channel.bind('new_points_transaction', function(data) {
-        msg = "Tienes una nueva transacción";
-        asdf(msg,data);
-      });
-
-      channel.bind('new_relationship', function(data) {
-        msg = "Tienes un nuevo seguidor";
-        asdf(msg,data);
-      });
-
-      channel.bind('accepted_offer', function(data) {
-        msg = "Tu oferta ha sido aceptada";
-        asdf(msg,data);
-      });
-
-      function asdf (msg, data) {
-        route = '/app/activities/'+data.id;
-        $("#notifications").prepend('<li><a href="'+route+'"><span class="label label-danger"> <i class="fa fa-tag"></i></span> Tienes una nueva oferta </a></li>')
-
-        badge = $("#notifications-amount")
-        amount = parseInt(badge.html());
-        badge.html(amount+1);
-
-        var sound = new Audio("http://localhost:3000/assets/not.mp3");
-        sound.play();
-        $.notify(msg);
-        console.log(data.id);
-      }
-    }
-  </script>
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -69,6 +19,7 @@
   <![endif]-->
 </head>
 <body>
+  <div id="user" data-id="<%= current_user.id %>"></div>
   <div id="wrapper">
     
     <%= render 'shared/header_top' %>

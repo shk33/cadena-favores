@@ -1,0 +1,74 @@
+$(document).on('ready', start_pusher);
+$(document).on('page:load', start_pusher);
+
+function start_pusher() {
+  var pusher  = new Pusher('dd3848fe84b8b7ddb72a');
+  var user    = $("#user").data('id');
+  var channel = pusher.subscribe('private-'+ user);
+  console.log("Super Fantasy Team");
+
+  channel.bind('new_offer', function(data) {
+    msg = "Tienes una nueva oferta";
+    icon = "fa-tag";
+    show_notification(msg,data,icon);
+  });
+
+  channel.bind('new_message', function(data) {
+    msg = "Tienes un nuevo mensaje";
+    icon = "fa-wechat";
+    show_notification(msg,data,icon);
+  });
+
+  channel.bind('new_points_transaction', function(data) {
+    msg = "Tienes una nueva transacción";
+    icon = "fa-money";
+    show_notification(msg,data,icon);
+  });
+
+  channel.bind('new_relationship', function(data) {
+    msg = "Tienes un nuevo seguidor";
+    icon = "fa-heart";
+    show_notification(msg,data,icon);
+  });
+
+  channel.bind('accepted_offer', function(data) {
+    msg = "Tu oferta ha sido aceptada";
+    icon = "fa-suitcase";
+    show_notification(msg,data,icon);
+  });
+}
+
+function show_notification(msg,data, icon) {
+  addNotificationToList(msg,data,icon);
+  changeNotificacionAmount();
+  playNotificationSound();
+  showNotificationAlert();
+}
+
+function addNotificationToList(msg, data, icon) {
+  route = '/app/activities/'+data.id;
+  html1 = '<li><a href="';
+  html2 = route;
+  html3 = '"><span class="label label-danger"> <i class="fa ';
+  html4 = icon
+  html5 = '"></i></span> '
+  html6 = msg
+  html7 = '</a></li>';
+  html = html1+html2+html3+html4+html5+html6+html7
+  $("#notifications").prepend(html);
+}
+
+function changeNotificacionAmount() {
+  badge = $("#notifications-amount")
+  amount = parseInt(badge.html());
+  badge.html(amount+1);
+}
+
+function playNotificationSound() {
+  var sound = new Audio("http://localhost:3000/assets/not.mp3");
+  sound.play();
+}
+
+function showNotificationAlert() {
+  $.notify(msg);
+}

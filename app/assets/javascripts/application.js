@@ -17,4 +17,4 @@
 //= require theme
 //= require notify-custom
 //= require pusher
-//= require app_pusher
+//= require notifications
