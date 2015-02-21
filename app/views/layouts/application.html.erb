@@ -46,8 +46,8 @@
       });
 
       function asdf (msg, data) {
-
-        $("#notifications").prepend('<li><a href="/app/activities/"+data.id><span class="label label-danger"> <i class="fa fa-tag"></i></span> Tienes una nueva oferta </a></li>')
+        route = '/app/activities/'+data.id;
+        $("#notifications").prepend('<li><a href="'+route+'"><span class="label label-danger"> <i class="fa fa-tag"></i></span> Tienes una nueva oferta </a></li>')
 
         badge = $("#notifications-amount")
         amount = parseInt(badge.html());
@@ -55,6 +55,8 @@
 
         var sound = new Audio("http://localhost:3000/assets/not.mp3");
         sound.play();
+        $.notify(msg);
+        console.log(data.id);
       }
     }
   </script>
