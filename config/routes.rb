@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     #Service Requests
     resources :service_requests do
-      resources :offers, only: [:create]
+      resources :offers, only: [:create, :destroy]
     end
   end
   

@@ -81,7 +81,13 @@
             <td>
               <%= link_to offer.user.name, offer.user %>
             </td>
-            <td>Ofertada  hace <%= time_ago_in_words(offer.created_at) %>.</td>
+            <td>Ofertado hace <%= time_ago_in_words(offer.created_at) %>.
+            </td>
+            <td>
+            <% if current_user == offer.user %>
+              <%= link_to "Cancelar Oferta", service_request_offer_path(offer.service_request, offer), class: "btn btn-drop btn-danger text-center", confirm: "Are you sure?", method: :delete %>
+            <% end %>
+            </td>
           </tr>
         <% end  %>
         </tbody>

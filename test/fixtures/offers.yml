@@ -2,8 +2,8 @@
 
 one:
   user: main_user
-  service_request: one 
+  service_request: two 
 
 two:
   user: one
-  service_request: two 
+  service_request: one
