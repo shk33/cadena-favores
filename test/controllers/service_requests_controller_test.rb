@@ -135,4 +135,11 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select 'a', request.service.title
   end
 
+  test "should get index and search by name" do
+    request = service_requests(:one)
+    get :index , search: "mighty", search_type: 1
+    assert_response :success
+    assert_select 'a', request.service.title
+  end
+
 end
