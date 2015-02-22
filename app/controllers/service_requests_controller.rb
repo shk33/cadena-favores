@@ -21,14 +21,14 @@ def new
 end
 
 def create
-  @creator = ServiceRequestCreation.new(service_request_params,
+  creator = ServiceRequestCreation.new(service_request_params,
                                                 current_user)
   respond_to do |format|
-    if @creator.valid_creation?
-      @service_request = @creator.create
+    if creator.valid_creation?
+      @service_request = creator.create
       format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido creada'}
     else
-      @service_request = @creator.service_request
+      @service_request = creator.service_request
       @tags = Tag.all
       format.html { render :new }
     end
@@ -47,8 +47,10 @@ end
 
 def destroy
   request = ServiceRequest.find params[:id]
-  if deleteable_request? request
-    request.destroy
+  destroyer = ServiceRequestDestroyer.new request, current_user
+
+  if destroyer.deleteable_request?
+    destroyer.destroy
     redirect_to my_service_requests_url, notice: 'Se ha borrado exitosamente'
   else
     redirect_to root_url
@@ -69,11 +71,4 @@ private
     @usable_points = current_user.balance.usable_points
   end
 
-  def deleteable_request? request
-    service_request_owner?(request) && request.open?
-  end
-
-  def service_request_owner? request
-    current_user == request.user
-  end
 end

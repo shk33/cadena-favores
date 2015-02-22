@@ -94,8 +94,8 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     service_request = ServiceRequest.last
     #Verifico que el usuario se le congelen sus puntos
     assert_equal 300, @user.balance.usable_points
-    assert_equal 100, @user.balance.frozen_points
-    assert_equal 400, @user.balance.total_points
+    assert_equal 200, @user.balance.frozen_points
+    assert_equal 500, @user.balance.total_points
     #Verifico que el ServiceRequest tenga los tags que deseo
     assert service_request.tag_ids.include? educativa
     assert service_request.tag_ids.include? transporte
@@ -149,6 +149,9 @@ class ServiceRequestsControllerTest < ActionController::TestCase
         delete :destroy , id: request.id
       end
     end
+    assert_equal 401, @user.balance.usable_points
+    assert_equal 99, @user.balance.frozen_points
+    assert_equal 500, @user.balance.total_points
     assert_redirected_to my_service_requests_url
   end
 

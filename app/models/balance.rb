@@ -11,4 +11,10 @@ class Balance < ActiveRecord::Base
     self.save
   end
 
+  def unfreeze_points points
+    self.usable_points += points
+    self.frozen_points -= points
+    self.save
+  end
+
 end
