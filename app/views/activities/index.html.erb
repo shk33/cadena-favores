@@ -1,26 +1,26 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h2 class="page-header">Notificaciones</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-12 col-md-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <header class="panel-title">
-          Notificaciones
-        </header>
-      </div>
-      <ul class="list-group">
-        <% if @activities %>
-          <% @activities.each do |activity| %>
-            <%=render_activity activity %>
-          <% end %>
-        <% else %>
-          <h3>No tienes notificaciones</h3>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+<div class="row">    
+  <div class="col-lg-12">    
+    <h2 class="page-header">Notificaciones</h2>    
+  </div>   
+</div>   
+   
+<div class="row">    
+  <div class="col-lg-12 col-md-12">    
+    <div class="panel panel-info">   
+      <div class="panel-heading">    
+        <header class="panel-title">   
+          Notificaciones   
+        </header>    
+      </div>   
+      <ul class="list-group">    
+       <% if @activities %>   
+          <% @activities.each do |activity| %>   
+            <%=render_activity activity %>   
+          <% end %>    
+        <% else %>   
+          <h3>No tienes notificaciones</h3>    
+        <% end %>    
+      </ul>    
+    </div>   
+  </div>   
+</div>   

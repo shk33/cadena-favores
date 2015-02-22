@@ -2,6 +2,7 @@
 
 one:
   user: main_user
+  tags: programacion , diseno
 
 two:
   user: one

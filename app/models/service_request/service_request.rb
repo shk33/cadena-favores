@@ -11,4 +11,21 @@ class ServiceRequest < ActiveRecord::Base
   #Model Validations
   validates :service, presence: true
   validates :user,    presence: true
+
+  def self.search_by_title search
+    if search
+      ServiceRequest.joins(:service).where("title like ? ", "%#{search}%")
+    else
+      ServiceRequest.all
+    end
+  end
+
+  def self.search_by_tag tag_id
+    if tag_id
+      ServiceRequest.joins(:tags).where(tags: {id: tag})
+    else
+      ServiceRequest.all
+    end
+  end  
+  
 end

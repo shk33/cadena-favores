@@ -33,7 +33,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right top-menu">
         <li>
-          <input type="text" class="form-control input-sm search" placeholder="Search">
+        <%= form_tag service_requests_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control input-sm search" %>
+            <%= hidden_field_tag :search_type, "1" %>
+          <% end %>
         </li>
         <!-- user login dropdown start-->
         <li class="dropdown">

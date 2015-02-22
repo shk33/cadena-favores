@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'

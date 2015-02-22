@@ -114,4 +114,25 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select 'p', service.description
     assert_select 'h3', 'Ofertas'
   end
+
+  test "should get index" do
+    tags = Tag.all
+    get :index
+    assert_response :success
+    #Asserting advanced search form
+    assert_select   'label', 'Busqueda por título'
+    tags.each do |tag|
+        assert_select 'label', tag.name
+        assert_select "input", :name  => "tag", :value => tag.id
+    end
+    assert_select "input", :name  => "commit", :type => "submit",:value => 'Buscar'
+  end
+
+  test "should get index and search by tags" do
+    request = service_requests(:one)
+    get :index , tag: 1, search_type: 2
+    assert_response :success
+    assert_select 'a', request.service.title
+  end
+
 end

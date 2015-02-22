@@ -1,25 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-programación:
+programacion:
+  id: 1
   name: Programación
   description: Computers
 
-diseño:
+diseno:
+  id: 2
   name: Diseño
   description: Diseñando ando
 
-domésticas:
+domesticas:
+  id: 3
   name: Domésticas
   description: Domésticando ando
 
 educativa:
+  id: 4
   name: Educativa
   description: Educando ando
 
 transporte:
+  id: 5
   name: Transporte
   description: Transportando ando
 
 decorativa:
+  id: 6
   name: Decorativa
   description: Decorando ando

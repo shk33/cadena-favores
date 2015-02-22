@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">Solicitudes de servicio</h2>
+  </div>
+</div>
+
+
+<div class="row" id="store-list">
+  <div class="col-lg-12">
+
+    <%= render "search_form" %>
+
+    <% if params[:search] && !params[:search].empty? %>
+      <h3>Mostrando resultados de: "<%= params[:search] %>"</h3>
+    <% end %>
+
+    <% if params[:tag] && !params[:tag].empty? %>
+      <h3>Mostrando resultados de categoria: "<%= @tags.find(params[:tag]).name %>"</h3>
+    <% end %>
+
+    <% @service_requests.each do |request| %>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+
+            <div class="col-sm-12">
+              <h4 class="title-store">
+                <strong>
+                  <%= link_to request.service.title, request %>
+                </strong>
+                <div class="pull-right">
+                  <strong>Solicta: </strong>
+                  <%= link_to request.user.name, request.user %>
+                </div>
+              </h4>
+              <hr>
+              <p><%= request.service.description %></p>
+              <p>
+                <div class="btn btn-primary">
+                  <strong>Costo: </strong><%= request.service.cost %> puntos
+                </div>
+                <%= link_to "Ver Detalles", request, class: "btn btn-warning pull-right" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+<%= paginate @service_requests %>
