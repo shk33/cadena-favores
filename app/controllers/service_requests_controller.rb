@@ -1,6 +1,7 @@
 class ServiceRequestsController < ApplicationController
 before_action :logged_in_user, :get_notifications
-before_action :set_usable_points, only: [:new, :create]
+before_action :set_usable_points,   only: [:new, :create]
+before_action :set_service_request, only: [:show, :edit, :destroy]
 
 def index
   # 1 = name
@@ -36,7 +37,6 @@ def create
 end
 
 def show
-  @service_request = ServiceRequest.find params[:id]
   @service = @service_request.service
   @offer = Offer.new
 end
@@ -46,8 +46,7 @@ def user_index
 end
 
 def destroy
-  request = ServiceRequest.find params[:id]
-  destroyer = ServiceRequestDestroyer.new request, current_user
+  destroyer = ServiceRequestDestroyer.new @service_request, current_user
 
   if destroyer.deleteable_request?
     destroyer.destroy
@@ -69,6 +68,10 @@ private
 
   def set_usable_points
     @usable_points = current_user.balance.usable_points
+  end
+
+  def set_service_request
+    @service_request = ServiceRequest.find params[:id]
   end
 
 end
