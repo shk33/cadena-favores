@@ -5,6 +5,7 @@ class ServiceRequestCreation
     @params = params
     @user   = user
     @service_request = ServiceRequest.new params
+    @service_request.user = user
     @valid  = false
     @points = 0
   end

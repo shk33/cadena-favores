@@ -5,6 +5,7 @@ class RequiredServiceTest < ActiveSupport::TestCase
     @service_request = ServiceRequest.new
     @service_request.service = Service.new title: "Valid title", description: "valid description" ,
             cost: "100"
+    @service_request.user = users(:main_user)
   end
 
   test "should be valid" do

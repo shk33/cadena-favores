@@ -10,4 +10,5 @@ class ServiceRequest < ActiveRecord::Base
 
   #Model Validations
   validates :service, presence: true
+  validates :user,    presence: true
 end
