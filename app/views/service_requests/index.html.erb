@@ -1,0 +1,4 @@
+<%@service_requests.each do |service|%>
+<%=service.user_id%>
+<td><%= link_to 'Destroy', service, method: :delete, data: { confirm: '¿Estás seguro?' } %></td><br>
+<%end%>
