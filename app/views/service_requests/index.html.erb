@@ -4,31 +4,35 @@
   </div>
 </div>
 
-<% @service_requests.each do |request| %>
-  <div class="jumbotron jumbotron-sm">
-     <div class="panel-body">
-      <div class="row">
-          <div class="col-sm-7">
-              <h4 class="title-store">
-                  <strong><a href="#"><%=request.service.title%></a></strong>
-              </h4>
-              Sigues a: <a href="#"><%=request.user.name%></a> <span class="glyphicon glyphicon-star-empty"></span>   
-          <p>
-          <%request.tags.each do |tag|%>
-            <span class="label label-danger"> <%=tag.name%></span> |
-          <%end%> 
-        </p>
-              <hr>
-              <p><%=request.service.description%></p>
 
-              <p> 
-                  <a href="#" class="btn btn-default" disabled="" data-original-title="" title="">$<%=request.service.cost%></a>
-                  <a href="#" class="btn btn-warning pull-right" data-original-title="" title="">Hacer el trato</a>
+<div class="row" id="store-list">
+  <div class="col-lg-12">
+    <% @service_requests.each do |request| %>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+
+            <div class="col-sm-12">
+              <h4 class="title-store">
+                <strong>
+                  <%= link_to request.service.title, request %>
+                </strong>
+              </h4>
+              <hr>
+              <p><%= request.service.description %></p>
+              <p>
+                <div class="btn btn-primary">
+                  <strong>Costo: </strong><%= request.service.cost %> puntos
+                </div>
+                <%= link_to "Ver Detalles", request, class: "btn btn-warning pull-right" %>
               </p>
+            </div>
           </div>
+        </div>
       </div>
-    </div>
+    <%end%>
   </div>
-<%end%>
+</div>
 
 <%= paginate @service_requests %>
