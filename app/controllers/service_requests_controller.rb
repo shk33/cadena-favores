@@ -2,6 +2,7 @@ class ServiceRequestsController < ApplicationController
 before_action :logged_in_user, :get_notifications
 before_action :set_usable_points,   only: [:new, :create]
 before_action :set_service_request, only: [:show, :edit, :destroy]
+before_action :set_tags,            only: [:index, :new, :edit]
 
 def index
   # 1 = name
@@ -13,12 +14,10 @@ def index
     @service_requests = ServiceRequest.search_by_title(params[:search]).
                                             page(params[:page]).per(5)
   end
-  @tags = Tag.all
 end
 
 def new
 	@service_request = ServiceRequest.new
-  @tags = Tag.all
 end
 
 def create
@@ -34,6 +33,12 @@ def create
       format.html { render :new }
     end
   end
+end
+
+def edit
+end
+
+def update
 end
 
 def show
@@ -72,6 +77,10 @@ private
 
   def set_service_request
     @service_request = ServiceRequest.find params[:id]
+  end
+
+  def set_tags
+    @tags = Tag.all
   end
 
 end
