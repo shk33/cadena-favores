@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'service_requests/home'
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     resources :users, except: [:new,:create]
 
     #Service Requests 
-    resources :service_requests
+    resources :service_requests do
+      resources :offers, only: [:create, :destroy]
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -10,4 +10,14 @@ class ServiceRequest < ActiveRecord::Base
 
   #Model Validations
   validates :service, presence: true
+
+  def self.searchByTitle (search)
+    ServiceRequest.joins(:service).where("title like ? ", "%#{search}%")
+  end
+
+  def self.searchByTag(search)
+    ServiceRequest.joins(:tags).where("LOWER(name) like ? ", "%#{search.downcase}%")
+  end  
+
+
 end

@@ -35,9 +35,20 @@
         <!-- end dropdown 1 -->
       </ul>
       <ul class="nav navbar-nav navbar-right top-menu">
+        
+        <form action="service_requests/index">
+          <select name="searchType">
+            <option value="tag">Búsqueda etiqueta</option>
+            <option value="name">Búsqueda por nombre de servicio</option>
+          </select>
         <li>
-          <input type="text" class="form-control input-sm search" placeholder="Search">
+
+
+          <input type="text" name=busqueda <%= @busqueda %> class="form-control input-sm search" placeholder="Búsqueda">
+
         </li>
+        </form>
+
         <!-- user login dropdown start-->
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
