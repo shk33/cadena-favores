@@ -35,20 +35,12 @@
         <!-- end dropdown 1 -->
       </ul>
       <ul class="nav navbar-nav navbar-right top-menu">
-        
-        <form action="service_requests/index">
-          <select name="searchType">
-            <option value="tag">Búsqueda etiqueta</option>
-            <option value="name">Búsqueda por nombre de servicio</option>
-          </select>
         <li>
-
-
-          <input type="text" name=busqueda <%= @busqueda %> class="form-control input-sm search" placeholder="Búsqueda">
-
+        <%= form_tag service_requests_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control input-sm search" %>
+            <%= hidden_field_tag :search_type, "1" %>
+          <% end %>
         </li>
-        </form>
-
         <!-- user login dropdown start-->
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">

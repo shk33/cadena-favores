@@ -3,29 +3,18 @@ before_action :logged_in_user, :get_notifications
 before_action :set_usable_points, only: [:new, :create]
 
 def index
-  @usuarios = User.all
-  busqueda = params[:busqueda]
-  searchType = params[:searchType]
-  if searchType == "tag"
-    @peticionesFiltradas1 = ServiceRequest.searchByTag(busqueda)
-    @peticionesFiltradas2 = ServiceRequest.searchByTag(busqueda).page(params[:page]).per(5)
+  # 1 = name
+  # 2 = tags
+  if params[:search_type] == 2
+    @service_requests = ServiceRequest.search_by_tag(params[:search]).
+                                            page(params[:page]).per(5)
   else
-    @peticionesFiltradas1 = ServiceRequest.searchByTitle(busqueda)
-    @peticionesFiltradas2 = ServiceRequest.searchByTag(busqueda).page(params[:page]).per(5)
+    @service_requests = ServiceRequest.search_by_title(params[:search]).
+                                            page(params[:page]).per(5)
   end
 end
 
 def show
-    @usuarios = User.all
-  busqueda = params[:busqueda]
-  searchType = params[:searchType]
-  if searchType == "tag"
-    @peticionesFiltradas1 = ServiceRequest.searchByTag(busqueda)
-    @peticionesFiltradas2 = ServiceRequest.searchByTag(busqueda).page(params[:page]).per(5)
-  else
-    @peticionesFiltradas1 = ServiceRequest.searchByTitle(busqueda)
-    @peticionesFiltradas2 = ServiceRequest.searchByTag(busqueda).page(params[:page]).per(5)
-  end
 end
 
 def new
