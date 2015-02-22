@@ -15,8 +15,9 @@ class ServiceRequest < ActiveRecord::Base
     ServiceRequest.joins(:service).where("title like ? ", "%#{search}%")
   end
 
-  def self.search_by_tag search
-    ServiceRequest.joins(:tags).where("LOWER(name) like ? ", "%#{search.downcase}%")
+  def self.search_by_tag tag_id
+    ServiceRequest.joins(:tags).where(tags: {id: tag})
+
   end  
 
 

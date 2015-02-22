@@ -6,12 +6,13 @@ def index
   # 1 = name
   # 2 = tags
   if params[:search_type] == 2
-    @service_requests = ServiceRequest.search_by_tag(params[:search]).
+    @service_requests = ServiceRequest.search_by_tag(params[:tag]).
                                             page(params[:page]).per(5)
   else
     @service_requests = ServiceRequest.search_by_title(params[:search]).
                                             page(params[:page]).per(5)
   end
+  @tags = Tag.all
 end
 
 def show
