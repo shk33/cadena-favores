@@ -1,7 +1,8 @@
 <%=form_for @service_request do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
-  <%= f.fields_for :service_attributes do |serviceable_form| %>
+  <% model = @service_request.service || :service_attributes %>
+  <%= f.fields_for model do |serviceable_form| %>
     <div class="form-group">
       <%=serviceable_form.label(:title, "Título") %>
       <%=serviceable_form.text_field :title, class: "form-control" %>
