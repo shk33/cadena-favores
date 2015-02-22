@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])    
+    @tags = Tag.all
   end
 
   # POST /users
@@ -74,6 +76,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, 
                                    :email, 
                                    :password, 
-                                   :password_confirmation)
+                                   :password_confirmation, 
+                                    {profile_attributes: { tag_ids: [] }})
     end
 end

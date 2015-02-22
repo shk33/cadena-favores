@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get  'signup'  => 'users#new'
   post 'signup'  => 'users#create'
 
+
   # NO TOCAR LO DE ARRIBA
   #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
 
     #Service Requests 
     resources :service_requests
+
+      #perfil
+    
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

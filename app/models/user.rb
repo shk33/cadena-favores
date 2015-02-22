@@ -41,6 +41,15 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
 
   #Returns the not completed services that user hired
+  def hired_services_completed
+    ServiceArrangement.where("client_id = ? AND completed = ?", self.id, true)
+  end
+
+  def owed_services_completed
+    ServiceArrangement.where("server_id = ? AND completed = ?", self.id, true)
+  end
+
+  #Returns the not completed services that user hired
   def hired_services
     ServiceArrangement.where("client_id = ? AND completed = ?", self.id, false)
   end

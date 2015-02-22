@@ -12,6 +12,6 @@
 
 # Database setup
 DATABASE_NAME: "cadena_favores"
-DATABASE_USERNAME: "postgres"
-DATABASE_PASSWORD: "password"
+DATABASE_USERNAME: "JahzeelCoss"
+DATABASE_PASSWORD: ""
 DATABASE_HOST: "127.0.0.1"
