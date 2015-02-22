@@ -23,3 +23,9 @@ four:
   description: MyText
   cost: 1
   serviceable: closed (ServiceRequest)
+
+five:
+  title: Service request CLosed
+  description: MyText
+  cost: 100
+  serviceable: main_closed (ServiceRequest)

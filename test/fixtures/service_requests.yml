@@ -7,6 +7,10 @@ one:
 two:
   user: one
 
+main_closed:
+  user: main_user
+  open: false
+
 closed:
   user: one
   open: false

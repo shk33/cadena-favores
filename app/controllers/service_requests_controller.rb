@@ -46,8 +46,9 @@ def user_index
 end
 
 def destroy
-  if service_requests_owner?
-    ServiceRequest.find(params[:id]).destroy
+  request = ServiceRequest.find params[:id]
+  if deleteable_request? request
+    request.destroy
     redirect_to my_service_requests_url, notice: 'Se ha borrado exitosamente'
   else
     redirect_to root_url
@@ -68,7 +69,11 @@ private
     @usable_points = current_user.balance.usable_points
   end
 
-  def service_requests_owner?
-    current_user == ServiceRequest.find(params[:id]).user
+  def deleteable_request? request
+    service_request_owner?(request) && request.open?
+  end
+
+  def service_request_owner? request
+    current_user == request.user
   end
 end

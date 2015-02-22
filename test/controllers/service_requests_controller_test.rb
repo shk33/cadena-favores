@@ -142,4 +142,34 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select 'a', request.service.title
   end
 
+  test "should delete service request" do
+    request = service_requests(:one)
+    assert_difference 'ServiceRequest.count', -1 do
+      assert_difference 'Service.count', -1 do
+        delete :destroy , id: request.id
+      end
+    end
+    assert_redirected_to my_service_requests_url
+  end
+
+  test "should not delete a service request if not belongs to owner" do
+    request = service_requests(:two)
+      assert_no_difference 'ServiceRequest.count' do
+        assert_no_difference 'Service.count' do
+          delete :destroy , id: request.id
+        end
+      end
+    assert_redirected_to root_url
+  end
+
+  test "should not delete a service request if its closed" do
+    request = service_requests(:main_closed)
+      assert_no_difference 'ServiceRequest.count' do
+        assert_no_difference 'Service.count' do
+          delete :destroy , id: request.id
+        end
+      end
+    assert_redirected_to root_url
+  end
+
 end
