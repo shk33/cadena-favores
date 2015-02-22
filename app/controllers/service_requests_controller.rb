@@ -36,6 +36,9 @@ def create
 end
 
 def edit
+  unless current_user == @service_request.user
+    redirect_to root_url
+  end
 end
 
 def update

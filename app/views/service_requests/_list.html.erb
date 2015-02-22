@@ -33,7 +33,7 @@
             <p>
               <%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger" %>
               <span class="padding"></span>
-              <%= link_to "Editar", request, class: "btn btn-info" %>
+              <%= link_to "Editar", edit_service_request_path(request), class: "btn btn-info" %>
             </p>
           <% end %>
         </div>
