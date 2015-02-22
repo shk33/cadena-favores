@@ -1,9 +1,9 @@
 class ServiceRequest < ActiveRecord::Base
   #Relationships
-  belongs_to :user #Obligatorio 
-  has_one    :service, as: :serviceable #Obligatorio
-  has_many   :offers #NO obligatorio
-  has_and_belongs_to_many :tags #No obligatorio
+  belongs_to :user
+  has_one    :service, as: :serviceable, dependent: :destroy
+  has_many   :offers
+  has_and_belongs_to_many :tags
 
   #Nested Attributes
   accepts_nested_attributes_for :service

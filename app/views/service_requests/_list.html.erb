@@ -1,5 +1,5 @@
+<%= paginate @service_requests %>
 <% @service_requests.each do |request| %>
-
   <div class="panel">
     <div class="panel-body">
       <div class="row">
@@ -17,11 +17,25 @@
           <hr>
           <p><%= request.service.description %></p>
           <p>
+            Etiquetas: <% request.tags.each do |tag| %>
+              <span class="label label-danger"><%= tag.name %></span>
+            <% end %>
+          </p>
+          <hr>
+          <p>
             <div class="btn btn-primary">
               <strong>Costo: </strong><%= request.service.cost %> puntos
             </div>
             <%= link_to "Ver Detalles", request, class: "btn btn-warning pull-right" %>
           </p>
+          <% if current_user == request.user %>
+            <hr>
+            <p>
+              <%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger" %>
+              <span class="padding"></span>
+              <%= link_to "Editar", request, class: "btn btn-info" %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>

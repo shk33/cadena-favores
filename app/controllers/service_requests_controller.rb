@@ -48,7 +48,7 @@ end
 def destroy
   if service_requests_owner?
     ServiceRequest.find(params[:id]).destroy
-    redirect_to service_requests_url, notice: 'Se ha borrado exitosamente'
+    redirect_to my_service_requests_url, notice: 'Se ha borrado exitosamente'
   else
     redirect_to root_url
   end
