@@ -7,7 +7,11 @@
 
 <div class="row" id="store-list">
   <div class="col-lg-12">
-    <h3>Mostrando resultados de: "<%= params[:search] %>"</h3>
+
+    <% unless params[:search].empty? %>
+      <h3>Mostrando resultados de: "<%= params[:search] %>"</h3>
+    <% end %>
+
     <% @service_requests.each do |request| %>
 
       <div class="panel">
