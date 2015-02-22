@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :users, except: [:new,:create]
 
     #Service Requests
+    match '/service_requests/my_service_requests', to: 'service_requests#user_index', via: "get", as: :my_service_requests
     resources :service_requests do
       resources :offers, only: [:create, :destroy]
     end

@@ -1,0 +1,30 @@
+<% @service_requests.each do |request| %>
+
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">
+            <strong>
+              <%= link_to request.service.title, request %>
+            </strong>
+            <div class="pull-right">
+              <strong>Solicta: </strong>
+              <%= link_to request.user.name, request.user %>
+            </div>
+          </h4>
+          <hr>
+          <p><%= request.service.description %></p>
+          <p>
+            <div class="btn btn-primary">
+              <strong>Costo: </strong><%= request.service.cost %> puntos
+            </div>
+            <%= link_to "Ver Detalles", request, class: "btn btn-warning pull-right" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+<%= paginate @service_requests %>

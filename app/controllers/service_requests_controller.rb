@@ -15,9 +15,6 @@ def index
   @tags = Tag.all
 end
 
-def show
-end
-
 def new
 	@service_request = ServiceRequest.new
   @tags = Tag.all
@@ -26,7 +23,6 @@ end
 def create
   @creator = ServiceRequestCreation.new(service_request_params,
                                                 current_user)
- 
   respond_to do |format|
     if @creator.valid_creation?
       @service_request = @creator.create
@@ -45,6 +41,19 @@ def show
   @offer = Offer.new
 end
 
+def user_index
+  @service_requests = current_user.service_requests.page(params[:page]).per(5)
+end
+
+def destroy
+  if service_requests_owner?
+    ServiceRequest.find(params[:id]).destroy
+    redirect_to service_requests_url, notice: 'Se ha borrado exitosamente'
+  else
+    redirect_to root_url
+  end
+end
+
 private
   def service_request_params
     params.require(:service_request).permit({service_attributes: 
@@ -59,4 +68,7 @@ private
     @usable_points = current_user.balance.usable_points
   end
 
+  def service_requests_owner?
+    current_user == ServiceRequest.find(params[:id]).user
+  end
 end
