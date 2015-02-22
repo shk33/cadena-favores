@@ -103,4 +103,9 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_redirected_to service_request
   end
 
+  test "should get index" do
+    get :index
+    assert_response :success
+  end
+
 end
