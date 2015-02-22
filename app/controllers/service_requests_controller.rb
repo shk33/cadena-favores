@@ -2,8 +2,6 @@ class ServiceRequestsController < ApplicationController
 before_action :logged_in_user, :get_notifications
 before_action :set_usable_points, only: [:new, :create]
 
-def home
-end
 def index
   @usuarios = User.all
   busqueda = params[:busqueda]
@@ -16,6 +14,7 @@ def index
     @peticionesFiltradas2 = ServiceRequest.searchByTag(busqueda).page(params[:page]).per(5)
   end
 end
+
 def show
     @usuarios = User.all
   busqueda = params[:busqueda]

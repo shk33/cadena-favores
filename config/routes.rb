@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'service_requests/home'
   #Landing page route
   namespace :site, :path => "" do
     root 'site#index'
