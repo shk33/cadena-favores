@@ -60,9 +60,6 @@ def update
       format.html { render :edit }
     end
   end
-  # request = ServiceRequest.find params[:id]
-  # request.update_attributes service_request_params
-  # redirect_to request
 end
 
 def show
