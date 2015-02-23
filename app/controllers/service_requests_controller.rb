@@ -91,11 +91,6 @@ private
                                                  :description, 
                                                  :cost]
                                             },
-                                            {service: 
-                                                [:title, 
-                                                 :description, 
-                                                 :cost]
-                                            },
                                             { tag_ids: [] })
   end
 
