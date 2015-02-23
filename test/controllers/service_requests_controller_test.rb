@@ -19,7 +19,7 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_select "input", :name  => "service_request[service_attributes][description]"
     assert_select "input", :name  => "service_request[service_attributes][cost]"
     #Verifico que el botón de input exista
-    assert_select "input", :value => "Crear"
+    assert_select "input", :value => "Enviar"
   end
 
   test "should not create a invalid service_request" do
@@ -172,6 +172,111 @@ class ServiceRequestsControllerTest < ActionController::TestCase
           delete :destroy , id: request.id
         end
       end
+    assert_redirected_to root_url
+  end
+
+  test "should get edit" do
+    request = service_requests(:one)
+    get :edit, id: request.id
+    assert_template :edit
+    assert_select 'label', 'Título'
+    assert_select 'label', 'Descripción'
+    assert_select "input", :name  => "service_request[service_attributes][title]",
+                   :value => request.service.title
+    assert_select "input", :name  => "service_request[service_attributes][description]",
+                   :value => request.service.description
+    assert_select "input", :name  => "service_request[service_attributes][cost]",
+                  :value => request.service.cost
+    assert_select "input", :value => "Enviar"
+  end
+
+  test "should not get edit if user is not the owner" do
+    request = service_requests(:two)
+    get :edit, id: request.id
+    assert_response :redirect
+    assert_redirected_to root_url
+  end
+  
+  test "should update a valid service_request with a higher cost" do
+    request = service_requests(:one)
+
+    educativa  = tags(:educativa).id
+    transporte = tags(:transporte).id
+    diseno     = tags(:diseno).id
+    tags = [educativa, transporte]
+
+
+    patch :update, id: request.id ,service_request: { service_attributes: {
+      id: request.service.id,
+      title: "Este texto es valido",
+      description: "Este texto tambien es valido",
+      cost: "101"
+      }, tag_ids: tags }
+
+    assert_equal 300, @user.balance.usable_points
+    assert_equal 200, @user.balance.frozen_points
+    assert_equal 500, @user.balance.total_points
+
+    assert request.tag_ids.include? educativa
+    assert request.tag_ids.include? transporte
+    assert_not request.tag_ids.include? diseno
+
+    # assert_equal 'Este texto es valido', service.title
+    # assert_equal 'Este texto tambien es valido', service.description
+    # assert_equal 101, service.cost
+
+    assert_redirected_to request
+  end  
+
+    test "should update a valid service_request with a lower cost" do
+    request = service_requests(:one)
+
+    educativa  = tags(:educativa).id
+    transporte = tags(:transporte).id
+    diseno     = tags(:diseno).id
+    tags = [educativa, transporte]
+
+
+    patch :update, id: request.id ,service_request: { service_attributes: {
+      id: request.service.id,
+      title: "Este texto es valido",
+      description: "Este texto tambien es valido",
+      cost: "0"
+      }, tag_ids: tags }
+
+    assert_equal 401, @user.balance.usable_points
+    assert_equal 99, @user.balance.frozen_points
+    assert_equal 500, @user.balance.total_points
+
+    assert request.tag_ids.include? educativa
+    assert request.tag_ids.include? transporte
+    assert_not request.tag_ids.include? diseno
+
+    # assert_equal 'Este texto es valido', service.title
+    # assert_equal 'Este texto tambien es valido', service.description
+    # assert_equal 101, service.cost
+
+    assert_redirected_to request
+  end
+
+  test "should not update a valid service_request if user is not the owner" do
+    request = service_requests(:two)
+
+    educativa    = tags(:educativa).id
+    transporte   = tags(:transporte).id
+    diseno       = tags(:diseno).id
+    programacion = tags(:programacion).id
+
+    tags = [educativa, transporte]
+
+
+    patch :update, id: request.id ,service_request: { service_attributes: {
+      id: request.service.id,
+      title: "Este texto es valido",
+      description: "Este texto tambien es valido",
+      cost: "0"
+      }, tag_ids: tags }
+
     assert_redirected_to root_url
   end
 

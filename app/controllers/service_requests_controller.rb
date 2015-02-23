@@ -44,23 +44,23 @@ end
 
 def update
   request = ServiceRequest.find params[:id]
-  unless current_user == request.user
+  if !(current_user == request.user)
     redirect_to root_url
-  end
-
-  updater = ServiceRequestUpdater.new(request, service_request_params)
-  respond_to do |format|
-    byebug
-    if updater.valid_update?
-      @service_request = updater.update
-      format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
-    else
-      @service_request = updater.service_request
-      set_tags
-      set_usable_points
-      format.html { render :edit }
+  else
+    updater = ServiceRequestUpdater.new(request, service_request_params)
+    respond_to do |format|
+      if updater.valid_update?
+        @service_request = updater.update
+        format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
+      else
+        @service_request = updater.service_request
+        set_tags
+        set_usable_points
+        format.html { render :edit }
+      end
     end
   end
+
 end
 
 def show

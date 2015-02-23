@@ -21,7 +21,6 @@ class ServiceRequestUpdater
   end
 
   def valid_update?
-    byebug
     @service_request.assign_attributes @params
     if @service_request.valid?
       if new_cost_not_negative?
