@@ -2,7 +2,6 @@ class ServiceRequestCreation
   attr_reader :service_request
 
   def initialize params, user
-    @params = params
     @user   = user
     @service_request = ServiceRequest.new params
     @service_request.user = user

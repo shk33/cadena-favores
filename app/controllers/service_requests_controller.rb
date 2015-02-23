@@ -1,6 +1,6 @@
 class ServiceRequestsController < ApplicationController
 before_action :logged_in_user, :get_notifications
-before_action :set_usable_points,   only: [:new, :create]
+before_action :set_usable_points,   only: [:new, :create, :edit]
 before_action :set_service_request, only: [:show, :edit, :destroy]
 before_action :set_tags,            only: [:index, :new, :edit]
 
@@ -17,7 +17,8 @@ def index
 end
 
 def new
-	@service_request = ServiceRequest.new
+  @service_request = ServiceRequest.new
+  @service_request.build_service
 end
 
 def create
@@ -42,6 +43,26 @@ def edit
 end
 
 def update
+  request = ServiceRequest.find params[:id]
+  unless current_user == request.user
+    redirect_to root_url
+  end
+
+  updater = ServiceRequestUpdater.new(request, service_request_params)
+  respond_to do |format|
+    if updater.valid_update?
+      @service_request = updater.update
+      format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
+    else
+      @service_request = updater.update
+      set_tags
+      set_usable_points
+      format.html { render :edit }
+    end
+  end
+  # request = ServiceRequest.find params[:id]
+  # request.update_attributes service_request_params
+  # redirect_to request
 end
 
 def show
@@ -67,6 +88,11 @@ end
 private
   def service_request_params
     params.require(:service_request).permit({service_attributes: 
+                                                [:title, 
+                                                 :description, 
+                                                 :cost]
+                                            },
+                                            {service: 
                                                 [:title, 
                                                  :description, 
                                                  :cost]
