@@ -53,6 +53,20 @@
             <td>Favores Obtenidos</td>
             <td><%= @user.hired_services_completed.length %></td>
           </tr>
+          <tr>
+            <td>
+              <i class=" fa fa-star"></i>
+            </td>
+            <td>Seguidores</td>
+            <td><%= @user.followers.count %></td>
+          </tr>
+          <tr>
+            <td>
+              <i class=" fa fa-star-o"></i>
+            </td>
+            <td>Siguiendo</td>
+            <td><%= @user.following.count %></td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -73,8 +87,31 @@
           <h1><a href="#">Tipos de Servicio que Ofrece</a></h1>
           <p>
             <% @user.profile.tags.each do |tag| %>
-              <span class="label label-danger"><%= tag.name %></span>
+            <button type="button" class="btn btn-danger btn-rounded"><%= tag.name %></button>
             <% end %>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-body">
+        <div class="task-thumb-details">
+          <h1><a href="#">Información Adicional</a></h1>
+          <p>
+            <button class="btn btn-info btn-circle" type="button">
+             <i class="fa fa-cubes"> Servicios Solicitados</i>
+            </button>
+            <button class="btn btn-info btn-circle" type="button">
+             <i class="fa fa-cubes"> Servicios Realizados</i>
+            </button>
+          </p>
+          <p>
+            <button class="btn btn-warning btn-circle" type="button">
+             <i class="fa fa-star"> Seguidores</i>
+            </button>
+            <button class="btn btn-warning btn-circle" type="button">
+             <i class="fa fa-star"> Seguiendo</i>
+            </button>
           </p>
         </div>
       </div>
