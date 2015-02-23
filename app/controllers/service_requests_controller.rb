@@ -50,10 +50,12 @@ def update
 
   updater = ServiceRequestUpdater.new(request, service_request_params)
   respond_to do |format|
+    byebug
     if updater.valid_update?
       @service_request = updater.update
       format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
     else
+      @service_request = updater.service_request
       set_tags
       set_usable_points
       format.html { render :edit }
@@ -85,6 +87,7 @@ private
   def service_request_params
     params.require(:service_request).permit({service_attributes: 
                                                 [:title, 
+                                                 :id,
                                                  :description, 
                                                  :cost]
                                             },

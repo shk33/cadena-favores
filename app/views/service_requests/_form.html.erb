@@ -3,6 +3,7 @@
   
   <%= f.fields_for :service do |serviceable_form| %>
     <div class="form-group">
+      <%=serviceable_form.hidden_field :id, class: "form-control" %>
       <%=serviceable_form.label(:title, "Título") %>
       <%=serviceable_form.text_field :title, class: "form-control" %>
     </div>
