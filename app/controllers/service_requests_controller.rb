@@ -54,7 +54,6 @@ def update
       @service_request = updater.update
       format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
     else
-      @service_request = updater.update
       set_tags
       set_usable_points
       format.html { render :edit }
