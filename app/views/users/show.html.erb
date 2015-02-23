@@ -18,18 +18,14 @@
         </button>
     </div>
   </div>
-
   <br>
   <hr>
-
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-
       <div class="custom-header text-center">
         Trabajos que ofrece
       </div>
       <select id='custom-headers' multiple='multiple' class="col-md-12 text-center">
-
         <% @user.profile.tags.each do |tag| %>
           <option>
             <%= tag.name %>
@@ -42,20 +38,17 @@
   <hr>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-
       <div class="custom-header text-center">
         Trabajos que Busca
       </div>
       <select id='custom-headers' multiple='multiple' class="col-md-12 text-center">
-
         <% @user.service_requests.each do |service_requests| %>
           <% service_requests.tags.each do |tag| %>
             <option>
               <%= tag.name %>
             </option>
-            <% end %>
-              <% end %>
-
+          <% end %>
+        <% end %>
       </select>
     </div>
   </div>
@@ -69,8 +62,8 @@
           </div>
           <div class="value">
             <h1 class="count">                    
-                                        <%=@user.hired_services_completed.length %>
-                                        </h1>
+              <%=@user.hired_services_completed.length %>
+            </h1>
             <p>Favores Realizados</p>
           </div>
         </section>
@@ -82,12 +75,11 @@
           </div>
           <div class="value">
             <h1 class=" count2">
-                                            <%=@user.owed_services_completed.length %>
-                                        </h1>
+              <%=@user.owed_services_completed.length %>
+            </h1>
             <p>Favores Obtenidos</p>
           </div>
         </section>
       </div>
     </div>
-
   </div>
