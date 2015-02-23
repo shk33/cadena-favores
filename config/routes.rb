@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
     #Users 
     resources :users, except: [:new,:create]
+    match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
 
     #Service Requests 
     resources :service_requests
