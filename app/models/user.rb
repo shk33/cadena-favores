@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   def hired_services_completed
     ServiceArrangement.where("client_id = ? AND completed = ?", self.id, true)
   end
+  
 
   def owed_services_completed
     ServiceArrangement.where("server_id = ? AND completed = ?", self.id, true)
