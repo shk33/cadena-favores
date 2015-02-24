@@ -6,54 +6,60 @@
   </div>
 </div>
 
-<%=form_for @user do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  
-  <div class="form-group">
-    <%= f.label :name, "Nombre" %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :email, "Email" %>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
+<div class="row">
+  <div class="col-lg-6">
+    <%=form_for @user do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name, "Nombre" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
-  </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
-  </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
+      </div>
 
-  <%= f.fields_for :profile do |p| %>
-    <div class="form-group">
-      <%= p.hidden_field :id, class: "form-control" %>
+      <%= f.fields_for :profile do |p| %>
+        <div class="form-group">
+          <%= p.hidden_field :id, class: "form-control" %>
 
-      <%= p.label :description, "Descripción"  %>
-      <%= p.text_area :description, class: "form-control" %>
-    </div>
-
-  <% end %>
-  <%= f.submit "Enviar", class: 'btn btn-info' %>
-<% end %>
-
-<h1>Editar categorias de Trabajo</h1>
-<%=form_for  [@user, @user.profile] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-    <div class="form-group">
-      <label>Etiquetas</label>
-      <% @tags.each do |tag| %>
-        <div class="checkbox">
-          <label>
-          <%= check_box_tag "profile[tag_ids][]", tag.id, @user.profile.tags.include?(tag) %>
-          <%= tag.name %>
-          </label>
+          <%= p.label :description, "Descripción"  %>
+          <%= p.text_area :description, class: "form-control" %>
         </div>
+
       <% end %>
-    </div>
-  <%= f.submit "Enviar", class: 'btn btn-info' %>
-<% end %>
+      <%= f.submit "Actualizar", class: 'btn btn-info' %>
+    <% end %>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>Categorias de Trabajo</h3>
+    <%=form_for  [@user, @user.profile] do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-group">
+          <label>Etiquetas</label>
+          <% @tags.each do |tag| %>
+            <div class="checkbox">
+              <label>
+              <%= check_box_tag "profile[tag_ids][]", tag.id, @user.profile.tags.include?(tag) %>
+              <%= tag.name %>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <%= f.submit "Actualizar", class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>
