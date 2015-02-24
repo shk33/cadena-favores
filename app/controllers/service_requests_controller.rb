@@ -27,7 +27,8 @@ def create
   respond_to do |format|
     if creator.valid_creation?
       @service_request = creator.create
-      format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido creada'}
+      flash[:success] = "Tu solicitud de servicio ha sido creada"
+      format.html { redirect_to @service_request}
     else
       @service_request = creator.service_request
       @tags = Tag.all
