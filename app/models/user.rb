@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   #Assosications
-  has_one   :profile, autosave: true
-  has_one   :balance, autosave: true
+  has_one   :profile, autosave: true, dependent: :destroy
+  has_one   :balance, autosave: true, dependent: :destroy
   has_many  :service_requests #The services the user needs
   has_many  :offers
   has_many  :reviews

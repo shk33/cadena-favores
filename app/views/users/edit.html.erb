@@ -1,81 +1,54 @@
- <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            Editar Mi Perfil
-        </h1>
-    </div>
-</div>
-
 <div class="row">
-    <div class="col-lg-6">
-        <section class="panel">           
-            <div class="panel-body">               
-
-                <%= form_for @user do |f| %>
-                      <%= render 'shared/error_messages', object: f.object %>
-
-                         Nombre de Usuario
-                        <hr>                
-                        <br>
-                        <div class="form-group">
-                            <label for="nombreUsuarioActual">Usuario actual</label>
-                            <input type="text" class="form-control" id="nombreUsuarioActual" readonly="" value="<%= @user.name %>">
-                        </div>
-                        <div class="form-group">
-                           <%= f.label :name, 'Usuario Nuevo' %>
-                           <%= f.text_field :name, class: 'form-control', placeholder: 'Nuevo Usuario' %>
-                        </div>
-                        <br>
-                        <hr>
-                        
-                        Direccion de correo electrónico
-                        <hr>                
-                        <br>
-                        <div class="form-group">
-                            <label for="correoUsuarioActual">Correo Registrado</label>
-                            <input type="email" class="form-control" id="correoUsuarioActual" readonly="" value="<%= @user.email %>">
-                        </div>
-                        <div class="form-group">
-                            <%= f.label :email, "Correo Nuevo" %>
-                            <%= f.text_field :email, class: 'form-control', placeholder: 'Nuevo Correo' %>
-                        </div>
-                        <br>
-                        <hr>
-
-                        Cambiar contraseña
-                        <hr>                   
-                        <div class="form-group">
-                            <%= f.label :password, 'Contraseña' %>
-                            <%= f.password_field :password, class: 'form-control', placeholder: 'Contraseña' %>
-                        </div>
-                        <div class="form-group">
-                            <%= f.label :password_confirmation, 'Confirmar Contraseña' %>
-                            <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirmar contraseña' %>
-                        </div>                       
-                        <br>
-
-
-                        <div class="form-group">
-                            <label>Mis Etiquetas</label>
-                            <% @tags.each do |tag| %>
-                              <div class="checkbox">
-                                <label>
-                                <%= check_box_tag "user.profile[tag_ids][]", tag.id, @user.profile.tags.include?(tag) %>
-                                <%= tag.name %>
-                                </label>
-                              </div>
-                            <% end %>
-                        </div>
-
-                        <p class="text-center">
-                          <%= f.submit "Editar mi información", class: 'btn btn-info' %>
-                        </p>
-                <% end %>
-    
-            </div>
-        </section>
-    </div>
+  <div class="col-lg-12">
+    <h1 class="page-header">
+      Editar Mi Perfil
+    </h1>
+  </div>
 </div>
 
+<%=form_for @user do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="form-group">
+    <%= f.label :name, "Nombre" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
 
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
+  </div>
 
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: '(Dejar en blanco para no cambiar)' %>
+  </div>
+
+  <%= f.fields_for :profile do |p| %>
+    <div class="form-group">
+      <%= p.hidden_field :id, class: "form-control" %>
+
+      <%= p.label :description, "Descripción"  %>
+      <%= p.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Etiquetas</label>
+      <% @tags.each do |tag| %>
+        <div class="checkbox">
+          <label>
+          <%= check_box_tag "profile[tag_ids][]", tag.id, @user.profile.tags.include?(tag) %>
+          <%= tag.name %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+  <%= f.submit "Enviar", class: 'btn btn-info' %>
+<% end %>

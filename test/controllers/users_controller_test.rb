@@ -42,9 +42,18 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
-  test "should update user" do
-    # patch :update, id: @user, user: { email: @user.email, name: @user.name, password_digest: @user.password_digest, remember_digest: @user.remember_digest }
-    # assert_redirected_to user_path(assigns(:user))
+  test "should not update user if user is wrong" do
+    log_in_as @user
+    other_user = users(:one)
+    patch :update, id: other_user, user: { }
+    assert_redirected_to root_url
+  end
+
+  test "should not update user with incomplete params" do
+    log_in_as @user
+    patch :update, id: @user, user: { name: "" }
+    assert_template 'edit'
+    assert_select 'div.alert'
   end
 
   test "should get my profile" do
