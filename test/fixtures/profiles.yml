@@ -7,5 +7,5 @@ one:
 
 two:
   description: MyText
-  user_id: one
+  user: one
   tags: programacion , diseno

@@ -26,8 +26,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])    
-    @tags = Tag.all
+    if @user == current_user 
+      @user = User.find(params[:id])    
+      @tags = Tag.all
+    else
+      redirect_to root_url
+    end
   end
 
   # POST /users

@@ -12,13 +12,34 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    # get :show, id: @user
-    # assert_response :success
+    log_in_as @user
+    other_user = users(:one)
+    get :show, id: other_user
+    assert_response :success
+    assert_select 'td', other_user.balance.usable_points.to_s
+    assert_select 'td', other_user.balance.frozen_points.to_s
+    assert_select 'td', other_user.balance.total_points.to_s
+    assert_select 'td', other_user.hired_services_completed.count.to_s
+    assert_select 'td', other_user.services_completed.count.to_s
+    assert_select 'p',  other_user.profile.description
+    other_user.profile.tags.each do |tag|
+      assert_select 'button', tag.name
+    end
   end
 
-  test "should get edit" do
-    # get :edit, id: @user
-    # assert_response :success
+  test "should get edit if your are the current user" do
+    log_in_as @user
+    get :edit, id: @user
+    assert_response :success
+    assert_template :edit
+  end
+
+   test "should not get edit if you are not the current user" do
+    log_in_as @user
+    other_user = users(:one)
+    get :edit, id: other_user
+    assert_response :redirect
+    assert_redirected_to root_url
   end
 
   test "should update user" do
@@ -47,7 +68,7 @@ class UsersControllerTest < ActionController::TestCase
     get :settings
     assert_response :success
     assert_template :settings
-    #assert_select 'a[href=?]', user_path(@user), method: :delete
+    assert_select 'a[href=?]', user_path(@user), method: :delete
   end
 
 end

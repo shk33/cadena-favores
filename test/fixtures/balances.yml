@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1 
+  user: one 
   usable_points: 0 
   frozen_points: 0 
   total_points:  0 
