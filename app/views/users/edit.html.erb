@@ -40,3 +40,20 @@
   <% end %>
   <%= f.submit "Enviar", class: 'btn btn-info' %>
 <% end %>
+
+<h1>Editar categorias de Trabajo</h1>
+<%=form_for  [@user, @user.profile] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+      <label>Etiquetas</label>
+      <% @tags.each do |tag| %>
+        <div class="checkbox">
+          <label>
+          <%= check_box_tag "profile[tag_ids][]", tag.id, @user.profile.tags.include?(tag) %>
+          <%= tag.name %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  <%= f.submit "Enviar", class: 'btn btn-info' %>
+<% end %>

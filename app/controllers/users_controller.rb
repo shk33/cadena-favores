@@ -54,6 +54,7 @@ class UsersController < ApplicationController
         flash[:success] = "Perfil Actualizado"
         redirect_to @user
       else
+        @tags = Tag.all
         render 'edit'
       end
     else

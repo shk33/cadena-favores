@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     match '/notifications', to: 'activities#index', via: "get", as: :notifications
 
     #Users 
-    resources :users, except: [:new,:create]
+    resources :users, except: [:new,:create] do
+      resources :profiles, only: [:update]
+    end
     match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
 
     #Service Requests 
