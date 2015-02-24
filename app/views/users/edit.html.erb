@@ -90,7 +90,7 @@
         <%= form_for([@user, @user.profile], html: { multipart: true }) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
-          <%= f.file_field :picture %>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
         </div>
         <%= f.submit "Actualizar", class: "btn btn-info" %>
       <% end %>
