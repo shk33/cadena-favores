@@ -280,4 +280,9 @@ class ServiceRequestsControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should get user index" do
+    get :user_index
+    assert_response :success
+  end
+
 end
