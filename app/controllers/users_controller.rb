@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def my_profile
+    @user = current_user
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -22,6 +26,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if @user == current_user 
+      @tags = Tag.all
+    else
+      redirect_to root_url
+    end
   end
 
   # POST /users
@@ -29,8 +38,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      #format.html { redirect_to @user, notice: 'User was successfully created.' }
-      #format.json { render :show, status: :created, location: @user }
       login @user
       redirect_to root_url
     else
@@ -41,15 +48,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+    @user = User.find params[:id]
+    if @user == current_user 
+      if @user.update_attributes user_params
+        flash[:success] = "Perfil Actualizado"
+        redirect_to @user
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        @tags = Tag.all
+        render 'edit'
       end
+    else
+      redirect_to root_url
     end
+
   end
 
   # DELETE /users/1
@@ -74,6 +85,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, 
                                    :email, 
                                    :password, 
-                                   :password_confirmation)
+                                   :password_confirmation, 
+                                   { profile_attributes: [ :id, :description  ] })
     end
 end

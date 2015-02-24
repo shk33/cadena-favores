@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get  'signup'  => 'users#new'
   post 'signup'  => 'users#create'
 
+
   # NO TOCAR LO DE ARRIBA
   #Main app Routes AGREGAR AQUI SUS RUTAS
   scope '/app' do
@@ -29,7 +30,10 @@ Rails.application.routes.draw do
     match '/notifications', to: 'activities#index', via: "get", as: :notifications
 
     #Users 
-    resources :users, except: [:new,:create]
+    resources :users, except: [:new,:create] do
+      resources :profiles, only: [:update]
+    end
+    match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
 
     #Service Requests
     match '/service_requests/my_service_requests', to: 'service_requests#user_index', via: "get", as: :my_service_requests

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   #Assosications
-  has_one   :profile, autosave: true
-  has_one   :balance, autosave: true
+  has_one   :profile, autosave: true, dependent: :destroy
+  has_one   :balance, autosave: true, dependent: :destroy
   has_many  :service_requests #The services the user needs
   has_many  :offers
   has_many  :reviews
@@ -39,6 +39,16 @@ class User < ActiveRecord::Base
 
   #Attr Accessors
   attr_accessor :remember_token, :activation_token, :reset_token
+
+  #Returns the not completed services that user hired
+  def hired_services_completed
+    ServiceArrangement.where("client_id = ? AND completed = ?", self.id, true)
+  end
+  
+
+  def services_completed
+    ServiceArrangement.where("server_id = ? AND completed = ?", self.id, true)
+  end
 
   #Returns the not completed services that user hired
   def hired_services

@@ -3,3 +3,9 @@
 one:
   description: Soy el super usuario main user
   user: main_user
+  tags: programacion , diseno
+
+two:
+  description: MyText
+  user: one
+  tags: programacion , diseno
