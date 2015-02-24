@@ -56,6 +56,21 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'div.alert'
   end
 
+  test "should update user" do
+    log_in_as @user
+    tags = [ Tag.first.id , Tag.second.id ]
+    patch :update, id: @user, user: { name:  "The mighty Admin",
+                                      email: "admin@admin1.com",
+                                      password:              "1234567",
+                                      password_confirmation: "1234567",
+                                      profile_attributes: {
+                                        id: @user.profile.id,
+                                        description: "Esta es una nueva",
+                                        tag_ids: tags
+                                      } }
+    assert_redirected_to @user
+  end
+
   test "should get my profile" do
     log_in_as @user
     get :my_profile

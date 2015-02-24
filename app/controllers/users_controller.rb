@@ -49,13 +49,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user = User.find params[:id]
-
     if @user == current_user 
       if @user.update_attributes user_params
         flash[:success] = "Perfil Actualizado"
         redirect_to @user
       else
-        @tags = Tag.all
         render 'edit'
       end
     else
@@ -87,6 +85,6 @@ class UsersController < ApplicationController
                                    :email, 
                                    :password, 
                                    :password_confirmation, 
-                                   { profile_attributes: [ :description , tag_ids: [] ] })
+                                   { profile_attributes: [ :id, :description  ] })
     end
 end
