@@ -26,6 +26,21 @@ class UsersControllerTest < ActionController::TestCase
     # assert_redirected_to user_path(assigns(:user))
   end
 
+  test "should get my profile" do
+    log_in_as @user
+    get :my_profile
+    assert_response :success
+    assert_select 'td', @user.balance.usable_points.to_s
+    assert_select 'td', @user.balance.frozen_points.to_s
+    assert_select 'td', @user.balance.total_points.to_s
+    assert_select 'td', @user.hired_services_completed.count.to_s
+    assert_select 'td', @user.services_completed.count.to_s
+    assert_select 'p',  @user.profile.description
+    @user.profile.tags.each do |tag|
+      assert_select 'button', tag
+    end
+  end
+
   test "should get settings" do
     log_in_as @user
     get :settings

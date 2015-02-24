@@ -2,8 +2,10 @@
 
 one:
   description: MyText
-  user_id: 1
+  user: main_user
+  tags: programacion , diseno
 
 two:
   description: MyText
-  user_id: 2
+  user_id: one
+  tags: programacion , diseno
