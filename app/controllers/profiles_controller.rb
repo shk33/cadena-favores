@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(tag_ids: [])
+      params.require(:profile).permit({tag_ids: []}, :picture)
     end
 end

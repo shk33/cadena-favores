@@ -86,6 +86,7 @@
         </header>
       </div>
       <div class="panel-body">
+        <%= image_tag @user.profile.picture.url if @user.profile.picture? %>
         <%= form_for([@user, @user.profile], html: { multipart: true }) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
