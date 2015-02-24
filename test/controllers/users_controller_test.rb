@@ -36,8 +36,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'td', @user.hired_services_completed.count.to_s
     assert_select 'td', @user.services_completed.count.to_s
     assert_select 'p',  @user.profile.description
+    assert_select 'a[href=?]', edit_user_path(@user)
     @user.profile.tags.each do |tag|
-      assert_select 'button', tag
+      assert_select 'button', tag.name
     end
   end
 
