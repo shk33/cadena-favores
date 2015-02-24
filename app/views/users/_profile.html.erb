@@ -3,7 +3,7 @@
     <section class="panel">
       <div class="panel-body">
         <a href="#" class="task-thumb">
-          <img src="/assets/team-2.jpg" alt="">
+          <%= image_tag @user.profile.picture.url if @user.profile.picture? %>
         </a>
         <div class="task-thumb-details">
           <h1><a href="#"><%= @user.name %></a></h1>
