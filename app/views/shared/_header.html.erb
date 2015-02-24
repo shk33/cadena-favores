@@ -13,24 +13,26 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
             <li>
-              <a href="index.html">
+              <%= link_to root_url do %>
                 <div class="text-center">
-                  <i class="fa fa-dashboard fa-3x" data-original-title="" title=""></i>
-                  <br> Dashboard
+                  <i class="fa fa-home fa-3x"></i>
+                  <br> Inicio
                 </div>
-              </a>
+              <% end %>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <div class="text-center">
-                  <i class="fa fa-laptop fa-3x" data-original-title="" title=""></i>
-                  <br> UI Element <span class="caret"></span>
+                  <i class="fa fa-cubes fa-3x"></i>
+                  <br> Solicitudes de Servicio <span class="caret"></span>
                 </div>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="button.html"><i class="fa fa-lemon-o" data-original-title="" title=""></i> Button</a>
+                <li>
+                  <%= link_to 'Buscar', service_requests_path %>
                 </li>
-                <li><a href="icon.html"><i class="fa fa-puzzle-piece" data-original-title="" title=""></i> Icon</a>
+                <li>
+                  <%= link_to 'Mis solicitudes', my_service_requests_path%>
                 </li>
                 <li><a href="panel-well.html"><i class="fa fa-file" data-original-title="" title=""></i> Panel &amp; Well</a>
                 </li>
@@ -113,14 +115,6 @@
                 <li><a href="xcharts.html"><i class="fa fa-bar-chart-o" data-original-title="" title=""></i> xCharts</a>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="google-maps.html">
-                <div class="text-center">
-                  <i class="fa fa-location-arrow fa-3x" data-original-title="" title=""></i>
-                  <br> Google Maps
-                </div>
-              </a>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">

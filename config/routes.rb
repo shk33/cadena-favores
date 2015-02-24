@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
 
     #Service Requests
-    match '/service_requests/my_service_requests', to: 'service_requests#user_index', via: "get", as: :my_service_requests
+    match '/my_service_requests', to: 'service_requests#user_index', via: "get", as: :my_service_requests
     resources :service_requests do
       resources :offers, only: [:create, :destroy]
     end
