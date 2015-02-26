@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
    if @user == current_user 
     if @profile.update_attributes profile_params
-      flash[:success] = "Categorias Actualizadas"
+      flash[:success] = "Perfil Actualizado"
       redirect_to @user
     else
       render 'edit'
@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit({tag_ids: []}, :picture)
+      params.permit(:profile).permit({tag_ids: []}, :picture)
     end
 end
