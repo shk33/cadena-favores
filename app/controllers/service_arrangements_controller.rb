@@ -17,6 +17,7 @@ class ServiceArrangementsController < ApplicationController
     if updater.valid_update?
       updater.update
       flash[:success] = "Servicio marcado como Completado"
+      send_new_transaction_notification updater.points_transaction
       redirect_to my_hired_requests_url
     else
       redirect_to root_url
@@ -54,5 +55,12 @@ class ServiceArrangementsController < ApplicationController
       params.require(:service_arrangement).permit(:server_id, 
                                                   :start_date, 
                                                   :end_date)
+    end
+
+    def send_new_transaction_notification points_transaction 
+      receiver = points_transaction.receiver
+      sender   = points_transaction.sender
+      points_transaction.create_activity action: 'new', recipient: receiver, owner: sender
+      send_notification receiver.id , 'new_points_transaction'
     end
 end

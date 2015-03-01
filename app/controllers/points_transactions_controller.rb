@@ -10,21 +10,7 @@ class PointsTransactionsController < ApplicationController
   def new
   end
 
-  #Lejos de su implementación final.
-  #Implementación sólo para comprobar funcionamiento de notifiaciones
   def create
-    @points_transaction = PointsTransaction.new(points_transaction_params)
-
-    if @points_transaction.save
-      receiver = @points_transaction.receiver
-      sender   = @points_transaction.sender
-      @points_transaction.create_activity action: 'new', recipient: receiver, owner: sender
-      send_notification receiver , 'new_points_transaction'
-      #redirect_to @recipe, notice: "Comment was created."
-    else
-      #render :new
-    end
-    redirect_to root_url
   end
 
 
