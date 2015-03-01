@@ -1,5 +1,5 @@
 class ServiceArrangementUpdater
-  attr_accessor :points_transaction
+  attr_accessor :points_transaction, :service_arrangement
 
   def initialize id, user
     @service_arrangement = ServiceArrangement.find id
