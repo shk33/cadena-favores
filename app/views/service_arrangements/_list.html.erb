@@ -1,0 +1,49 @@
+<%= paginate @arrangements %>
+<% @arrangements.each do |arrangement| %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">
+            <strong>
+              <%= arrangement.service.title %>
+            </strong>
+          </h4>
+          <hr>
+          <p><%= arrangement.service.description %></p>
+          <p>
+            <strong>Usuario Contratado:</strong>
+            <%= link_to arrangement.server.name, arrangement.server %>
+          </p>
+          <p>
+            <strong>Fecha de Inicio:</strong>
+            <%= arrangement.start_date %>
+          </p>
+          <p>
+            <strong>Fecha de Entrega:</strong>
+            <%= arrangement.end_date %>
+          </p>
+          <hr>
+          <p>
+            <div class="btn btn-primary">
+              <strong>Costo: </strong><%= arrangement.service.cost %> puntos
+            </div>
+            <div class="btn btn-info pull-right">
+            <%= form_for arrangement do |f| %>
+              <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
+            <% end %>
+            </div>
+          </p>
+          <% if current_user == arrangement.client %>
+            <hr>
+            <p>
+              <%= link_to 'Cancelar', '#', method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= paginate @arrangements %>

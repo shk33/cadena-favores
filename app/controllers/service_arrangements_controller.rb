@@ -1,11 +1,26 @@
-
 class ServiceArrangementsController < ApplicationController
-  before_action :set_service_arrangement, only: [:show,  :destroy]
+  before_action :logged_in_user, :get_notifications
+  before_action :set_service_arrangement, only: [:show, :destroy]
 
   def index
   end
 
+  def hired
+    @arrangements = current_user.hired_services.page(params[:page]).per(5)
+  end
+
   def show
+  end
+
+  def update
+    @service_arrangement = ServiceArrangement.find params[:id]
+    if @service_arrangement.client == current_user
+      @service_arrangement.update_attributes completed: true
+      flash[:success] = "Servicio marcado como Completado"
+      redirect_to my_hired_requests_url
+    else
+      redirect_to root_url
+    end
   end
 
   def new
