@@ -1,12 +1,12 @@
-
 class ServiceArrangementsController < ApplicationController
-  before_action :set_service_arrangement, only: [:show,  :destroy]
+  before_action :logged_in_user, :get_notifications
+  before_action :set_service_arrangement, only: [:show, :destroy]
 
   def index
   end
 
   def hired
-    @arrangements = current_user.hired_services
+    @arrangements = current_user.hired_services.page(params[:page]).per(5)
   end
 
   def show

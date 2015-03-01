@@ -78,7 +78,7 @@ users.each do |user|
     request.tags = [Tag.find(rand(1..6))]
 
     service = Service.new( title:       Faker::Lorem.sentence(1),
-                           description: Faker::Lorem.sentence(5),
+                           description: Faker::Lorem.sentence(50),
                            cost:        0)
     request.service = service
     #First and second services requests are closed
