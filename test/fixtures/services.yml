@@ -29,3 +29,21 @@ five:
   description: MyText
   cost: 100
   serviceable: main_closed (ServiceRequest)
+
+six:
+  title: Working in this Service
+  description: This is not completed
+  cost: 50
+  serviceable: one (ServiceArrangement)
+
+seven:
+  title: Completed Service
+  description: This is completed
+  cost: 50
+  serviceable: two (ServiceArrangement)
+
+eight:
+  title: Not yours main user
+  description: Do not belong to main user
+  cost: 50
+  serviceable: three (ServiceArrangement)

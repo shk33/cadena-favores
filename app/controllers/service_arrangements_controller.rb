@@ -12,6 +12,17 @@ class ServiceArrangementsController < ApplicationController
   def show
   end
 
+  def update
+    @service_arrangement = ServiceArrangement.find params[:id]
+    if @service_arrangement.client == current_user
+      @service_arrangement.update_attributes completed: true
+      flash[:success] = "Servicio marcado como Completado"
+      redirect_to my_hired_requests_url
+    else
+      redirect_to root_url
+    end
+  end
+
   def new
   end
 

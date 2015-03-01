@@ -3,13 +3,20 @@
 one:
   start_date: 2015-02-04
   end_date: 2015-02-04
-  client_id: 1
-  server_id: 1
+  client: main_user
+  server: one
   completed: false
 
 two:
   start_date: 2015-02-04
   end_date: 2015-02-04
-  client_id: 1
-  server_id: 1
-  completed: false
+  client: main_user
+  server: one
+  completed: true
+
+three:
+  start_date: 2015-02-04
+  end_date: 2015-02-04
+  client: one
+  server: main_user
+  completed: true
