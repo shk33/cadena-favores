@@ -38,8 +38,8 @@ users = User.order(:created_at).take(2)
 #Only Admin and Valid have money
 users.each do |user|
   user.balance.usable_points = 400
-  user.balance.frozen_points = 0
-  user.balance.total_points  = 400
+  user.balance.frozen_points = 200
+  user.balance.total_points  = 600
   user.balance.save
 end
 
