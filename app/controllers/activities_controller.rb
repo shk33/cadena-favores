@@ -9,14 +9,16 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    unless can_see_activity?
+    if can_see_activity?
+      @activity.update_attributes read: true
+    else    
        redirect_to root_url
-     end 
+    end 
   end
 
   private
     def set_activity
-      @activity = PublicActivity::Activity.find(params[:id])
+      @activity = PublicActivity::Activity.find params[:id]
     end
 
     def can_see_activity?

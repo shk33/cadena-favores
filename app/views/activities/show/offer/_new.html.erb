@@ -6,11 +6,9 @@
     <% offer = activity.trackable %>
     <% service = offer.service_request.service %>
 
-    <%#= link_to offer.user.name, offer.user %>
-    <%= link_to offer.user.name, "#" %>
+    <%= link_to offer.user.name, offer.user %>
     ha realizado una nueva oferta en 
-    <%#= link_to service.title, service%>
-    <%= link_to service.title, "#"%>
+    <%= link_to service.title, offer.service_request %>
 
   <% end %>
 </div>
