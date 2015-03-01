@@ -40,6 +40,9 @@ Rails.application.routes.draw do
     resources :service_requests do
       resources :offers, only: [:create, :destroy]
     end
+
+    #Service Arangements
+    match '/my_hired_requests', to: 'service_arrangement#hired', via: "get", as: :my_hired_requests
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

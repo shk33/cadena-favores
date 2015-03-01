@@ -5,6 +5,10 @@ class ServiceArrangementsController < ApplicationController
   def index
   end
 
+  def hired
+    @arrangements = current_user.hired_services
+  end
+
   def show
   end
 
