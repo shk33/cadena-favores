@@ -9,6 +9,10 @@ class ServiceArrangementsController < ApplicationController
     @arrangements = current_user.hired_services.page(params[:page]).per(5)
   end
 
+  def hired_completed
+    @arrangements = current_user.hired_services_completed.page(params[:page]).per(5)
+  end
+
   def show
   end
 
@@ -18,7 +22,7 @@ class ServiceArrangementsController < ApplicationController
       updater.update
       flash[:success] = "Servicio marcado como Completado"
       send_new_transaction_notification updater.points_transaction
-      redirect_to my_hired_requests_url
+      redirect_to my_hired_completed_url
     else
       redirect_to root_url
     end

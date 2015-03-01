@@ -15,6 +15,11 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should get hired completed" do
+    get :hired_completed
+    assert_response :success
+  end
+
   test "should not mark as completed if is not the client" do
     @arrangement = service_arrangements :three
     post :update, id: @arrangement
@@ -24,7 +29,7 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
   test "should mark as completed if is the client" do
     @arrangement = service_arrangements :one
     post :update, id: @arrangement
-    assert_redirected_to my_hired_requests_url
+    assert_redirected_to my_hired_completed_url
   end
 
 end

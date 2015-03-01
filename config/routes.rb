@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     end
 
     #Service Arangements
-    match '/my_hired_requests', to: 'service_arrangements#hired', via: "get", as: :my_hired_requests
+    match '/my_hired_requests',  to: 'service_arrangements#hired', via: "get", as: :my_hired_requests
+    match '/my_hired_completed', to: 'service_arrangements#hired_completed', via: "get", as: :my_hired_completed
     resources :service_arrangements, only: [:update]
   end
   
