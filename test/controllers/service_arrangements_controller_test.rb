@@ -25,7 +25,6 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     @arrangement = service_arrangements :one
     post :update, id: @arrangement
     arrangement = assigns :service_arrangement
-    assert arrangement.completed?
     assert_redirected_to my_hired_requests_url
   end
 
