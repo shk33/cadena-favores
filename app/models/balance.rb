@@ -24,7 +24,7 @@ class Balance < ActiveRecord::Base
   end
 
   def gain_points points
-    self.frozen_points += points
+    self.usable_points += points
     self.total_points  += points
     self.save
   end

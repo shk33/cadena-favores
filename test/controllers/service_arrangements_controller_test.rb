@@ -24,7 +24,6 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
   test "should mark as completed if is the client" do
     @arrangement = service_arrangements :one
     post :update, id: @arrangement
-    arrangement = assigns :service_arrangement
     assert_redirected_to my_hired_requests_url
   end
 
