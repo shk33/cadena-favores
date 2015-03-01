@@ -53,8 +53,14 @@
           <div class="row">
             <div class="col-lg-10"></div>
             <div class="col-lg-2">
-              <%= form_for [@service_request, Offer.new] do |f| %>
-                <%= f.submit "Ofertar", class: "btn btn-primary" %>
+              <% if @service_request.open? %>
+                <%= form_for [@service_request, Offer.new] do |f| %>
+                  <%= f.submit "Ofertar", class: "btn btn-primary" %>
+                <% end %>
+              <% else %>
+                <span class="label label-info">
+                  Solicitud Cerrada
+                </span>
               <% end %>
             </div>
           </div>

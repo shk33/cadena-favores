@@ -5,6 +5,7 @@ class ActivitiesController < ApplicationController
   def index
     @activities = PublicActivity::Activity.order("created_at desc")
                   .where(recipient_id: current_user, recipient_type: "User")
+    @activities.update_all read: true                  
   end
 
   def show
