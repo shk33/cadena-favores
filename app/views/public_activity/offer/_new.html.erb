@@ -1,15 +1,15 @@
-<li class="list-group-item">
-  <i class=" fa fa-tag fa-2x icon"></i>
-  El usuario 
-  <% if activity.trackable %>
-    <% offer = activity.trackable %>
-    <% service = offer.service_request.service %>
+<% if activity.trackable %>
+  <li class="list-group-item">
+    <i class=" fa fa-tag fa-2x icon"></i>
+      El usuario 
+      <% offer = activity.trackable %>
+      <% service = offer.service_request.service %>
 
-    <%#= link_to offer.user.name, offer.user %>
-    <%= link_to offer.user.name, "#" %>
-    ha realizado una nueva oferta en 
-    <%#= link_to service.title, service%>
-    <%= link_to service.title, "#"%>
-
-  <% end %>
-</li>
+      <%= link_to offer.user.name, offer.user %>
+      ha realizado una nueva oferta en 
+      <%= link_to service.title, offer.service_request %>
+      <% unless activity.read? %>
+        <span class="label label-success">Nuevo</span>
+      <% end %>
+  </li>
+<% end %>

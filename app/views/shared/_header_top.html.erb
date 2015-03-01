@@ -15,7 +15,7 @@
         <li id="header_notification_bar" class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <i class="fa fa-bell-o" data-original-title="" title=""></i>
-            <span class="badge bg-important" id="notifications-amount">0</span>
+            <span class="badge bg-important" id="notifications-amount"><%= Activity.count_new_notifications current_user %></span>
           </a>
           <ul class="dropdown-menu extended notification" id="notifications">
             <div class="notify-arrow notify-arrow-green"></div>

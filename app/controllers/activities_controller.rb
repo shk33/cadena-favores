@@ -5,17 +5,20 @@ class ActivitiesController < ApplicationController
   def index
     @activities = PublicActivity::Activity.order("created_at desc")
                   .where(recipient_id: current_user, recipient_type: "User")
+    @activities.update_all read: true                  
   end
 
   def show
-    unless can_see_activity?
+    if can_see_activity?
+      @activity.update_attributes read: true
+    else    
        redirect_to root_url
-     end 
+    end 
   end
 
   private
     def set_activity
-      @activity = PublicActivity::Activity.find(params[:id])
+      @activity = PublicActivity::Activity.find params[:id]
     end
 
     def can_see_activity?
