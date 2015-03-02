@@ -1,5 +1,5 @@
 class ServiceRequestCreation
-  attr_reader :service_request
+  attr_reader :service_request, :user
 
   def initialize params, user
     @user   = user

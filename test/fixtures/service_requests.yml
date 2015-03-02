@@ -3,15 +3,19 @@
 one:
   user: main_user
   tags: programacion , diseno
+  open: true
 
 two:
   user: one
   tags: programacion , diseno
+  open: true
 
 main_closed:
   user: main_user
+  tags: programacion , diseno
   open: false
 
 closed:
   user: one
+  tags: programacion , diseno
   open: false
