@@ -10,10 +10,12 @@ class ServiceRequestCreation
   end
 
   def create
-    @points = service_request.service.cost
-    @service_request.save
-    freeze_user_points
-    @service_request
+    if @valid
+      @points = service_request.service.cost
+      @service_request.save
+      freeze_user_points
+      @service_request
+    end
   end
 
   def valid_creation?

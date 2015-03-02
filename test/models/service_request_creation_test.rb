@@ -15,6 +15,7 @@ class ServiceRequestCreationTest < ActiveSupport::TestCase
   test "should create and freeze points" do
     assert_difference 'ServiceRequest.count', 1 do
       assert_difference 'Service.count', 1 do
+        @creator.valid_creation?
         @creator.create
       end  
     end
