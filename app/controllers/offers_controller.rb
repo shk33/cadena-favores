@@ -1,17 +1,25 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, :get_notifications
-  before_action :set_service_request, only: [:create, :destroy, :new_accept] 
-  before_action :set_offer,           only: [:destroy, :new_accept] 
+  before_action :set_service_request, only: [:create, :destroy, :new_accept, :accept] 
+  before_action :set_offer,           only: [:destroy, :new_accept, :accept] 
 
   #GET new_accept
   def new_accept
+    @arrengement = ServiceArrangement.new
     redirect_to root_url unless @service_request.user == current_user
   end
 
   #POST accept
   def accept
-    byebug
-    params
+    if @offer.accept service_arrangement_params
+      flash[:success] = "La oferta ha sido aceptada"
+      send_new_arrengement_notification @offer.arrangement
+      redirect_to @offer.service_request
+    else
+      @arrengement = @offer.arrangement
+      render :new_accept
+    end
+
   end
 
   def create
@@ -58,10 +66,20 @@ class OffersController < ApplicationController
       params.require(:offer).permit()
     end
 
+    def service_arrangement_params
+      params.require(:service_arrangement).permit(:start_date, 
+                                                  :end_date)
+    end
+
     def notify_user
       server = @offer.user
       client = @offer.service_request.user
       @offer.create_activity action: 'new', recipient: client, owner: server
       send_notification client.id, 'new_offer'
+    end
+
+    def send_new_arrengement_notification arrangement
+      arrangement.create_activity action: 'accepted_offer', recipient: arrangement.server, owner: arrangement.client
+      send_notification arrangement.server.id, 'accepted_offer'
     end
 end

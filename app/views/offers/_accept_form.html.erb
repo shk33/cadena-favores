@@ -1,4 +1,5 @@
-<%=form_for accept_service_request_offer_path(@service_request, @offer) do |f| %>
+<%= form_for @arrengement, url: accept_service_request_offer_path(@service_request, @offer) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   
   <div class="form-group">
     <%= f.label(:start_date, "Fecha de Inicio: ") %>
