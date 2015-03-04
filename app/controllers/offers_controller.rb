@@ -11,13 +11,18 @@ class OffersController < ApplicationController
 
   #POST accept
   def accept
-    if @offer.accept service_arrangement_params
-      flash[:success] = "La oferta ha sido aceptada"
-      send_new_arrengement_notification @offer.arrangement
-      redirect_to @offer.service_request
+    if @offer.valid_acceptance? current_user
+      if @offer.accept service_arrangement_params
+        flash[:success] = "La oferta ha sido aceptada"
+        send_new_arrengement_notification @offer.arrangement
+        redirect_to @offer.service_request
+      else
+        @arrengement = @offer.arrangement
+        render :new_accept
+      end
     else
-      @arrengement = @offer.arrangement
-      render :new_accept
+      flash[:danger] = "Ocurrio un error. Posiblemente la solicitud de servicio se encuentre cerrada."
+      redirect_to root_url
     end
 
   end

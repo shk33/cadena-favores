@@ -21,6 +21,10 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  def valid_acceptance? user
+    request_open? && is_request_owner?(user)
+  end
+
   private
     def initialize_service_arrangement params
       @arrangement = ServiceArrangement.new params
@@ -28,4 +32,13 @@ class Offer < ActiveRecord::Base
       @arrangement.server  = user
       @arrangement.service = service_request.service.dup
     end
+
+    def request_open?
+      service_request.open?
+    end
+
+    def is_request_owner? user
+      user == service_request.user
+    end
+
 end
