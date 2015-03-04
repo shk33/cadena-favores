@@ -1,0 +1,14 @@
+<%=form_for accept_service_request_offer_path(@service_request, @offer) do |f| %>
+  
+  <div class="form-group">
+    <%= f.label(:start_date, "Fecha de Inicio: ") %>
+    <%= f.date_field(:start_date, default: Date.today) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:end_date, "Fecha de Terminación: ") %>
+    <%= f.date_field(:end_date, default: 7.days.from_now) %>
+  </div>
+
+  <%= f.submit "Aceptar Oferta", class: 'btn btn-info' %>
+<% end %>

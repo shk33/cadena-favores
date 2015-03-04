@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     resources :service_requests do
       resources :offers, only: [:create, :destroy] do
         member do 
-          match '/accept', to: 'offers#new_accept', via: "get", as: :accept
+          match '/accept',   to: 'offers#new_accept', via: "get",  as: :new_accept
+          match '/accept',   to: 'offers#accept',     via: "post", as: :accept
         end
       end
     end

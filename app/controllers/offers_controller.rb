@@ -1,16 +1,17 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, :get_notifications
-  before_action :set_service_request, only: [:create, :destroy] 
-  before_action :set_offer,           only: [:destroy] 
+  before_action :set_service_request, only: [:create, :destroy, :new_accept] 
+  before_action :set_offer,           only: [:destroy, :new_accept] 
 
   #GET new_accept
   def new_accept
-    
+    redirect_to root_url unless @service_request.user == current_user
   end
 
   #POST accept
   def accept
-    
+    byebug
+    params
   end
 
   def create

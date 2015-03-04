@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">Aceptar Oferta</h2>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <header class="panel-title">
+      Detalles de la Oferta
+    </header>
+  </div>
+  <div class="panel-body">
+    <p>
+      <strong>Solicitud de servicio:</strong> 
+      <%= link_to @service_request.service.title, @service_request %>
+    </p>
+    <p>
+      <strong>Usario Ofertante:</strong> 
+      <%= link_to @offer.user.name, @offer.user %>
+    </p>
+
+    <%= render 'accept_form' %>
+
+  </div>
+</div>
