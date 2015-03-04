@@ -38,7 +38,11 @@ Rails.application.routes.draw do
     #Service Requests
     match '/my_service_requests', to: 'service_requests#user_index', via: "get", as: :my_service_requests
     resources :service_requests do
-      resources :offers, only: [:create, :destroy]
+      resources :offers, only: [:create, :destroy] do
+        member do 
+          match '/accept', to: 'offers#new_accept', via: "get", as: :accept
+        end
+      end
     end
 
     #Service Arangements

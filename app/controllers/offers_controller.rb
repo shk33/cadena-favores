@@ -3,6 +3,16 @@ class OffersController < ApplicationController
   before_action :set_service_request, only: [:create, :destroy] 
   before_action :set_offer,           only: [:destroy] 
 
+  #GET new_accept
+  def new_accept
+    
+  end
+
+  #POST accept
+  def accept
+    
+  end
+
   def create
     @creator = OfferCreation.new(@service_request, current_user)
 
