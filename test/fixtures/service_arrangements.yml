@@ -6,6 +6,7 @@ one:
   client: main_user
   server: one
   completed: false
+  offer: two
 
 two:
   start_date: 2015-02-04

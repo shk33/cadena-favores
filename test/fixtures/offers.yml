@@ -2,7 +2,7 @@
 
 one:
   user: main_user
-  service_request: two 
+  service_request: two
 
 two:
   user: one

@@ -98,4 +98,39 @@ class OffersControllerTest < ActionController::TestCase
     assert offer.accepted?
     assert_redirected_to request
   end
+
+  test "should delete to cancel when user is request owner" do
+    offer = offers :two
+    request = service_requests :one
+    assert_difference 'ServiceArrangement.count', -1 do
+      delete :cancel ,service_request_id: request, id: offer
+    end
+    offer = assigns :offer
+    assert_not offer.accepted?
+  end
+
+  test "should delete to cancel when user is  offer owner" do
+    user = users(:one)
+    log_in_as user
+    offer = offers :two
+    request = service_requests :one
+
+    assert_difference 'ServiceArrangement.count', -1 do
+      delete :cancel ,service_request_id: request, id: offer
+    end
+    offer = assigns :offer
+    assert_not offer.accepted?
+  end
+
+  test "should not delete to cancel when user is not offer owner neither reques owner" do
+    user = users(:invalid)
+    log_in_as user
+    offer = offers :two
+    request = service_requests :one
+
+    assert_no_difference 'ServiceArrangement.count' do
+      delete :cancel ,service_request_id: request, id: offer
+    end
+    assert_redirected_to root_url
+  end
 end
