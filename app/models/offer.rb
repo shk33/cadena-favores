@@ -15,6 +15,7 @@ class Offer < ActiveRecord::Base
     initialize_service_arrangement service_arrengement_params
     if @arrangement.save
       service_request.update_attributes open: false
+      update_attributes accepted: true
       true
     else
       false

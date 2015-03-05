@@ -26,6 +26,10 @@ class ServiceRequest < ActiveRecord::Base
     else
       ServiceRequest.all
     end
-  end  
+  end
+
+  def accepted_offer
+    
+  end
   
 end

@@ -1,0 +1,33 @@
+<div class="col-sm-offset-1 col-sm-10">
+  <section class="panel">
+    <header class="panel-heading">
+      <h3>Ofertas</h3>
+    </header>
+    <table class="table table-hover personal-task">
+      <tbody>
+      <% @service_request.offers.each do |offer| %>
+        <tr>
+          <td>
+            <i class=" fa fa-money"></i>
+          </td>
+          <td>
+            <%= link_to offer.user.name, offer.user %>
+          </td>
+          <td>Ofertado hace <%= time_ago_in_words(offer.created_at) %>.
+          </td>
+          <% if @service_request.user == current_user %>
+            <td>
+              <%= link_to "Aceptar Oferta", new_accept_service_request_offer_path(@service_request, offer), class: "btn btn-drop btn-info text-center" %>
+            </td>
+          <% end %>
+          <td>
+          <% if current_user == offer.user %>
+            <%= link_to "Cancelar Oferta", service_request_offer_path(offer.service_request, offer), class: "btn btn-drop btn-danger text-center", confirm: "Are you sure?", method: :delete %>
+          <% end %>
+          </td>
+        </tr>
+      <% end  %>
+      </tbody>
+    </table>
+  </section>
+</div>
