@@ -101,6 +101,9 @@ requests.each do |request|
     offer = Offer.new
     offer.user    = user
     offer.service_request = request
+    if n == 1
+      offer.accepted = true 
+    end
     offer.save
   end
 end

@@ -19,6 +19,7 @@
       </div>
       <div class="panel-body">
         <div class="text-center" id="author">
+          <%= image_tag @service_request.user.profile.picture.url if @service_request.user.profile.picture? %>
           <%= link_to @service_request.user do %>
             <h3><%= @service_request.user.name %></h3>
           <% end %>

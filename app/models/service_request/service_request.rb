@@ -29,7 +29,7 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def accepted_offer
-    
+    offers.where(accepted: true).first
   end
   
 end

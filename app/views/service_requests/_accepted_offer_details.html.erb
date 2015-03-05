@@ -3,5 +3,11 @@
     <header class="panel-heading">
       <h3>Oferta Aceptada</h3>
     </header>
+    <div class="panel-body">
+      <p>
+        <strong>Usuario que realiza la solicitud: </strong>
+        <%= link_to @service_request.accepted_offer.user.name, @service_request.accepted_offer.user %>
+      </p>
+    </div>
   </section>
 </div>
