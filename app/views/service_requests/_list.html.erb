@@ -31,9 +31,15 @@
           <% if current_user == request.user %>
             <hr>
             <p>
+            <% if request.open? %>
               <%= link_to 'Eliminar', request, method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger" %>
               <span class="padding"></span>
               <%= link_to "Editar", edit_service_request_path(request), class: "btn btn-info" %>
+            <% else %>
+              <button class="btn btn-info">
+                Solicitud Realizandose
+              </button>
+            <% end %>
             </p>
           <% end %>
         </div>

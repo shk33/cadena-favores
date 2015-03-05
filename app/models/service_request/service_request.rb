@@ -31,5 +31,9 @@ class ServiceRequest < ActiveRecord::Base
   def accepted_offer
     offers.where(accepted: true).first
   end
+
+  def has_accepted_offer?
+    offers.where(accepted: true).first.nil?
+  end
   
 end
