@@ -53,4 +53,49 @@ class OffersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should get new_accept if is user is owner" do
+    offer = offers :one
+    request = service_requests :one
+    get :new_accept ,service_request_id: request, id: offer
+    assert_template :new_accept
+    assert_select "input", id: "service_arrangement_start_date", type: "date"
+    assert_select "input", id: "service_arrangement_end_date", type: "date"
+  end
+
+  test "should not get new_accept when user is not owner" do
+    offer = offers :three
+    request = service_requests :two
+    get :new_accept ,service_request_id: request, id: offer
+    assert_redirected_to root_url
+  end
+
+  test "should not post to accept if is not owner" do
+    offer = offers :three
+    request = service_requests :two
+    assert_no_difference 'ServiceArrangement.count' do
+      post :accept ,service_request_id: request, id: offer
+    end
+    assert_redirected_to root_url
+  end
+
+  test "should not post to accept if request is closed" do
+    offer = offers :four
+    request = service_requests :main_closed
+    assert_no_difference 'ServiceArrangement.count' do
+      post :accept ,service_request_id: request, id: offer
+    end
+    assert_redirected_to root_url
+  end
+
+  test "should post to accept" do
+    offer = offers :two
+    request = service_requests :one
+    assert_difference 'ServiceArrangement.count', 1 do
+      post :accept ,service_request_id: request, id: offer,
+           service_arrangement: {start_date: Date.today, end_date: 7.days.from_now}
+    end
+    offer = assigns :offer
+    assert offer.accepted?
+    assert_redirected_to request
+  end
 end

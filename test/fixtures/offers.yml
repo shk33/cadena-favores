@@ -7,3 +7,11 @@ one:
 two:
   user: one
   service_request: one
+
+three:
+  user: main_user
+  service_request: two
+
+four:
+  user: main_user
+  service_request: main_closed
