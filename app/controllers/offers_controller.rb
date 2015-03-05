@@ -1,7 +1,7 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, :get_notifications
-  before_action :set_service_request, only: [:create, :destroy, :new_accept, :accept] 
-  before_action :set_offer,           only: [:destroy, :new_accept, :accept] 
+  before_action :set_service_request, only: [:create, :destroy, :new_accept, :accept, :cancel] 
+  before_action :set_offer,           only: [:destroy, :new_accept, :accept, :cancel] 
 
   #GET new_accept
   def new_accept
@@ -25,6 +25,16 @@ class OffersController < ApplicationController
       redirect_to root_url
     end
 
+  end
+
+  #DELETE /Cancel
+  def cancel
+    if @offer.can_cancel_offer? current_user
+      @offer.cancel @service_request
+      redirect_to @service_request
+    else
+      redirect_to root_url
+    end
   end
 
   def create

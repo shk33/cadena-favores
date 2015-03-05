@@ -101,8 +101,8 @@ requests.each do |request|
     offer = Offer.new
     offer.user    = user
     offer.service_request = request
-    if n == 1
-      offer.accepted = true 
+    if !(request.open?)
+      offer.accepted = true
     end
     offer.save
   end
@@ -119,12 +119,14 @@ requests.each do |request|
   end_date   = 14.day.from_now
   client     = request.user
   server     = request.offers[0].user
+  offer      = request.accepted_offer
   sa = ServiceArrangement.create!(
                          service: service,
                          client:  client,
                          server:  server,
                          start_date: start_date,
-                         end_date:   end_date)
+                         end_date:   end_date,
+                         offer: offer)
 
   #Make half of service arrangements completed
   if sa.id%2 == 0

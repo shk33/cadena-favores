@@ -7,6 +7,7 @@ class ServiceArrangement < ActiveRecord::Base
   has_one  :review
   belongs_to :client, class_name: "User", foreign_key: "client_id"
   belongs_to :server, class_name: "User", foreign_key: "server_id"
+  belongs_to :offer
 
   #Model Validations
   validates :client,     presence: true
@@ -14,5 +15,6 @@ class ServiceArrangement < ActiveRecord::Base
   validates :service,    presence: true
   validates :end_date,   presence: true
   validates :start_date, presence: true
+  validates :offer,      presence: true
 
 end

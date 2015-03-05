@@ -7,6 +7,9 @@
       <p>
         <strong>Usuario que realiza la solicitud: </strong>
         <%= link_to @service_request.accepted_offer.user.name, @service_request.accepted_offer.user %>
+        <% if @service_request.accepted_offer.can_cancel_offer?(current_user) %>
+          <%= link_to 'Cancelar Oferta', cancel_service_request_offer_path(@service_request, @service_request.accepted_offer ), method: :delete, data: { confirm: '¿Estás seguro de cancelar la oferta?' }, class: "btn btn-danger" %>
+        <% end %>
       </p>
     </div>
   </section>

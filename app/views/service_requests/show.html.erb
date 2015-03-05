@@ -58,10 +58,6 @@
                 <%= form_for [@service_request, Offer.new] do |f| %>
                   <%= f.submit "Ofertar", class: "btn btn-primary" %>
                 <% end %>
-              <% else %>
-                <span class="label label-info">
-                  Solicitud Cerrada
-                </span>
               <% end %>
             </div>
           </div>

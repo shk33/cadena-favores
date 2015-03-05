@@ -4,6 +4,7 @@ class Offer < ActiveRecord::Base
   #Associations
   belongs_to :user
   belongs_to :service_request
+  has_one    :service_arrangement
 
   #Model Validations
   validates :user,            presence: true
@@ -22,8 +23,17 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  def cancel request
+    request.update_attributes open: true
+    update_attributes accepted: false
+  end
+
   def valid_acceptance? user
     request_open? && is_request_owner?(user)
+  end
+
+  def can_cancel_offer? user
+    is_request_owner?(user) || is_offer_owner?(user)
   end
 
   private
@@ -40,6 +50,10 @@ class Offer < ActiveRecord::Base
 
     def is_request_owner? user
       user == service_request.user
+    end
+
+    def is_offer_owner? user
+      user == self.user
     end
 
 end
