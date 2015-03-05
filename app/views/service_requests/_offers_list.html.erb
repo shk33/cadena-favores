@@ -22,7 +22,7 @@
           <% end %>
           <td>
           <% if current_user == offer.user %>
-            <%= link_to "Cancelar Oferta", service_request_offer_path(offer.service_request, offer), class: "btn btn-drop btn-danger text-center", confirm: "Are you sure?", method: :delete %>
+            <%= link_to "Eliminar Oferta", service_request_offer_path(offer.service_request, offer), class: "btn btn-drop btn-danger text-center", confirm: "Are you sure?", method: :delete %>
           <% end %>
           </td>
         </tr>

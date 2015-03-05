@@ -14,10 +14,10 @@ class OffersController < ApplicationController
     if @offer.valid_acceptance? current_user
       if @offer.accept service_arrangement_params
         flash[:success] = "La oferta ha sido aceptada"
-        send_new_arrengement_notification @offer.arrangement
+        send_new_arrengement_notification @offer.service_arrangement
         redirect_to @offer.service_request
       else
-        @arrengement = @offer.arrangement
+        @arrengement = ServiceArrangement.new
         render :new_accept
       end
     else

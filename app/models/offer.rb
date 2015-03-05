@@ -10,11 +10,9 @@ class Offer < ActiveRecord::Base
   validates :user,            presence: true
   validates :service_request, presence: true
 
-  attr_reader :arrangement
-
-  def accept service_arrengement_params
-    initialize_service_arrangement service_arrengement_params
-    if @arrangement.save
+  def accept params
+    initialize_service_arrangement params
+    if service_arrangement.save
       service_request.update_attributes open: false
       update_attributes accepted: true
       true
@@ -26,6 +24,7 @@ class Offer < ActiveRecord::Base
   def cancel request
     request.update_attributes open: true
     update_attributes accepted: false
+    service_arrangement.destroy
   end
 
   def valid_acceptance? user
@@ -38,10 +37,11 @@ class Offer < ActiveRecord::Base
 
   private
     def initialize_service_arrangement params
-      @arrangement = ServiceArrangement.new params
-      @arrangement.client  = service_request.user
-      @arrangement.server  = user
-      @arrangement.service = service_request.service.dup
+      service_arrangement  = ServiceArrangement.new params
+      service_arrangement.client  = service_request.user
+      service_arrangement.server  = user
+      service_arrangement.service = service_request.service.dup
+      service_arrangement.offer   = self
     end
 
     def request_open?
