@@ -7,7 +7,7 @@ before_action :set_tags,            only: [:index, :new, :edit]
 def index
   # 1 = name
   # 2 = tags
-  if params[:search_type] == 2
+  if params[:search_type] == '2'
     @service_requests = ServiceRequest.search_by_tag(params[:tag]).
                                             page(params[:page]).per(5)
   else

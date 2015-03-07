@@ -22,7 +22,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def self.search_by_tag tag_id
     if tag_id
-      ServiceRequest.joins(:tags).where(tags: {id: tag})
+      ServiceRequest.joins(:tags).where(tags: {id: tag_id.to_i})
     else
       ServiceRequest.all
     end

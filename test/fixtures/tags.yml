@@ -4,11 +4,13 @@ programacion:
   id: 1
   name: Programación
   description: Computers
+  service_requests: one, two, main_closed
 
 diseno:
   id: 2
   name: Diseño
   description: Diseñando ando
+  service_requests: one, two, main_closed
 
 domesticas:
   id: 3
@@ -19,11 +21,13 @@ educativa:
   id: 4
   name: Educativa
   description: Educando ando
+  service_requests: closed
 
 transporte:
   id: 5
   name: Transporte
   description: Transportando ando
+  service_requests: closed
 
 decorativa:
   id: 6
