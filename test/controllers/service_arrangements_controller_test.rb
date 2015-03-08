@@ -43,7 +43,7 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     assert_select 'label', 'Servidor'
     assert_select 'p', service_arrangement.server.name
     assert_select 'label', 'Fecha de inicio'
-    assert_select 'p', service_arrangement.start_date
+    assert_select 'p', service_arrangement.start_date.to_s
     assert_select 'label', 'Fecha de fin'
     assert_select 'p', service_arrangement.end_date
     assert_select 'a', service.title
