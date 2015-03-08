@@ -101,9 +101,11 @@ requests.each do |request|
     offer = Offer.new
     offer.user    = user
     offer.service_request = request
-    if !(request.open?)
-      offer.accepted = true
-    end
+    offer.save
+  end
+  unless request.open?
+    offer = request.offers.first
+    offer.accepted = true
     offer.save
   end
 end
@@ -111,15 +113,14 @@ end
 ############################
 # Service Arrangements
 ############################
-requests = ServiceRequest.where open: false
+offers = Offer.where accepted: true
 
-requests.each do |request|
-  service    = request.service.dup
+offers.each do |offer|
+  service    = offer.service_request.service.dup
   start_date = 7.day.from_now
   end_date   = 14.day.from_now
-  client     = request.user
-  server     = request.offers[0].user
-  offer      = request.accepted_offer
+  client     = offer.service_request.user
+  server     = offer.user
   sa = ServiceArrangement.create!(
                          service: service,
                          client:  client,
@@ -200,7 +201,7 @@ end
 ############################
 # Profiles and its Tags
 ############################
-user = User.all
+users = User.all
 
 users.each do |user|
   user.profile.description = Faker::Lorem.sentence(15)

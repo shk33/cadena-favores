@@ -16,7 +16,7 @@ class ServiceArrangementsController < ApplicationController
 
   def show
     @service_arrangement = ServiceArrangement.find(params[:id])
-    @service_request = ServiceRequest.find params[:id]
+    @service_request = @service_arrangement.offer.service_request
     @service = @service_request.service
   end
 
