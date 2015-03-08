@@ -31,9 +31,8 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     post :update, id: @arrangement
     assert_redirected_to my_hired_completed_url
   end
-  
-   test "should show a valid service_arrangement" do
-    #NO ENTIENDO PORQUE NO RECONOCE EL START_DATE Y EL END_DATE SI EL FIXTURE Y ESO ESTA BIEN
+
+  test "should show a valid service_arrangement" do
     service_request = service_requests(:one)
     service_arrangement = service_arrangements(:one)
     service = service_request.service
@@ -44,9 +43,9 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     assert_select 'label', 'Servidor'
     assert_select 'p', service_arrangement.server.name
     assert_select 'label', 'Fecha de inicio'
-    #assert_select 'p', service_arrangement.start_date
+    assert_select 'p', service_arrangement.start_date.to_s
     assert_select 'label', 'Fecha de fin'
-    #assert_select 'p', service_arrangement.end_date
+    assert_select 'p', service_arrangement.end_date.to_s
     assert_select 'a', service.title
     assert_select 'span', "#{service.cost} puntos"
     assert_select 'p', service.description
@@ -56,11 +55,10 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    arrangements = ServiceArrangement.all
     get :index
     assert_response :success
     assert_select 'h2', 'Servicios a realizar'
-    #NO SE COMO SACAR EL SERVICIO DEL ARRANGEMENT LO PUSE ASI PORQUE ASI ESTA EN LA VISTA DE LIST
+    arrangements = assigns :arrangements
     arrangements.each do |arrangement|
         assert_select 'strong', arrangement.service.title
         assert_select 'p', arrangement.service.description
