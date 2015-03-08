@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     #Service Arangements
     match '/my_hired_requests',  to: 'service_arrangements#hired', via: "get", as: :my_hired_requests
     match '/my_hired_completed', to: 'service_arrangements#hired_completed', via: "get", as: :my_hired_completed
-    resources :service_arrangements, only: [:update, :show, :index]]
+    resources :service_arrangements, only: [:update, :show, :index]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
