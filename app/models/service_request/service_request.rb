@@ -14,7 +14,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def self.search_by_title search
     if search
-      ServiceRequest.joins(:service).where("title like ? ", "%#{search}%")
+      ServiceRequest.joins(:service).where("LOWER(title) like ? ", "%#{search}%".downcase)
     else
       ServiceRequest.all
     end
