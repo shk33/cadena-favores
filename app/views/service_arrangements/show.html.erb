@@ -12,12 +12,15 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="text-center" id="author">
-          <p><%= @service_arrangement.server %></p>
+          <label>Servidor</label>
+          <p><%= @service_arrangement.server.name %></p>
         </div>
         <div class="text-center" id="author">
+          <label>Fecha de inicio</label>
           <p><%= @service_arrangement.start_date %></p>
         </div>
         <div class="text-center" id="author">
+          <label>Fecha de fin</label>
           <p><%= @service_arrangement.end_date %></p>
         </div>
       </div>
