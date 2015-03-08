@@ -31,5 +31,27 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     post :update, id: @arrangement
     assert_redirected_to my_hired_completed_url
   end
+  
+  test "should show a valid service_arrangement" do
+    service_request = service_requests(:one)
+    service_arrangement = service_arrangements(:one)
+    service = service_request.service
+    get :show, id: service_arrangement
+    assert_template :show
+    assert_response :success
+    assert_select 'h2', 'Detalles del servicio a realizar'
+    assert_select 'label', 'Servidor'
+    assert_select 'p', service_arrangement.server.name
+    assert_select 'label', 'Fecha de inicio'
+    assert_select 'p', service_arrangement.start_date
+    assert_select 'label', 'Fecha de fin'
+    assert_select 'p', service_arrangement.end_date
+    assert_select 'a', service.title
+    assert_select 'span', "#{service.cost} puntos"
+    assert_select 'p', service.description
+    service_request.tags.each do |tag|
+        assert_select 'span', tag.name
+    end
+  end
 
 end
