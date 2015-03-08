@@ -3,7 +3,7 @@ class ServiceArrangementsController < ApplicationController
   before_action :set_service_arrangement, only: [:show, :destroy]
 
   def index
-    @service_arrangements = current_user.owed_services.page(params[:page]).per(5)
+    @arrangements = current_user.owed_services.page(params[:page]).per(5)
   end
 
   def hired
