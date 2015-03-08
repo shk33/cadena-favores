@@ -29,9 +29,11 @@
             <div class="btn btn-primary">
               <strong>Costo: </strong><%= arrangement.service.cost %> puntos
             </div>
-            <div class="btn btn-info pull-right">
-            <%= form_for arrangement do |f| %>
-              <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
+            <% if current_user == arrangement.client %>
+              <div class="btn btn-info pull-right">
+              <%= form_for arrangement do |f| %>
+                <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
+              <% end %>
             <% end %>
             </div>
           </p>
