@@ -27,13 +27,14 @@ class RelationshipsControllerTest < ActionController::TestCase
   end
 
   test "should delete a new relationship" do
-    # user = users(:main_user)
-    # user_one = users :one
-    # log_in_as user
-    # assert_difference 'Relationship.count', -1 do
-    #   delete :destroy , id: user_one.id
-    # end
-    # assert_redirected_to user_one
+    user = users :main_user
+    invalid = users :invalid
+    relationship = relationships :one
+    log_in_as user
+    assert_difference 'Relationship.count', -1 do
+      delete :destroy , id: relationship.id
+    end
+    assert_redirected_to invalid
   end
 
 end
