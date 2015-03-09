@@ -1,0 +1,25 @@
+<% @following.each do |user| %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">
+            <a href="#" class="task-thumb">
+              <%= image_tag user.profile.picture.url if user.profile.picture? %>
+            </a>
+            <strong>
+              <%= link_to user.name, user %>
+            </strong>
+          </h4>
+          <hr>
+          <p>
+            Etiquetas: <% user.profile.tags.each do |tag| %>
+              <span class="label label-danger"><%= tag.name %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>

@@ -70,6 +70,11 @@ class UsersController < ApplicationController
     redirect_to site_root_url
   end
 
+  def following
+    @user = User.find(params[:id])
+    @following = @user.following.page(params[:page]).per(5)
+  end
+
   #Show settings account
   def settings
   end

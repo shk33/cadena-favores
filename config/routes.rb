@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   scope '/app' do
     root 'home#index'
 
+    #Relationships
+    resources :relationships , only: [:create, :destroy]
+    match '/users/:id/following', to: 'users#following', via: "get", as: :following
+    
     #Current user Settings
     match '/settings',      to: 'users#settings',   via: "get", as: :settings
 
@@ -29,10 +33,13 @@ Rails.application.routes.draw do
     resources :activities, only: [:show]
     match '/notifications', to: 'activities#index', via: "get", as: :notifications
 
-    #Users 
-    resources :users, except: [:new,:create] do
+    #Users
+    resources :users do
       resources :profiles, only: [:update]
-    end
+      member do
+        get :following
+      end
+    end    
     match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
 
     #Service Requests
@@ -53,7 +60,7 @@ Rails.application.routes.draw do
     match '/my_services_to_do', to: 'service_arrangements#index', via: "get", as: :my_services_to_do
     resources :service_arrangements, only: [:update, :show, :index]
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

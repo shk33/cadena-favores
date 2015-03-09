@@ -94,5 +94,10 @@ class UsersControllerTest < ActionController::TestCase
     assert_template :settings
     assert_select 'a[href=?]', user_path(@user), method: :delete
   end
+    
+  test "should redirect following when not logged in" do
+    get :following, id: @user
+    assert_redirected_to login_url
+  end
 
 end
