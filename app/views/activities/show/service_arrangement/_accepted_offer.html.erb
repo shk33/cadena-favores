@@ -5,6 +5,6 @@
   <% if activity.trackable %>
     <% service_arrangement = activity.trackable %>
     de <%= link_to service_arrangement.client.name, activity.trackable.client %> para 
-    <%= service_arrangement.service.title %>
+    <%= link_to service_arrangement.offer.service_request.service.title, service_arrangement.offer.service_request %>
   <% end %>  
 </div>

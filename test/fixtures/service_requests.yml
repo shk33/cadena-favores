@@ -2,20 +2,20 @@
 
 one:
   user: main_user
-  tags: programacion , diseno
   open: true
+  tags: programacion, diseno
 
 two:
   user: one
-  tags: programacion , diseno
   open: true
+  tags: programacion, diseno
 
 main_closed:
   user: main_user
-  tags: programacion , diseno
   open: false
+  tags: programacion, diseno
 
 closed:
   user: one
-  tags: programacion , diseno
   open: false
+  tags: educativa, transporte

@@ -130,9 +130,12 @@ class ServiceRequestsControllerTest < ActionController::TestCase
 
   test "should get index and search by tags" do
     request = service_requests(:one)
-    get :index , tag: 1, search_type: 2
+    tag = tags(:programacion)
+    
+    get :index , tag: tag.id, search_type: 2
     assert_response :success
     assert_select 'a', request.service.title
+    assert_select 'span', tag.name
   end
 
   test "should get index and search by name" do

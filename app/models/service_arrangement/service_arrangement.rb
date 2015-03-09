@@ -12,7 +12,6 @@ class ServiceArrangement < ActiveRecord::Base
   #Model Validations
   validates :client,     presence: true
   validates :server,     presence: true
-  validates :service,    presence: true
   validates :end_date,   presence: true
   validates :start_date, presence: true
   validates :offer,      presence: true
