@@ -45,6 +45,7 @@ gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.23.0'
 
 group :test do
+  gem 'simplecov'
   gem 'minitest-reporters'
   gem 'mini_backtrace'
   gem 'guard-minitest'
