@@ -20,3 +20,6 @@
 
 #Ignore uploads
 /public/uploads
+
+#Ignore test coverage results
+/coverage
