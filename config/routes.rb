@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     match '/my_hired_completed', to: 'service_arrangements#hired_completed', via: "get", as: :my_hired_completed
     match '/my_services_to_do', to: 'service_arrangements#index', via: "get", as: :my_services_to_do
     resources :service_arrangements, only: [:update, :show, :index] do
-      resources :offers
+      resources :reviews
     end
   end
 

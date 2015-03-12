@@ -29,6 +29,11 @@
             <div class="btn btn-primary">
               <strong>Puntos Transferidos: </strong><%= arrangement.service.cost %> puntos
             </div>
+            <%= link_to new_service_arrangement_review_path(arrangement) do %>
+              <div class="btn btn-warning">
+                Calificar Servicio
+              </div>
+            <% end %>
           </p>
         </div>
       </div>
