@@ -8,15 +8,19 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new review_params
-    @review.service_arrangement = @arrangement
-    @review.user = current_user
-    @arrangement.review = @review
-    if @arrangement.save
-      flash[:success] = "Servico Calificado Exitósamente"
-      redirect_to @arrangement
+    if current_user ==  @arrangement.client
+      @review = Review.new review_params
+      @review.service_arrangement = @arrangement
+      @review.user = current_user
+      @arrangement.review = @review
+      if @arrangement.save
+        flash[:success] = "Servico Calificado Exitósamente"
+        redirect_to @arrangement
+      else
+        render :new    
+      end
     else
-      render :new    
+      redirect_to root_url
     end
   end
 
