@@ -16,4 +16,7 @@ class ServiceArrangement < ActiveRecord::Base
   validates :start_date, presence: true
   validates :offer,      presence: true
 
+  #Nested Atrributes
+  accepts_nested_attributes_for :review
+
 end
