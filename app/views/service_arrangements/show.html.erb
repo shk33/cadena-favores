@@ -73,8 +73,12 @@
         <section class="panel">
           <header class="panel-heading">
             <h3>Reseña
-              <% @service_arrangement.review.rating.times do %>
-                <i class="fa fa-star" ></i>
+              <% rating = @service_arrangement.review.rating %>
+              <% rating.times do %>
+                <i class="fa fa-star filled-star" ></i>
+              <% end %>
+              <% (5-rating).times do %>
+                <i class="fa fa-star-o filled-star" ></i>
               <% end %>
             </h3>
           </header>
