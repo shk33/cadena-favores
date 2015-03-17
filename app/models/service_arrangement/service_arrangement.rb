@@ -19,4 +19,17 @@ class ServiceArrangement < ActiveRecord::Base
   #Nested Atrributes
   accepts_nested_attributes_for :review
 
+
+  def can_review? user
+    is_client?(user) && !has_review? 
+  end
+
+  private
+    def has_review?
+      !review.nil? && !review.new_record?
+    end
+
+    def is_client? user
+      user == client
+    end
 end

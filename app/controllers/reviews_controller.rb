@@ -12,8 +12,7 @@ class ReviewsController < ApplicationController
       @review = Review.new review_params
       @review.service_arrangement = @arrangement
       @review.user = current_user
-      @arrangement.review = @review
-      if @arrangement.save
+      if @review.save
         flash[:success] = "Servico Calificado Exitósamente"
         redirect_to @arrangement
       else
