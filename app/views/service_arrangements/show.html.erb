@@ -65,3 +65,27 @@
   </div>
 
 </div>
+
+<% if @service_arrangement.review %>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <div class="col-sm-offset-1 col-sm-10">
+        <section class="panel">
+          <header class="panel-heading">
+            <h3>Reseña
+              <% @service_arrangement.review.rating.times do %>
+                <i class="fa fa-star" ></i>
+              <% end %>
+            </h3>
+          </header>
+          <div class="panel-body">
+            <p>
+            <strong>Descripción:</strong>
+              <%= @service_arrangement.review.description %>
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+<% end %>
