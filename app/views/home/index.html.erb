@@ -5,11 +5,35 @@
   <li class="active">Dashboard</li>
 </ol>
 <!-- end:breadcrumb -->
-
 <div class="row">
   <div class="col-lg-12">
-    <div class="blank-page">
-      <p>Goes Page Here.</p>
-    </div>
+    <h2 class="page-header">Servicios que te pueden interesar!!!</h2>
   </div>
 </div>
+
+<% @suggestedServiceRequests.each do |suggestedService| %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">            
+            <strong>
+              <%= link_to suggestedService.service.title, suggestedService %>
+            </strong>
+          </h4>
+          <hr>
+          <h6 class="title-store">               
+              <%= suggestedService.service.description %>           
+          </h6>
+          <hr>
+          <p>
+            Etiquetas: <% suggestedService.tags.each do |tag| %>
+              <span class="label label-danger"><%= tag.name %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>

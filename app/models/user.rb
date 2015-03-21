@@ -113,6 +113,16 @@ class User < ActiveRecord::Base
     self.balance.enough_points_for_request? points
   end
 
+  def self.get_suggested_services(user_id)   
+    user = User.find(user_id)   
+    suggestedServiceRequests = Array.new()    
+    user.profile.tags.each do |tag|       
+      suggestedServiceRequests|=ServiceRequest.ordered_by_friend_priority_with_tag(user.id,tag.id)
+    end
+    suggestedServiceRequests|=ServiceRequest.all
+   return suggestedServiceRequests.take(3)
+  end
+
   private
     def downcase_email
       self.email = email.downcase

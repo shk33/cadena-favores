@@ -28,6 +28,20 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
+  def self.ordered_by_friend_priority_with_tag(user_id, tag_id)
+    joins(
+      user: [:passive_relationships]
+    ).where(
+      'follower_id = ?',
+      user_id
+    ).joins(:tags).where(
+      tags: {
+        id: tag_id
+      }
+    )    
+  end 
+
+
   def accepted_offer
     offers.where(accepted: true).first
   end
