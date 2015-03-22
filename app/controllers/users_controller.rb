@@ -7,8 +7,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.search_by_name(params[:search]).
+    if params[:search_type] == '2'
+      @users = User.search_by_tag(params[:tag]).
                                               page(params[:page]).per(5)
+    else
+      @users = User.search_by_name(params[:search]).
+                                              page(params[:page]).per(5)
+    end
   end
 
   def my_profile

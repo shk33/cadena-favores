@@ -13,6 +13,10 @@
       <h3>Mostrando resultados de: "<%= params[:search] %>"</h3>
     <% end %>
 
+    <% if params[:tag] && !params[:tag].empty? %>
+      <h3>Mostrando resultados de categoria: "<%= @tags.find(params[:tag]).name %>"</h3>
+    <% end %>
+
     <%= render "list" %>
     
   </div>
