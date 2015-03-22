@@ -122,12 +122,13 @@ class User < ActiveRecord::Base
   end
 
   def self.search_by_tag tag_id
-    profiles = Profile.search_by_tag tag_id
-    users = []
-    profiles.each do |profile|
-      users << profile.user
+    if tag_id
+      User.joins(:profile).
+           joins('INNER JOIN profiles_tags ON profiles_tags.profile_id = profiles.id').
+           where('tag_id = ?', tag_id.to_i)
+    else
+      User.all
     end
-    users
   end
   
   private

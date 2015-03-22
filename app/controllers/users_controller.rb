@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if params[:search_type] == '2'
-      @users = User.search_by_tag(params[:tag])#.
-                                              #page(params[:page]).per(5)
+      @users = User.search_by_tag(params[:tag]).
+                                              page(params[:page]).per(5)
     else
       @users = User.search_by_name(params[:search]).
                                               page(params[:page]).per(5)
