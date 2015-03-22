@@ -24,6 +24,12 @@ class ServiceArrangement < ActiveRecord::Base
     is_client?(user) && !has_review? 
   end
 
+  def self.user_calendar user
+    user_services = user.hired_services
+    user_services.merge(user.owed_services)
+    user_services
+  end
+  
   private
     def has_review?
       !review.nil? && !review.new_record?
