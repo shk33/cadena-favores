@@ -14,6 +14,11 @@ class ServiceArrangementsController < ApplicationController
     @arrangements = current_user.hired_services_completed.page(params[:page]).per(5)
   end
 
+  def completed_services
+    @user = User.find(params[:id])    
+    @arrangements = @user.services_completed.page(params[:page]).per(5)
+  end
+
   def show
     @service_arrangement = ServiceArrangement.find(params[:id])
     @service_request = @service_arrangement.offer.service_request
