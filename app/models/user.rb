@@ -121,6 +121,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.search_by_tag tag_id
+    profiles = Profile.search_by_tag tag_id
+    users = []
+    profiles.each do |profile|
+      users << profile.user
+    end
+    users
+  end
+  
   private
     def downcase_email
       self.email = email.downcase
