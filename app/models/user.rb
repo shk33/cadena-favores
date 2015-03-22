@@ -113,6 +113,14 @@ class User < ActiveRecord::Base
     self.balance.enough_points_for_request? points
   end
 
+  def self.search_by_name search
+    if search
+      User.where("LOWER(name) like ? ", "%#{search}%".downcase)
+    else
+      User.all
+    end
+  end
+
   private
     def downcase_email
       self.email = email.downcase

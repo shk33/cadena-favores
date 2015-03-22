@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.search_by_name(params[:search]).
+                                              page(params[:page]).per(5)
   end
 
   def my_profile

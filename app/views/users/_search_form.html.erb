@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="panel-body">
+    <h3>Busqueda Avanzada</h3>
+
+    <%= form_tag users_path, :method => 'get' do %>
+    <div class="form-group">
+      <%= label_tag :search, "Busqueda por nombre" %>
+      <%= text_field_tag :search, params[:search], class: "form-control input-sm search" %>
+      <%= hidden_field_tag :search_type, "1" %>
+      <br>
+      <%= submit_tag "Buscar", class: 'btn btn-info' %>
+    </div>
+    <% end %>
+    
+  </div>
+</div>
