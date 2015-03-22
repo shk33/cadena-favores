@@ -123,6 +123,43 @@ class User < ActiveRecord::Base
    return suggestedServiceRequests.take(3)
   end
 
+  def self.get_suggested_users(user_id)   
+    usersNotFollowed = User.get_users_not_followed_by_user(user_id) 
+    servicesNeeded = User.get_services_needed_by_user(user_id)  
+    suggestedUsers = Array.new()
+    usersNotFollowed.each do |user|
+      servicesNeeded.each do |serviceNeeded|
+        if user.profile.tags.include?(serviceNeeded)
+          suggestedUsers.insert(-1,user)
+          break
+        end
+      end
+    end    
+    suggestedUsers|=usersNotFollowed    
+   return suggestedUsers.take(3)
+  end
+
+  def self.get_users_not_followed_by_user(user_id)
+    user = User.find(user_id)
+    usersNotFollowed = Array.new
+    usersNotFollowed = User.all - user.following 
+    usersNotFollowed.delete(User.find(user_id))
+    return usersNotFollowed 
+  end
+
+  def self.get_services_needed_by_user(user_id)
+    user = User.find(user_id)
+    servicesNeeded = Array.new()
+    user.service_requests.each do |serviceRequest|
+      serviceRequest.tags.each do |tag|
+        unless servicesNeeded.include?(tag)
+          servicesNeeded.insert(-1,tag)
+        end        
+      end
+    end
+    return servicesNeeded
+  end
+
   private
     def downcase_email
       self.email = email.downcase

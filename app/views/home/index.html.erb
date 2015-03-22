@@ -37,3 +37,31 @@
     </div>
   </div>
 <%end%>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">Usuarios que te pueden ayudar!!!</h2>
+  </div>
+</div>
+<% @suggestedUsers.each do |suggestedUser| %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">            
+            <strong>
+              <%= link_to suggestedUser.name, suggestedUser %>
+            </strong>
+          </h4>
+          <hr>          
+          <p>
+            Etiquetas: <% suggestedUser.profile.tags.each do |tag| %>
+              <span class="label label-danger"><%= tag.name %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
