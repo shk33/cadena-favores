@@ -14,9 +14,11 @@
           </h4>
           <hr>
           <p>
+          <% if user.profile.tags %>
             Etiquetas: <% user.profile.tags.each do |tag| %>
               <span class="label label-danger"><%= tag.name %></span>
             <% end %>
+          <% end %>
           </p>
           <hr>
         </div>

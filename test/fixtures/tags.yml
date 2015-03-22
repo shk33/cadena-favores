@@ -5,12 +5,14 @@ programacion:
   name: Programación
   description: Computers
   service_requests: one, two, main_closed
+  profiles: one, two
 
 diseno:
   id: 2
   name: Diseño
   description: Diseñando ando
   service_requests: one, two, main_closed
+  profiles: one, two
 
 domesticas:
   id: 3
@@ -33,3 +35,4 @@ decorativa:
   id: 6
   name: Decorativa
   description: Decorando ando
+  profiles: three

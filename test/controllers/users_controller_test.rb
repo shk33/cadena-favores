@@ -7,20 +7,11 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should get index" do
     log_in_as @user
-    #tags = tags(:programacion, :diseno, :domesticas, :educativa, :transporte, :decorativa)
-    #tags = Tag.all
-    #tags = Profile.Tag.all
-    #tags = Profile.tags.all
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
     #Asserting advanced search form
     assert_select 'label', 'Busqueda por nombre'
-    #assert_select 'label', 'Busqueda por etiqueta'
-    #tags.each do |tag|
-    #    assert_select 'label', tag.name
-    #    assert_select "input", :name  => "tag", :value => tag.id
-    #end
     assert_select "input", :name  => "commit", :type => "submit",:value => 'Buscar'
   end
 
