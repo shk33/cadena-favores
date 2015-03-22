@@ -6,9 +6,21 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    # get :index
-    # assert_response :success
-    # assert_not_nil assigns(:users)
+    log_in_as @user
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:users)
+    #Asserting advanced search form
+    assert_select 'label', 'Busqueda por nombre'
+    assert_select "input", :name  => "commit", :type => "submit",:value => 'Buscar'
+  end
+
+  test "should get index and search by name" do
+    log_in_as @user
+    user = users(:one)
+    get :index , search: "User One", search_type: 1
+    assert_response :success
+    assert_select 'a', user.name
   end
 
   test "should show user" do
