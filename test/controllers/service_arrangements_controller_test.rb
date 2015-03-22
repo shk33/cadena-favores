@@ -76,4 +76,17 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
 
   end
 
+  test "should show calendar" do
+    get :calendar
+    assert_response :success
+    assert_select 'h3', 'Calendario'
+    assert_select 'p', 'Servicios'
+    arrangements = assigns :arrangements
+    arrangements.each do |arrangement|
+      assert_select 'span', arrangement.end_date.to_s
+      assert_select 'a', arrangement.service.title
+      assert_select 'a', arrangement.server.name
+    end
+  end
+
 end
