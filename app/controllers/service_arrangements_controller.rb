@@ -51,6 +51,9 @@ class ServiceArrangementsController < ApplicationController
     redirect_to root_url
   end
 
+  def calendar
+    @arrangements = ServiceArrangement.user_calendar current_user
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

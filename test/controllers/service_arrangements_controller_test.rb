@@ -58,22 +58,31 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_select 'h2', 'Servicios a realizar'
-    arrangements = assigns :arrangements
+    arrangements = @user.owed_services
     arrangements.each do |arrangement|
         assert_select 'strong', arrangement.service.title
         assert_select 'p', arrangement.service.description
         assert_select 'strong', 'Usuario Contratado:'
-        assert_select 'strong', 'Fecha de Inicio::'
-        assert_select 'p', arrangement.start_date
+        assert_select 'strong', 'Fecha de Inicio:'
+        #assert_select 'p', arrangement.start_date.to_s
         assert_select 'strong', 'Fecha de Entrega:'
-        assert_select 'p', arrangement.end_date
-        assert_select 'strong', 'Costo: '
-        assert_select 'div', "#{arrangement.service.cost} puntos"
-        assert_select 'label', tag.name
+        #assert_select 'p', arrangement.end_date.to_s
         assert_select "input", :type => "submit", :value => "Aceptar como Concluido"
         assert_select "input", :value => "Cancelar"
     end
 
+  end
+
+  test "should show calendar" do
+    get :calendar
+    assert_response :success
+    assert_select 'h3', 'Calendario'
+    arrangements = ServiceArrangement.user_calendar @user
+    arrangements.each do |arrangement|
+      assert_select 'span', arrangement.end_date.to_s
+      assert_select 'a', arrangement.service.title
+      assert_select 'a', arrangement.server.name
+    end
   end
 
 end

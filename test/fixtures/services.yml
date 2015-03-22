@@ -47,3 +47,9 @@ eight:
   description: Do not belong to main user
   cost: 50
   serviceable: three (ServiceArrangement)
+
+eight:
+  title: Not yours main user
+  description: Do not belong to main user
+  cost: 50
+  serviceable: four (ServiceArrangement)

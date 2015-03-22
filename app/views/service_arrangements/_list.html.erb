@@ -31,11 +31,11 @@
             </div>
             <% if current_user == arrangement.client %>
               <div class="btn btn-info pull-right">
-              <%= form_for arrangement do |f| %>
-                <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
-              <% end %>
+                <%= form_for arrangement do |f| %>
+                  <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
+                <% end %>
+              </div>
             <% end %>
-            </div>
           </p>
           <% if current_user == arrangement.client %>
             <hr>

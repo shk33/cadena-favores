@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">Calendario de Servicios</h2>
+  </div>
+</div>
+
+<section class="panel">
+  <div class="panel-body">
+    <div class="text-center mbot30">
+      <h3 class="timeline-title">Calendario</h3>
+    </div>
+    <% @arrangements.each do |arrangement| %>
+    <div class="timeline">
+      <article class="timeline-item">
+        <div class="timeline-desk">
+          <div class="panel">
+            <div class="panel-body">
+            <% if current_user == arrangement.client %>
+              <span class="arrow"></span>
+              <span class="timeline-icon red"></span>
+              <span class="timeline-date"><%= arrangement.end_date %></span>
+              <h1 class="red"><%= link_to arrangement.service.title , arrangement %></h1>
+              <p><%= link_to arrangement.server.name, arrangement.server %></p>  
+            <% end %>
+            <% if current_user == arrangement.server %>
+              <span class="arrow-alt"></span>
+              <span class="timeline-icon blue"></span>
+              <span class="timeline-date"><%= arrangement.end_date %></span>
+              <h1 class="blue"><%= link_to arrangement.service.title , arrangement %></h1>
+              <p><%= link_to arrangement.client.name, arrangement.client %></p>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <% end %>
+    <div class="clearfix">&nbsp;</div>
+  </div>
+</section>
