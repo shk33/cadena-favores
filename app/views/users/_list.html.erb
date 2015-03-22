@@ -1,4 +1,4 @@
-<%= paginate @users %>
+<%#= paginate @users %>
 <% @users.each do |user| %>
   <div class="panel">
     <div class="panel-body">
@@ -14,7 +14,7 @@
           </h4>
           <hr>
           <p>
-            Etiquetas: <% user.tags.each do |tag| %>
+            Etiquetas: <% user.profile.tags.each do |tag| %>
               <span class="label label-danger"><%= tag.name %></span>
             <% end %>
           </p>
@@ -24,4 +24,4 @@
     </div>
   </div>
 <%end%>
-<%= paginate @users %>
+<%#= paginate @users %>

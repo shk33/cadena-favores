@@ -4,12 +4,13 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new, :create]
   before_action :have_account, only: [:new, :create]
   before_action :get_notifications, only: [:show, :edit, :settings]
+  before_action :set_tags, only: [:index, :new, :edit]
   # GET /users
   # GET /users.json
   def index
     if params[:search_type] == '2'
-      @users = User.search_by_tag(params[:tag]).
-                                              page(params[:page]).per(5)
+      @users = User.search_by_tag(params[:tag])#.
+                                              #page(params[:page]).per(5)
     else
       @users = User.search_by_name(params[:search]).
                                               page(params[:page]).per(5)
@@ -98,5 +99,9 @@ class UsersController < ApplicationController
                                    :password, 
                                    :password_confirmation, 
                                    { profile_attributes: [ :id, :description  ] })
+    end
+
+    def set_tags
+      @tags = Tag.all
     end
 end
