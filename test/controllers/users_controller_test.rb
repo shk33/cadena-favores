@@ -36,7 +36,6 @@ class UsersControllerTest < ActionController::TestCase
     log_in_as @user
     other_user = users(:one)
     tag = tags(:programacion)
-    
     get :index , tag: tag.id, search_type: 2
     assert_response :success
     assert_select 'a', other_user.name
