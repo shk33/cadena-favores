@@ -95,6 +95,14 @@ class OffersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should not post to accept with invalid info" do
+    offer = offers :two
+    request = service_requests :one
+    post :accept ,service_request_id: request, id: offer,
+         service_arrangement: {start_date: nil, end_date: nil}
+    assert_template :new_accept
+  end
+
   test "should post to accept" do
     offer = offers :two
     request = service_requests :one
