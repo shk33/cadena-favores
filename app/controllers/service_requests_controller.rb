@@ -49,16 +49,15 @@ def update
     redirect_to root_url
   else
     updater = ServiceRequestUpdater.new(request, service_request_params)
-    respond_to do |format|
-      if updater.valid_update?
-        @service_request = updater.update
-        format.html { redirect_to @service_request, notice: 'Tu solicitud de servicio ha sido actualizada'}
-      else
-        @service_request = updater.service_request
-        set_tags
-        set_usable_points
-        format.html { render :edit }
-      end
+    if updater.valid_update?
+      @service_request = updater.update
+      flash[:success] = 'Tu solicitud de servicio ha sido actualizada'
+      redirect_to @service_request
+    else
+      @service_request = updater.service_request
+      set_tags
+      set_usable_points
+      render :edit
     end
   end
 
@@ -78,7 +77,8 @@ def destroy
 
   if destroyer.deleteable_request?
     destroyer.destroy
-    redirect_to my_service_requests_url, notice: 'Se ha borrado exitosamente'
+    flash[:success] = 'Se ha borrado exitosamente'
+    redirect_to my_service_requests_url
   else
     redirect_to root_url
   end
