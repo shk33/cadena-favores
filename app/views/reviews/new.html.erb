@@ -6,17 +6,4 @@
   </div>
 </div>
 
-<%=form_for [@arrangement,@review] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  
-  <div class="form-group">
-    <%=f.label(:rating, "Calificación (1-5) 5 es el más alto") %>
-    <%=f.number_field :rating, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%=f.label(:description, "Comentarios") %>
-    <%=f.text_area :description, class: "form-control"%>
-  </div>
-
-  <%= f.submit "Calificar", class: 'btn btn-info' %>
-<% end %>
+<%= render 'form' %>
