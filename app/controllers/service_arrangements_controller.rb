@@ -50,9 +50,6 @@ class ServiceArrangementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_arrangement_params
-      params.require(:service_arrangement).permit(:server_id, 
-                                                  :start_date, 
-                                                  :end_date)
     end
 
     def send_new_transaction_notification points_transaction 
