@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<% @suggestedServiceRequests.each do |suggestedService| %>
+<% @requests.each do |request| %>
   <div class="panel">
     <div class="panel-body">
       <div class="row">
@@ -19,16 +19,16 @@
         <div class="col-sm-12">
           <h4 class="title-store">            
             <strong>
-              <%= link_to suggestedService.service.title, suggestedService %>
+              <%= link_to request.service.title, request %>
             </strong>
           </h4>
           <hr>
           <h6 class="title-store">               
-              <%= suggestedService.service.description %>           
+              <%= request.service.description %>           
           </h6>
           <hr>
           <p>
-            Etiquetas: <% suggestedService.tags.each do |tag| %>
+            Etiquetas: <% request.tags.each do |tag| %>
               <span class="label label-danger"><%= tag.name %></span>
             <% end %>
           </p>

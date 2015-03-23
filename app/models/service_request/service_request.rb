@@ -28,6 +28,14 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
+  def self.get_suggested_services(user)   
+    suggested_service_requests = []
+    user.profile.tags.each do |tag|       
+      suggested_service_requests|=ServiceRequest.ordered_by_friend_priority_with_tag(user.id,tag.id)
+    end
+    suggested_service_requests.take(3)
+  end
+
   def self.ordered_by_friend_priority_with_tag(user_id, tag_id)
     joins(
       user: [:passive_relationships]
@@ -39,8 +47,7 @@ class ServiceRequest < ActiveRecord::Base
         id: tag_id
       }
     )    
-  end 
-
+  end
 
   def accepted_offer
     offers.where(accepted: true).first
