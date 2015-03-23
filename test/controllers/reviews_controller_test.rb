@@ -34,4 +34,48 @@ class ReviewsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should redirect to edit when get new and arrangement have a review" do
+    arrangement = service_arrangements :four
+    get :new, service_arrangement_id: arrangement.id
+    assert_redirected_to edit_service_arrangement_review_path(arrangement, arrangement.review) 
+  end
+
+  test "should get edit" do
+    arrangement = service_arrangements :four
+    get :edit, service_arrangement_id: arrangement.id, id: arrangement.review.id
+    assert_template :edit
+  end
+
+  test "should get edit when current user is not client" do
+    log_in_as users(:one)
+    arrangement = service_arrangements :four
+    get :edit, service_arrangement_id: arrangement.id, id: arrangement.review.id
+    assert_redirected_to root_url
+  end
+
+  test "should not update when current user is not client" do
+    log_in_as users(:one)
+    arrangement = service_arrangements :four
+    post :update, service_arrangement_id: arrangement.id, 
+                  id: arrangement.review.id, 
+                  review: { rating: 4, description: "valid" } 
+    assert_redirected_to root_url
+  end
+
+  test "should not update with invalid info" do
+    arrangement = service_arrangements :four
+    post :update, service_arrangement_id: arrangement.id,
+                  id: arrangement.review.id, 
+                  review: { rating: 10, description: "valid" } 
+    assert_template :edit
+  end
+
+  test "should post update" do
+    arrangement = service_arrangements :four
+    post :update, service_arrangement_id: arrangement.id,
+                  id: arrangement.review.id, 
+                  review: { rating: 3, description: "Valid Valid" } 
+    assert_redirected_to arrangement
+  end
+
 end

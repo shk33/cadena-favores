@@ -28,11 +28,15 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = @arrangement.review
+    if current_user == @arrangement.client
+      @review = @arrangement.review
+    else 
+      redirect_to root_url
+    end
   end
 
   def update
-    if current_user ==  @arrangement.client
+    if current_user == @arrangement.client
       @review = @arrangement.review
       if @review.update_attributes review_params
         flash[:success] = "Calificación actualizada correctamente"

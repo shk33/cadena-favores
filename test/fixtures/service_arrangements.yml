@@ -25,6 +25,6 @@ three:
 four:
   start_date: 2015-02-04
   end_date: 2015-02-04
-  client: one
-  server: main_user
-  completed: false
+  client: main_user
+  server: one
+  completed: true
