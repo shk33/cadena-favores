@@ -64,9 +64,7 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
         assert_select 'p', arrangement.service.description
         assert_select 'strong', 'Usuario Contratado:'
         assert_select 'strong', 'Fecha de Inicio:'
-        #assert_select 'p', arrangement.start_date.to_s
         assert_select 'strong', 'Fecha de Entrega:'
-        #assert_select 'p', arrangement.end_date.to_s
         assert_select "input", :type => "submit", :value => "Aceptar como Concluido"
         assert_select "input", :value => "Cancelar"
     end

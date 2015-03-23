@@ -28,3 +28,10 @@ four:
   client: main_user
   server: one
   completed: true
+
+five:
+  start_date: 2015-02-04
+  end_date: 2015-02-04
+  client: one
+  server: main_user
+  completed: false

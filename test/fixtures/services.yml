@@ -54,3 +54,9 @@ nine:
   cost: 50
   serviceable: four (ServiceArrangement)
 
+ten:
+  title: Make a website
+  description: A freaking CMS
+  cost: 50
+  serviceable: five (ServiceArrangement)
+
