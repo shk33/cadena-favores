@@ -15,3 +15,8 @@ three:
 four:
   user: main_user
   service_request: main_closed
+
+five:
+  user: one
+  service_request: one
+  accepted: true

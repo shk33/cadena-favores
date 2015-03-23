@@ -17,4 +17,18 @@ class RequiredServiceTest < ActiveSupport::TestCase
     assert_not @service_request.valid?
   end
  
+   test "should get all request when tag is not provided in search" do
+    assert_equal ServiceRequest.search_by_tag(nil), ServiceRequest.all
+   end
+
+   test "has accepted offer method" do
+     request = service_requests :closed
+     assert_not request.has_accepted_offer?
+   end
+
+   test "accepted_offer should return only one offer" do
+     request = service_requests :one
+     offer = offers :five
+     assert_equal offer, request.accepted_offer
+   end
 end
