@@ -78,6 +78,14 @@ class OffersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should not post to accept if offer params are invalid" do
+    offer = offers :one
+    request = service_requests :one
+    assert_no_difference 'ServiceArrangement.count' do
+      post :accept ,service_request_id: request, id: offer
+    end
+  end
+
   test "should not post to accept if request is closed" do
     offer = offers :four
     request = service_requests :main_closed
@@ -90,10 +98,8 @@ class OffersControllerTest < ActionController::TestCase
   test "should post to accept" do
     offer = offers :two
     request = service_requests :one
-    assert_difference 'ServiceArrangement.count', 1 do
-      post :accept ,service_request_id: request, id: offer,
-           service_arrangement: {start_date: Date.today, end_date: 7.days.from_now}
-    end
+    post :accept ,service_request_id: request, id: offer,
+         service_arrangement: {start_date: Date.today, end_date: 7.days.from_now}
     offer = assigns :offer
     assert offer.accepted?
     assert_redirected_to request

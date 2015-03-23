@@ -34,6 +34,14 @@ class ReviewsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should not post create when review has invalid info" do
+    arrangement = service_arrangements :two
+    assert_no_difference 'Review.count' do
+      post :create, service_arrangement_id: arrangement.id, 
+                  review: { rating: 10, description: "valid" }
+    end
+  end
+
   test "should redirect to edit when get new and arrangement have a review" do
     arrangement = service_arrangements :four
     get :new, service_arrangement_id: arrangement.id
