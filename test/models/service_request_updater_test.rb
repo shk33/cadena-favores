@@ -44,9 +44,17 @@ class ServiceRequestUpdaterTest < ActiveSupport::TestCase
     assert_equal 99,  user.balance.frozen_points
   end
 
-  test "should not update if user can pay points surpluse" do
+  test "should not update if user cannot pay points surpluse" do
     params = { :service_attributes =>{ :title => "Valid", :id => @service_request.service.id,
              :description => "Valid", :cost => "9999"}, :tag_ids => []}
+    updater = ServiceRequestUpdater.new @service_request, params
+
+    assert_not updater.valid_update?
+  end
+
+  test "should not update if cost is negative" do
+    params = { :service_attributes =>{ :title => "Valid", :id => @service_request.service.id,
+             :description => "Valid", :cost => "-9999"}, :tag_ids => []}
     updater = ServiceRequestUpdater.new @service_request, params
 
     assert_not updater.valid_update?

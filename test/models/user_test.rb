@@ -85,4 +85,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not main_user.following?(one)
   end
 
+  test "search by tag should return all users when tag is not provided" do
+    assert_equal User.search_by_tag(nil), User.all
+  end
+
 end

@@ -2,39 +2,27 @@ require 'test_helper'
 
 class OfferTest < ActiveSupport::TestCase
   def setup
-    arrangement = service_arrangements :two
     user = users :main_user
-    @review = Review.new
-    @review.rating = 5
-    @review.description = "A valid description"
-    @review.user = user
-    @review.service_arrangement = arrangement
-
+    @offer = Offer.new
+    @offer.user = users :main_user
+    @offer.service_request = service_requests :two
   end
 
   test "should be valid" do
-    assert @review.valid?
+    assert @offer.valid?
   end
 
-  test "should have rating" do
-    @review.rating = nil
-    assert_not @review.valid?
+  test "should have user" do
+    @offer.user = nil
+    assert_not @offer.valid?
   end
 
-  test "should have a valid rating" do
-    @review.rating = 10
-    assert_not @review.valid?
-    @review.rating = -1
-    assert_not @review.valid?
+  test "should have a service_request" do
+    @offer.service_request = nil
+    assert_not @offer.valid?
   end
 
-  test "should have a description" do
-    @review.description = nil
-    assert_not @review.valid?
-  end
-
-  test "should have a user" do
-    @review.user = nil
-    assert_not @review.valid?
+  test "should not accept a invalid offer" do
+    assert_not @offer.accept nil
   end
 end

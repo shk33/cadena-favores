@@ -23,17 +23,15 @@ class ServiceRequestUpdater
   def valid_update?
     @service_request.assign_attributes @params
     if @service_request.valid?
-      if new_cost_not_negative?
-        if @cost_difference >= 0
-          if user_has_enough_points?
-            @valid = true;
-          end
-        else
+      if @cost_difference >= 0
+        if user_has_enough_points?
           @valid = true;
         end
       else
-        @service_request.errors.add(:cant_be_negative, "cost")
+        @valid = true;
       end
+    else
+      @service_request.errors.add(:cant_be_negative, "cost")
     end  
     @valid
   end
@@ -45,10 +43,6 @@ class ServiceRequestUpdater
 
     def unfreeze_points_difference
       @service_request.user.balance.freeze_points(@cost_difference)
-    end
-
-    def new_cost_not_negative?
-      @new_cost >= 0
     end
 
     def user_has_enough_points?
