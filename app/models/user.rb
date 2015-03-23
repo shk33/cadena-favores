@@ -131,6 +131,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  def get_suggested_users
+    not_following.take(3)
+  end
+
+  def not_following
+    User.all - following
+  end
+
   private
     def downcase_email
       self.email = email.downcase

@@ -7,11 +7,11 @@
 <!-- end:breadcrumb -->
 <div class="row">
   <div class="col-lg-12">
-    <h2 class="page-header">Servicios que te pueden interesar!!!</h2>
+    <h2 class="page-header">Solicitudes de servicio sugeridas</h2>
   </div>
 </div>
 
-<% @requests.each do |request| %>
+<% @suggested_requests.each do |request| %>
   <div class="panel">
     <div class="panel-body">
       <div class="row">
@@ -29,6 +29,34 @@
           <hr>
           <p>
             Etiquetas: <% request.tags.each do |tag| %>
+              <span class="label label-danger"><%= tag.name %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">Usuarios Sugeridos</h2>
+  </div>
+</div>
+<% @suggested_users.each do |user| %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="row">
+
+        <div class="col-sm-12">
+          <h4 class="title-store">            
+            <strong>
+              <%= link_to user.name, user %>
+            </strong>
+          </h4>
+          <hr>          
+          <p>
+            Etiquetas: <% user.profile.tags.each do |tag| %>
               <span class="label label-danger"><%= tag.name %></span>
             <% end %>
           </p>
