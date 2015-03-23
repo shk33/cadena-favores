@@ -30,11 +30,11 @@ class ServiceArrangement < ActiveRecord::Base
     user_services
   end
   
+  def has_review?
+    !review.nil? && !review.new_record?
+  end
+  
   private
-    def has_review?
-      !review.nil? && !review.new_record?
-    end
-
     def is_client? user
       user == client
     end

@@ -1,10 +1,14 @@
 class ReviewsController < ApplicationController
   before_action :logged_in_user, :get_notifications
-  before_action :set_service_arrangment, only: [:new, :create]
+  before_action :set_service_arrangment, only: [:new, :create, :edit, :update]
 
   def new
-    @review = @arrangement.build_review
-    redirect_to root_url unless @arrangement.client == current_user
+    if @arrangement.has_review?
+      redirect_to edit_service_arrangement_review_path(@arrangement, @arrangement.review) 
+    else
+      @review = @arrangement.build_review
+      redirect_to root_url unless @arrangement.client == current_user
+    end
   end
 
   def create
@@ -17,6 +21,24 @@ class ReviewsController < ApplicationController
         redirect_to @arrangement
       else
         render :new    
+      end
+    else
+      redirect_to root_url
+    end
+  end
+
+  def edit
+    @review = @arrangement.review
+  end
+
+  def update
+    if current_user ==  @arrangement.client
+      @review = @arrangement.review
+      if @review.update_attributes review_params
+        flash[:success] = "Calificación actualizada correctamente"
+        redirect_to @arrangement
+      else
+        render :edit
       end
     else
       redirect_to root_url
