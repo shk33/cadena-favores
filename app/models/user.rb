@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     ServiceArrangement.where("server_id = ? AND completed = ?", self.id, true)
   end
 
+  def last_services_completed
+    ServiceArrangement.where("server_id = ? AND completed = ?", self.id, true).take(3)
+  end
+
   #Returns the not completed services that user hired
   def hired_services
     ServiceArrangement.where("client_id = ? AND completed = ?", self.id, false)
@@ -58,6 +62,7 @@ class User < ActiveRecord::Base
   def owed_services
     ServiceArrangement.where("server_id = ? AND completed = ?", self.id, false)
   end
+
 
   # Returns the hash digest of the given string.
   def User.digest string

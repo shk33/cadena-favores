@@ -113,12 +113,57 @@
             <% end %>
           </p>
           <p>
-            
-            <%= link_to 'Seguidores', following_path(@user.id), class: "btn btn-warning btn-circle fa fa-star"%>
-             
-            <button class="btn btn-warning btn-circle" type="button">
-             <i class="fa fa-star"> Siguiendo</i>
-            </button>
+            <%= link_to following_path(@user) do %>
+              <button class="btn btn-warning btn-circle" type="button">
+               <i class="fa fa-star">Usuarios Favoritos</i>
+              </button>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12">
+    <section class="panel">
+      <div class="panel-body">
+        <div class="task-thumb-details">
+          <h1><a href="#">Ultimos Servicios Realizados</a></h1>
+          <p>
+            <% @user.last_services_completed.each do |serviceCompleted| %>
+              <h4 class="title-store">
+                <strong>
+                  <%= link_to serviceCompleted.service.title, serviceCompleted %>
+                </strong>
+              </h4>
+              <hr>
+              <p><%= serviceCompleted.service.description %></p>
+              <p>
+                <strong>Usuario Cliente:</strong>
+                <%= link_to serviceCompleted.client.name, serviceCompleted.client %>
+              </p>
+              <p>                
+                <div class="btn btn-primary">
+                  <strong>Puntos Transferidos: </strong><%= serviceCompleted.service.cost %> puntos
+                </div> 
+                <% if serviceCompleted.review %>                              
+                  <div class="pull-right">
+                    Calificación:
+                    <% rating = serviceCompleted.review.rating %>
+                    <% rating.times do %>
+                      <i class="fa fa-star filled-star" ></i>
+                    <% end %>
+                    <% (5-rating).times do %>
+                      <i class="fa fa-star-o filled-star" ></i>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="btn btn-warning pull-right">
+                    Aun no calificado
+                  </div>
+                <% end %>                
+              </p>
+              <hr>
+            <% end %>            
           </p>
         </div>
       </div>
