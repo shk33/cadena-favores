@@ -15,6 +15,11 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should get completed services" do
+    get :completed_services, id: @user
+    assert_response :success
+  end
+
   test "should get hired completed" do
     get :hired_completed
     assert_response :success
