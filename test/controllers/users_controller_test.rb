@@ -21,6 +21,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get chat" do
+    log_in_as @user
+    get :chat, id: @user.id
+    assert_response :success
+  end
+
   test "should get index and search by name" do
     log_in_as @user
     other_user = users(:one)
