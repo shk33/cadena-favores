@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout 'site/site', only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :chat]
   before_action :logged_in_user, except: [:new, :create]
   before_action :have_account, only: [:new, :create]
   before_action :get_notifications, only: [:show, :edit, :settings]
@@ -79,6 +79,15 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @following = @user.following.page(params[:page]).per(5)
+  end
+
+  def chat
+    @chat_channel = "cadena_favores_chat"
+    if @user.id > current_user.id
+      @chat_channel += "#{current_user.id}_#{@user.id}"
+    else
+      @chat_channel += "#{@user.id}_#{current_user.id}"
+    end
   end
 
   #Show settings account

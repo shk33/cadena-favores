@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :profiles, only: [:update]
       member do
-        get :following
+        get :following, :chat
       end
     end    
     match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     match '/my_hired_completed', to: 'service_arrangements#hired_completed', via: "get", as: :my_hired_completed
     match '/my_services_to_do', to: 'service_arrangements#index', via: "get", as: :my_services_to_do
     match '/my_calendar',        to: 'service_arrangements#calendar', via: "get", as: :my_calendar
+    match '/users/:id/completed_services', to: 'service_arrangements#completed_services', via: "get", as: :completed_services
     resources :service_arrangements, only: [:update, :show, :index] do
       resources :reviews
     end
