@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :profiles, only: [:update]
       member do
-        get :following
+        get :following, :chat
       end
     end    
     match '/my_profile', to: 'users#my_profile', via: "get", as: :my_profile
