@@ -63,6 +63,10 @@ Rails.application.routes.draw do
     resources :service_arrangements, only: [:update, :show, :index] do
       resources :reviews
     end
+
+    #Transactions
+    match '/my_transactions', to: 'points_transactions#index', via: "get", as: :my_transactions
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

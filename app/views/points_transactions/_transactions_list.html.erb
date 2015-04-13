@@ -1,0 +1,72 @@
+<h4 class="title-store">
+  <strong>
+    Transacciones Enviadas
+  </strong>
+</h4>
+<% if @sent_transactions.count == 0 %>
+  <strong>
+    No has enviado ninguna transacciones aún.
+  </strong>
+<% else %> 
+  <% @sent_transactions.each do |transaction| %>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">        
+          <div class="col-sm-12">          
+            <h4 class="title-store">
+              <strong>
+                <%= link_to transaction.service_arrangement.service.title , transaction.service_arrangement %>
+              </strong>
+            </h4>
+            <hr>
+            <p>
+              <strong>Puntos Enviados:</strong>
+              <%= transaction.amount %>
+            </p>
+            <p>
+              <strong>Usuario que recibe los puntos:</strong>
+              <%= link_to transaction.receiver.name, transaction.receiver %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+<h4 class="title-store">
+  <strong>
+    Transacciones Recibidas
+  </strong>
+</h4>
+<% if @received_transactions.count == 0 %>
+  <strong>
+    No has enviado recibido transacciones aún.
+  </strong>
+<% else %>
+  <% @received_transactions.each do |transaction| %>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">        
+          <div class="col-sm-12">          
+            <h4 class="title-store">
+              <strong>
+                <%= link_to transaction.service_arrangement.service.title , transaction.service_arrangement %>
+              </strong>
+            </h4>
+            <hr>
+            <p>
+              <strong>Puntos Recibidos:</strong>
+              <%= transaction.amount %>
+            </p>
+            <p>
+              <strong>Usuario que envio los puntos:</strong>
+              <%= link_to transaction.sender.name, transaction.sender %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

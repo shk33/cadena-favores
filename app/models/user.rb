@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
                                    foreign_key: "follower_id",
                                    dependent:   :destroy
 
+  has_many  :sent_transactions,    class_name:  "PointsTransaction",
+                                  foreign_key: "sender_id"
+  has_many  :received_transactions,class_name:  "PointsTransaction",
+                                  foreign_key: "receiver_id"
   has_many  :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
