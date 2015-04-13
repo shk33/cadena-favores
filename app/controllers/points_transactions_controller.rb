@@ -2,6 +2,8 @@ class PointsTransactionsController < ApplicationController
   before_action :set_points_transaction, only: [:show,  :destroy]
 
   def index
+    @sent_transactions     = current_user.sent_transactions
+    @received_transactions = current_user.received_transactions
   end
 
   def show
