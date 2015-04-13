@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     end
 
     #Transactions
-    match '/my_transactions', to: 'points_transactions#index', via: "get", as: :my_points_transactions
+    match '/my_transactions', to: 'points_transactions#index', via: "get", as: :my_transactions
 
   end
 
