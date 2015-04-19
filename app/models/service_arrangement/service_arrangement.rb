@@ -15,10 +15,22 @@ class ServiceArrangement < ActiveRecord::Base
   validates :end_date,   presence: true
   validates :start_date, presence: true
   validates :offer,      presence: true
+  validate :start_date_cannot_be_in_the_past,
+    :end_date_cannot_be_in_past_of_start_date
 
   #Nested Atrributes
   accepts_nested_attributes_for :review
 
+
+  def start_date_cannot_be_in_the_past
+    errors.add(:start_date, "can't be in the past") if 
+      !start_date.blank? && start_date < Date.today
+  end
+
+  def end_date_cannot_be_in_past_of_start_date
+    errors.add(:end_date, "can't be less than start date") if
+      !start_date.blank? && !end_date.blank? && start_date > end_date
+  end
 
   def can_review? user
     is_client?(user) && !has_review? 

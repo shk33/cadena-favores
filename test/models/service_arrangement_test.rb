@@ -24,6 +24,16 @@ class ServiceArrangementTest < ActiveSupport::TestCase
     assert_not @arrangement.valid?
   end
 
+  test "start_date cannot be in the past" do
+    @arrangement.start_date = Date.today - 2 
+    assert_not @arrangement.valid?
+  end
+
+  test "end_date cannot be in the past of start_date" do
+    @arrangement.end_date = Date.today # star_date is Date.today +2
+    assert_not @arrangement.valid?
+  end
+
   test "should have a start_date" do
     @arrangement.start_date = nil
     assert_not @arrangement.valid?

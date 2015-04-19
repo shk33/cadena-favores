@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start_date: 2015-02-04
-  end_date: 2015-02-04
+  start_date: <%= Date.today + 2 %>
+  end_date: <%= Date.today + 3 %>
   client: main_user
   server: one
   completed: false
