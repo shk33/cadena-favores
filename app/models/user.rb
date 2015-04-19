@@ -158,6 +158,6 @@ class User < ActiveRecord::Base
     end
 
     def add_balance
-      self.balance = Balance.create
+      self.balance = Balance.create total_points: 10, usable_points: 10
     end
 end
