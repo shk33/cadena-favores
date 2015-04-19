@@ -98,8 +98,20 @@ class OffersControllerTest < ActionController::TestCase
   test "should not post to accept with invalid info" do
     offer = offers :two
     request = service_requests :one
-    post :accept ,service_request_id: request, id: offer,
-         service_arrangement: {start_date: nil, end_date: nil}
+    assert_no_difference 'ServiceArrangement.count' do
+      post :accept ,service_request_id: request, id: offer,
+           service_arrangement: {start_date: nil, end_date: nil}
+    end
+    assert_template :new_accept
+  end
+
+  test "should not post to accept if dates are invalid" do
+    offer = offers :two
+    request = service_requests :one
+    assert_no_difference 'ServiceArrangement.count' do
+      post :accept ,service_request_id: request, id: offer,
+          service_arrangement: {start_date: Date.today - 1, end_date: Date.today - 2}
+    end
     assert_template :new_accept
   end
 
