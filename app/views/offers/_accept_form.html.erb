@@ -1,6 +1,15 @@
 <%= form_for @arrengement, url: accept_service_request_offer_path(@service_request, @offer) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
+  <p>
+    <strong>Solicitud de servicio:</strong> 
+    <%= link_to @service_request.service.title, @service_request %>
+  </p>
+  <p>
+    <strong>Usario Ofertante:</strong> 
+    <%= link_to @offer.user.name, @offer.user %>
+  </p>
+
   <div class="form-group">
     <%= f.label(:start_date, "Fecha de Inicio: ") %>
     <%= f.date_field(:start_date, default: Date.today) %>
