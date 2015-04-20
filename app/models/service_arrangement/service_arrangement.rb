@@ -37,9 +37,7 @@ class ServiceArrangement < ActiveRecord::Base
   end
 
   def self.user_calendar user
-    user_services = user.hired_services
-    user_services.merge(user.owed_services)
-    user_services
+    user.hired_services + user.owed_services
   end
   
   def has_review?

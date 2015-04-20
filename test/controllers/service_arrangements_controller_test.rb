@@ -79,7 +79,6 @@ class ServiceArrangementsControllerTest < ActionController::TestCase
   test "should show calendar" do
     get :calendar
     assert_response :success
-    assert_select 'h3', 'Calendario'
     arrangements = ServiceArrangement.user_calendar @user
     arrangements.each do |arrangement|
       assert_select 'span', arrangement.end_date.to_s
