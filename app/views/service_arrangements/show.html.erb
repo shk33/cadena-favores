@@ -59,6 +59,16 @@
               </p>
             </div>
           </div>
+          <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+            <% if current_user?(@service_arrangement.client) && !@service_arrangement.completed? %>
+              <%= form_for @service_arrangement do |f| %>
+                <%= f.submit "Aceptar como Concluido", class: "btn btn-info" %>
+              <% end %>
+            <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
