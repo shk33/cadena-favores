@@ -17,7 +17,7 @@ class OffersController < ApplicationController
         send_new_arrengement_notification @offer.service_arrangement
         redirect_to @offer.service_request
       else
-        @arrengement = ServiceArrangement.new
+        @arrengement = @offer.service_arrangement
         render :new_accept
       end
     else
