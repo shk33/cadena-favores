@@ -66,7 +66,7 @@ class ServiceRequestsControllerTest < ActionController::TestCase
         cost: "100"
         }, tag_ids: tags }
     end
-    service_request = ServiceRequest.last
+    service_request = ServiceRequest.first
     assert_equal 300, @user.balance.usable_points
     assert_equal 200, @user.balance.frozen_points
     assert_equal 500, @user.balance.total_points

@@ -12,6 +12,9 @@ class ServiceRequest < ActiveRecord::Base
   validates :service, presence: true
   validates :user,    presence: true
 
+  #Scope
+  default_scope { order("created_at DESC") } 
+
   def self.search_by_title search
     if search
       ServiceRequest.joins(:service).where("LOWER(title) like ? ", "%#{search}%".downcase)
