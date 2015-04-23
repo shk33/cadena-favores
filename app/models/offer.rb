@@ -32,7 +32,7 @@ class Offer < ActiveRecord::Base
   end
 
   def can_cancel_offer? user
-    is_request_owner?(user) || is_offer_owner?(user)
+    !service_arrangement.completed? && (is_request_owner?(user) || is_offer_owner?(user))
   end
 
   private
