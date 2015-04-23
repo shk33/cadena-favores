@@ -11,7 +11,7 @@
     <!-- Impresión -->
     <%= link_to sender.name, sender %>
     la cantidad de <%= transaction.amount %> puntos 
-    por realizar <%= link_to service.title, "#" %>
+    por realizar <%= link_to service.title, transaction.service_arrangement %>
 
   <% end %>
 </div>
