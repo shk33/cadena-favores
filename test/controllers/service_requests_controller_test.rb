@@ -229,9 +229,6 @@ class ServiceRequestsControllerTest < ActionController::TestCase
 
     educativa    = tags(:educativa).id
     transporte   = tags(:transporte).id
-    diseno       = tags(:diseno).id
-    programacion = tags(:programacion).id
-
     tags = [educativa, transporte]
 
 
