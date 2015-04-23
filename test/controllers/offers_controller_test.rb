@@ -74,6 +74,19 @@ class OffersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should not cancel an offer if service request is over" do
+    user = users(:one)
+    log_in_as user
+
+    service_request = service_requests(:over)
+    offer = offers(:six)
+
+    assert_no_difference 'Offer.count' do 
+      delete :cancel, service_request_id: service_request.id, id: offer.id
+    end
+    assert_redirected_to root_url
+  end
+
   test "should get new_accept if is user is owner" do
     offer = offers :one
     request = service_requests :one

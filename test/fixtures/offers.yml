@@ -20,3 +20,8 @@ five:
   user: one
   service_request: one
   accepted: true
+
+six:
+  user: one
+  service_request: over
+  accepted: true

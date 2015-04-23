@@ -35,3 +35,11 @@ five:
   client: one
   server: main_user
   completed: false
+
+six:
+  start_date: 2015-02-04
+  end_date: 2015-02-04
+  client: one
+  server: main_user
+  completed: true
+  offer: six
