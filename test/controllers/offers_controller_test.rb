@@ -21,11 +21,19 @@ class OffersControllerTest < ActionController::TestCase
     assert_no_difference 'Offer.count' do 
       post :create, offer: {}, service_request_id: service_request.id
     end
+  end
+
+  test "should not create a valid offer if user has already an offer" do
+    service_request = service_requests(:two)
+
+    assert_no_difference 'Offer.count' do 
+      post :create, offer: {}, service_request_id: service_request.id
+    end
     assert_redirected_to service_request
   end
 
   test "should create a valid offer" do
-    service_request = service_requests(:two)
+    service_request = service_requests(:three)
 
     assert_difference 'Offer.count', 1 do 
       post :create, offer: {}, service_request_id: service_request.id
@@ -34,7 +42,7 @@ class OffersControllerTest < ActionController::TestCase
   end
 
   test "should not create a valid offer twice" do
-    service_request = service_requests(:two)
+    service_request = service_requests(:three)
 
     assert_difference 'Offer.count', 1 do 
       post :create, offer: {}, service_request_id: service_request.id
@@ -44,7 +52,6 @@ class OffersControllerTest < ActionController::TestCase
     assert_no_difference 'Offer.count'do 
       post :create, offer: {}, service_request_id: service_request.id
     end
-    assert_redirected_to service_request
   end
 
   test "should cancel a valid offer" do

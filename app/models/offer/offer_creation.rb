@@ -2,6 +2,7 @@ class OfferCreation
   attr_reader :offer
 
   def initialize service_request, user
+    @service_request = service_request
     @user   = user
     @offer  = Offer.new service_request: service_request, user: user
     @valid  = false
@@ -18,6 +19,7 @@ class OfferCreation
     if @offer.valid?
       validate_bidder_is_not_service_request_owner
       validate_service_request_is_open
+      validate_user_has_not_an_offer
     end
     @valid = @offer.errors.empty?
   end
@@ -36,6 +38,12 @@ class OfferCreation
     def validate_service_request_is_open
       unless service_request_open?
         @offer.errors.add(:closed, "service request")
+      end
+    end
+
+    def validate_user_has_not_an_offer
+      if @service_request.has_offer_from_user? @user
+        @offer.errors.add(:repeated, "You already have offered in this service request.")
       end
     end
 
